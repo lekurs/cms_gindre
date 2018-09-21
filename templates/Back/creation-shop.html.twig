@@ -1,0 +1,46 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+    <title>Ajout d'un type de produit</title>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                {{ form_start(form) }}
+                {{ form_row(form.name) }}
+                {{ form_row(form.address) }}
+                {{ form_row(form.zip) }}
+                {{ form_row(form.city) }}
+                {{ form_row(form.region) }}
+                {{ form_row(form.number) }}
+                {{ form_label(form.contact) }}
+                <ul id="email-fields-list"
+                    data-prototype="{{ form_widget(form.contact.vars.prototype)|e }}"
+                    data-widget-tags="{{ '<div></div>'|e }}">
+                    {% for contactField in form.contact %}
+                        <li>
+                            {{ form_errors(contactField) }}
+                            {{ form_widget(contactField) }}
+                        </li>
+                    {% endfor %}
+                </ul>
+                <button type="button"
+                        class="add-another-collection-widget"
+                        data-list="#email-fields-list">Ajouter un contact</button>
+
+                <button type="submit">Ajouter</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous"></script>
+    <script src="{{ asset('js/add-collectionType-widget.js') }}"></script>
+{% endblock %}

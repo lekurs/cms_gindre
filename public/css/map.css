@@ -1,0 +1,35 @@
+/** MAP FRANCE  **/
+
+.map-image {
+    width: 80%;
+    float: left;
+}
+
+.map-image path {
+    fill: #202326;
+    stroke: #ffffff;
+    stroke-width: 1px;
+    -webkit-transition: fill .3s;
+    -moz-transition: fill .3s;
+    -ms-transition: fill .3s;
+    -o-transition: fill .3s;
+    transition: fill .3s;
+}
+
+.map-image path:hover {
+    fill: rgba(32, 35, 38, 0.44);
+}
+
+/*.map-list {*/
+    /*float: right;*/
+    /*width: 50%;*/
+/*}*/
+
+/*.map-list a {*/
+    /*color: inherit;*/
+    /*text-decoration: none;*/
+/*}*/
+
+.text-path {
+    color: red;
+}
