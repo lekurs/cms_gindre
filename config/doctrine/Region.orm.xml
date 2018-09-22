@@ -15,12 +15,12 @@
                 <cascade-remove/>
             </cascade>
         </one-to-many>
-        
-        <!--<one-to-many field="departements" target-entity="App\Domain\Models\Departement" mapped-by="region">-->
-        <!--<cascade>-->
-        <!--<cascade-persist/>-->
-        <!--<cascade-remove/>-->
-        <!--</cascade>-->
-        <!--</one-to-many>-->
+
+        <one-to-many field="departements" target-entity="App\Domain\Models\Departement" mapped-by="region">
+            <cascade>
+                <cascade-persist/>
+                <cascade-remove/>
+            </cascade>
+        </one-to-many>
     </entity>
 </doctrine-mapping>

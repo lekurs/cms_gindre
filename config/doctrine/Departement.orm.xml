@@ -5,10 +5,12 @@
                           http://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd">
     
     <entity name="App\Domain\Models\Departement" repository-class="App\Domain\Repository\DepartementRepository" table="cms_gindre_departement">
-        <id name="id" type="uuid" column="id" />
+        <id name="id" type="integer" column="id">
+            <generator strategy="SEQUENCE" />
+        </id>        <field name="zip" type="string" length="2" unique="true" nullable="false" />
         <field name="departement" type="string" length="100" unique="true" nullable="false" />
 
-        <!--<many-to-one field="region" target-entity="App\Domain\Models\Region" inversed-by="departements" />-->
+        <many-to-one field="region" target-entity="App\Domain\Models\Region" inversed-by="departements" />
 
     </entity>
     

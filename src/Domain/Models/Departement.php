@@ -14,9 +14,14 @@ use Ramsey\Uuid\Uuid;
 class Departement
 {
     /**
-     * @var Uuid
+     * @var int
      */
     private $id;
+
+    /**
+     * @var string
+     */
+    private $zip;
 
     /**
      * @var string
@@ -30,17 +35,18 @@ class Departement
 
     /**
      * Departement constructor.
-     *
+     * @param string $zip
      * @param string $departement
      * @param Region $region
      * @throws \Exception
      */
-    public function __construct(string $departement, Region $region)
+    public function __construct(string $zip, string $departement, Region $region)
     {
-        $this->id = Uuid::uuid4();
+        $this->zip = $zip;
         $this->departement = $departement;
         $this->region = $region;
     }
+
 
     /**
      * @return Uuid
