@@ -7,15 +7,20 @@
         <id name="id" type="integer" column="id">
             <generator strategy="SEQUENCE" />
         </id>
-        <field name="dept" type="string" length="50" unique="false" nullable="false" />
         <field name="region" type="string" length="80" unique="false" nullable="false" />
-        <field name="zip" type="integer" length="2" unique="false" nullable="false" />
-        
+
         <one-to-many field="shops" target-entity="App\Domain\Models\Shop" mapped-by="region">
             <cascade>
                 <cascade-persist/>
                 <cascade-remove/>
             </cascade>
         </one-to-many>
+        
+        <!--<one-to-many field="departements" target-entity="App\Domain\Models\Departement" mapped-by="region">-->
+        <!--<cascade>-->
+        <!--<cascade-persist/>-->
+        <!--<cascade-remove/>-->
+        <!--</cascade>-->
+        <!--</one-to-many>-->
     </entity>
 </doctrine-mapping>

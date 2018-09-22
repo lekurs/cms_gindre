@@ -1,16 +1,17 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Maxime GINDRE
- * Date: 20/09/2018
- * Time: 09:51
+ * User: Bidule
+ * Date: 22/09/2018
+ * Time: 11:35
  */
 
 namespace App\Domain\Models;
 
+
 use Ramsey\Uuid\Uuid;
 
-class Region
+class Departement
 {
     /**
      * @var Uuid
@@ -20,27 +21,24 @@ class Region
     /**
      * @var string
      */
+    private $departement;
+
+    /**
+     * @var Region
+     */
     private $region;
 
     /**
-     * @var \ArrayAccess
-     */
-    private $shops;
-
-    /**
-     * @var \ArrayAccess
-     */
-    private $departements;
-
-    /**
-     * Region constructor.
+     * Departement constructor.
      *
-     * @param string $region
+     * @param string $departement
+     * @param Region $region
      * @throws \Exception
      */
-    public function __construct(string $region)
+    public function __construct(string $departement, Region $region)
     {
         $this->id = Uuid::uuid4();
+        $this->departement = $departement;
         $this->region = $region;
     }
 
@@ -55,7 +53,15 @@ class Region
     /**
      * @return string
      */
-    public function getRegion(): string
+    public function getDepartement(): string
+    {
+        return $this->departement;
+    }
+
+    /**
+     * @return Region
+     */
+    public function getRegion(): Region
     {
         return $this->region;
     }
