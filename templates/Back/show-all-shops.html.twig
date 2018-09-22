@@ -1,0 +1,44 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+    <title>Etablissements</title>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <table id="shops" class="table">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Region</th>
+                            <th>Status</th>
+                            <th>Prospect / Client</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for shop in shops %}
+                            <tr>
+                                <td>{{ shop.name }}</td>
+                                <td>{{ shop.region.region }}</td>
+                                <td>{{ shop.status.status }}</td>
+                                <td>{% if shop.prospect %} Prospect {% else %} Client {% endif %}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/fh-3.1.4/r-2.2.2/datatables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+          $('#shops').DataTable();
+        });
+    </script>
+{% endblock %}

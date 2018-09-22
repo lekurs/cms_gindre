@@ -55,6 +55,16 @@ class Shop
     private $number;
 
     /**
+     * @var
+     */
+    private $status;
+
+    /**
+     * @var bool
+     */
+    private $prospect;
+
+    /**
      * @var string
      */
     private $slug;
@@ -71,16 +81,20 @@ class Shop
 
     /**
      * Shop constructor.
+     *
      * @param string $name
      * @param string $address
      * @param int $zip
      * @param string $city
      * @param array $contacts
      * @param Region $region
-     * @param string $number
+     * @param StatusShop $status
+     * @param bool $prospect
+     * @param string|null $number
+     * @param string $slug
      * @throws \Exception
      */
-    public function __construct(string $name, string $address, int $zip, string $city, array $contacts, Region $region, string $number = null, string $slug)
+    public function __construct(string $name, string $address, int $zip, string $city, array $contacts, Region $region, StatusShop $status, bool $prospect = true, string $number = null, string $slug)
     {
         $this->id = Uuid::uuid4();
         $this->name = $name;
@@ -89,6 +103,8 @@ class Shop
         $this->city = $city;
         $this->contacts = new ArrayCollection($contacts ?? []);
         $this->region = $region;
+        $this->status = $status;
+        $this->prospect = $prospect;
         $this->number = $number;
         $this->slug = $slug;
     }
@@ -173,8 +189,27 @@ class Shop
         return $this->orders;
     }
 
-//    public function manageContact(Contact $contact): void
-//    {
-//        $this->contacts = $contact;
-//    }
+    /**
+     * @return mixed
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isProspect(): bool
+    {
+        return $this->prospect;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlug(): string
+    {
+        return $this->slug;
+    }
 }

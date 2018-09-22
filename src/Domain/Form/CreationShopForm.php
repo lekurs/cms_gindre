@@ -11,10 +11,13 @@ namespace App\Domain\Form;
 
 use App\Domain\DTO\CreationShopFormDTO;
 use App\Domain\Models\Region;
+use App\Domain\Models\StatusShop;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
@@ -29,10 +32,18 @@ class CreationShopForm extends AbstractType
             ->add('address', TextType::class)
             ->add('zip', TextType::class)
             ->add('city', TextType::class)
-            ->add('region', EntityType::class, [
-                'class' => Region::class,
-                'choice_label' => 'region',
+            ->add('status', EntityType::class, [
+                'class' => StatusShop::class,
+                'choice_label' => 'status',
                 'constraints' => new UniqueEntity(['fields' => 'id'])
+            ])
+            ->add('prospect', ChoiceType::class, [
+                'expanded' => true,
+                'multiple' => false,
+                'choices' => [
+                    'Client' => false,
+                    'Prospect' => true
+                ]
             ])
             ->add('contact', CollectionType::class, [
                 'entry_type' => ContactCreationForm::class,
@@ -59,7 +70,8 @@ class CreationShopForm extends AbstractType
                    $form->get('zip')->getData(),
                    $form->get('city')->getData(),
                    $form->get('contact')->getData(),
-                   $form->get('region')->getData(),
+                   $form->get('status')->getData(),
+                    $form->get('prospect')->getData(),
                    $form->get('number')->getData()
                 );
             }

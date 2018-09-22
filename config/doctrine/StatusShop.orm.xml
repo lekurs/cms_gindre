@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                          http://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd">
+
+    <entity name="App\Domain\Models\StatusShop" repository-class="App\Domain\Repository\StatusShopRepository" table="cms_gindre_status_shop">
+        <id name="id" type="uuid" column="id" />
+        <field name="status" type="string" nullable="false" unique="true" />
+
+        <one-to-many field="shops" target-entity="App\Domain\Models\Shop" mapped-by="status">
+            <cascade>
+                <cascade-persist/>
+                <cascade-remove/>
+            </cascade>
+        </one-to-many>
+    </entity>
+
+</doctrine-mapping>

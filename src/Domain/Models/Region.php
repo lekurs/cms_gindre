@@ -13,7 +13,7 @@ use Ramsey\Uuid\Uuid;
 class Region
 {
     /**
-     * @var Uuid
+     * @var int
      */
     private $id;
 
@@ -40,14 +40,13 @@ class Region
      */
     public function __construct(string $region)
     {
-        $this->id = Uuid::uuid4();
         $this->region = $region;
     }
 
     /**
-     * @return Uuid
+     * @return int
      */
-    public function getId(): Uuid
+    public function getId(): int
     {
         return $this->id;
     }
@@ -58,5 +57,21 @@ class Region
     public function getRegion(): string
     {
         return $this->region;
+    }
+
+    /**
+     * @return \ArrayAccess
+     */
+    public function getShops(): \ArrayAccess
+    {
+        return $this->shops;
+    }
+
+    /**
+     * @return \ArrayAccess
+     */
+    public function getDepartements(): \ArrayAccess
+    {
+        return $this->departements;
     }
 }

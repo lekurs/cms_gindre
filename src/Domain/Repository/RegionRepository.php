@@ -29,10 +29,17 @@ class RegionRepository extends ServiceEntityRepository implements RegionReposito
     public function getOne($zip): Region
     {
         return $this->createQueryBuilder('region')
-                            ->where('region.dept = :zip')
+                            ->where('region.zip = :zip')
                             ->setParameter('zip', $zip)
                             ->getQuery()
                             ->getOneOrNullResult();
     }
 
+    public function getAll(): array
+    {
+        return $this->createQueryBuilder('region')
+                                ->orderBy('region.id', 'ASC')
+                                ->getQuery()
+                                ->getResult();
+    }
 }

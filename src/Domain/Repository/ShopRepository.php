@@ -30,6 +30,15 @@ class ShopRepository extends ServiceEntityRepository implements ShopRepositoryIn
                             ->getResult();
     }
 
+    public function getOne($slug): Shop
+    {
+        return $this->createQueryBuilder('shop')
+                                ->where('shop.slug = :slug')
+                                ->setParameter('slug', $slug)
+                                ->getQuery()
+                                ->getOneOrNullResult();
+    }
+
     public function save(Shop $shop, array $contacts):void
     {
         foreach ($contacts as $contact) {

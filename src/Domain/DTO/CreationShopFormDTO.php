@@ -11,6 +11,7 @@ namespace App\Domain\DTO;
 
 use App\Domain\DTO\Interfaces\CreationShopFormDTOInterface;
 use App\Domain\Models\Region;
+use App\Domain\Models\StatusShop;
 
 class CreationShopFormDTO implements CreationShopFormDTOInterface
 {
@@ -35,6 +36,16 @@ class CreationShopFormDTO implements CreationShopFormDTOInterface
     public $city;
 
     /**
+     * @var StatusShop
+     */
+    public $status;
+
+    /**
+     * @var bool
+     */
+    public $prospect;
+
+    /**
      * @var array
      */
     public $contact;
@@ -56,16 +67,20 @@ class CreationShopFormDTO implements CreationShopFormDTOInterface
      * @param string $address
      * @param int $zip
      * @param string $city
-     * @param string $number
+     * @param array $contact
+     * @param StatusShop $status
+     * @param bool $prospect
+     * @param string|null $number
      */
-    public function __construct(string $name, string $address, int $zip, string $city, array $contact, Region $region, string $number = null)
+    public function __construct(string $name, string $address, int $zip, string $city, array $contact, StatusShop $status, bool $prospect, string $number = null)
     {
         $this->name = $name;
         $this->address = $address;
         $this->zip = $zip;
         $this->city = $city;
         $this->contact = [];
-        $this->region = $region;
+        $this->status = $status;
+        $this->prospect = $prospect;
         $this->number = $number;
     }
 }

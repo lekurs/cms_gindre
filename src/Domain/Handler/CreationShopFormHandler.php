@@ -12,6 +12,7 @@ namespace App\Domain\Handler;
 use App\Domain\Factory\Interfaces\ContactFactoryInterface;
 use App\Domain\Factory\Interfaces\ShopFactoryInterface;
 use App\Domain\Handler\Interfaces\CreationShopFormHandlerInterface;
+use App\Domain\Repository\DepartementRepository;
 use App\Domain\Repository\Interfaces\ShopRepositoryInterface;
 use App\Services\Interfaces\SlugHelperInterface;
 use Symfony\Component\Form\FormInterface;
@@ -20,6 +21,11 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class CreationShopFormHandler implements CreationShopFormHandlerInterface
 {
+    /**
+     * @var DepartementRepository
+     */
+    private $departementRepo;
+
     /**
      * @var ShopFactoryInterface
      */
@@ -52,6 +58,7 @@ class CreationShopFormHandler implements CreationShopFormHandlerInterface
 
     /**
      * CreationShopFormHandler constructor.
+     * @param DepartementRepository $departementRepo
      * @param ShopFactoryInterface $shopFactory
      * @param ContactFactoryInterface $contactFactory
      * @param ShopRepositoryInterface $shopRepo
@@ -59,8 +66,9 @@ class CreationShopFormHandler implements CreationShopFormHandlerInterface
      * @param SessionInterface $session
      * @param ValidatorInterface $validator
      */
-    public function __construct(ShopFactoryInterface $shopFactory, ContactFactoryInterface $contactFactory, ShopRepositoryInterface $shopRepo, SlugHelperInterface $slugHelper, SessionInterface $session, ValidatorInterface $validator)
+    public function __construct(DepartementRepository $departementRepo, ShopFactoryInterface $shopFactory, ContactFactoryInterface $contactFactory, ShopRepositoryInterface $shopRepo, SlugHelperInterface $slugHelper, SessionInterface $session, ValidatorInterface $validator)
     {
+        $this->departementRepo = $departementRepo;
         $this->shopFactory = $shopFactory;
         $this->contactFactory = $contactFactory;
         $this->shopRepo = $shopRepo;
@@ -77,6 +85,10 @@ class CreationShopFormHandler implements CreationShopFormHandlerInterface
     public function handle(FormInterface $form): bool
     {
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $zip = substr($form->getData()->zip, 0, 2);
+
+            $dpt = $this->departementRepo->getOne($zip);
 
             if (count($form->getData()->contact > 0)) {
                 $contacts = [];
@@ -100,7 +112,9 @@ class CreationShopFormHandler implements CreationShopFormHandlerInterface
                 $form->getData()->zip,
                 $form->getData()->city,
                 $contacts ?? [],
-                $form->getData()->region,
+                $dpt->getRegion(),
+                $form->getData()->status,
+                $form->getData()->prospect,
                 $form->getData()->number,
                 $this->slugHelper->replace($form->getData()->name)
             );

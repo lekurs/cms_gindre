@@ -25,4 +25,13 @@ class DepartementRepository extends ServiceEntityRepository
         parent::__construct($registry, Departement::class);
     }
 
+    public function getOne($zip): Departement
+    {
+        return $this->createQueryBuilder('departement')
+                                ->where('departement.zip = :zip')
+                                ->setParameter('zip', $zip)
+                                ->getQuery()
+                                ->getOneOrNullResult();
+    }
+
 }

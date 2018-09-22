@@ -11,8 +11,10 @@
         <field name="city" type="string" unique="false" nullable="false" length="100" />
         <field name="number" type="string" unique="true" nullable="true" length="50" />
         <field name="slug" type="string" unique="true" nullable="false" length="255" />
+        <field name="prospect" type="boolean" nullable="true" />
 
         <many-to-one field="region" target-entity="App\Domain\Models\Region" inversed-by="shops" />
+        <many-to-one field="status" target-entity="App\Domain\Models\StatusShop" inversed-by="shops" />
 
         <one-to-many field="contacts" target-entity="App\Domain\Models\Contact" mapped-by="shop">
             <cascade>

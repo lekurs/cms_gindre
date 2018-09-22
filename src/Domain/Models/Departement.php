@@ -51,7 +51,7 @@ class Departement
     /**
      * @return Uuid
      */
-    public function getId(): Uuid
+    public function getId(): int
     {
         return $this->id;
     }
