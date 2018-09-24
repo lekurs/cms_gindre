@@ -24,6 +24,7 @@ class ShowAllShopsAction implements ShowAllShopsActionInterface
 
     /**
      * ShowAllShopsAction constructor.
+     *
      * @param ShopRepositoryInterface $shopRepo
      */
     public function __construct(ShopRepositoryInterface $shopRepo)
@@ -40,9 +41,6 @@ class ShowAllShopsAction implements ShowAllShopsActionInterface
     {
         $shops = $this->shopRepo->getAll();
 
-        dump($shops);
-
         return $responder->response($shops);
     }
-
 }
