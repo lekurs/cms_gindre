@@ -9,14 +9,15 @@
 namespace App\Domain\Factory;
 
 
+use App\Domain\Factory\Interfaces\MessageFactoryInterface;
 use App\Domain\Models\ContactType;
 use App\Domain\Models\Message;
 use App\Domain\Models\Shop;
 
-class MessageFactory
+class MessageFactory implements MessageFactoryInterface
 {
     public function create(string $message, \DateTime $dateContact, ContactType $contactType, Shop $shop): Message
     {
-        return new Message($message, $dateContact = new \DateTime(), $contactType, $shop);
+        return new Message($message, $dateContact, $contactType, $shop);
     }
 }
