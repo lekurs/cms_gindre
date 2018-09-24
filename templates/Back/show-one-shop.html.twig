@@ -1,0 +1,61 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+    <title>Etablissement : </title>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                {{ shop.name }}
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-12 col-sm-12 col-12">
+                <h2>Contacts</h2>
+                {% for contact in shop.contacts %}
+                    <p>{{ contact.name }}</p>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row">
+            {% for message in shop.messages if message is not empty%}
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                {{ message.message }}
+            </div>
+            {% else %}
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <p>aucune note</p>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newMessage">Ajouter</button>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="newMessage" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                        <textarea id="message" class="message"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -10,13 +10,13 @@ namespace App\UI\Action\Back;
 
 
 use App\Domain\Repository\Interfaces\ShopRepositoryInterface;
-use App\UI\Action\Interfaces\ShowShopActionInterface;
+use App\UI\Action\Interfaces\ShowOneShopActionInterface;
 use App\UI\Responder\Interfaces\ShowShopResponderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ShowShopAction implements ShowShopActionInterface
+class ShowOneOneShopAction implements ShowOneShopActionInterface
 {
     /**
      * @var ShopRepositoryInterface
@@ -24,7 +24,7 @@ class ShowShopAction implements ShowShopActionInterface
     private $shopRepo;
 
     /**
-     * ShowShopAction constructor.
+     * ShowOneOneShopAction constructor.
      * @param ShopRepositoryInterface $shopRepo
      */
     public function __construct(ShopRepositoryInterface $shopRepo)
@@ -33,7 +33,7 @@ class ShowShopAction implements ShowShopActionInterface
     }
 
     /**
-     * @Route(name="showOneShop", path="admin/shop/{slug}")
+     * @Route(name="showOneShop", path="admin/shop/one/{slug}")
      * @param Request $request
      * @param ShowShopResponderInterface $responder
      * @return Response
@@ -42,6 +42,6 @@ class ShowShopAction implements ShowShopActionInterface
     {
         $shop = $this->shopRepo->getOne($request->attributes->get('slug'));
 
-        $responder->response($shop);
+        return $responder->response($shop);
     }
 }

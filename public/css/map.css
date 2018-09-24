@@ -1,7 +1,7 @@
 /** MAP FRANCE  **/
 
 .map-image {
-    width: 80%;
+    width: 45%;
     float: left;
 }
 
@@ -31,5 +31,11 @@
 /*}*/
 
 .text-path {
-    color: red;
+    fill: red;
+    font-size: .8em;
+}
+
+.txt-region {
+    fill: blue;
+    font-size: .9em;
 }

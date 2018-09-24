@@ -13,7 +13,7 @@ use App\UI\Responder\Interfaces\ShowShopResponderInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 
-class ShowShopResponder implements ShowShopResponderInterface
+class ShowOneShopResponder implements ShowShopResponderInterface
 {
     /**
      * @var Environment
@@ -21,7 +21,7 @@ class ShowShopResponder implements ShowShopResponderInterface
     private $twig;
 
     /**
-     * ShowShopResponder constructor.
+     * ShowOneShopResponder constructor.
      * @param Environment $twig
      */
     public function __construct(Environment $twig)
@@ -38,7 +38,7 @@ class ShowShopResponder implements ShowShopResponderInterface
      */
     public function response($shop): Response
     {
-        return new Response($this->twig->render('Back/show-etablissement.html.twig', [
+        return new Response($this->twig->render('Back/show-one-shop.html.twig', [
             'shop' => $shop,
         ]));
     }

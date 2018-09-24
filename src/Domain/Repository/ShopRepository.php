@@ -39,6 +39,21 @@ class ShopRepository extends ServiceEntityRepository implements ShopRepositoryIn
                                 ->getOneOrNullResult();
     }
 
+    /**
+     * @param Region $region
+     * @return array
+     */
+    public function getAllByRegion($region): array
+    {
+        return $this->createQueryBuilder('shop')
+                                ->leftJoin('shop.region', 'region')
+                                ->where('shop.region = :region')
+                                ->setParameter('region', $region)
+                                ->orderBy('shop.name', 'ASC')
+                                ->getQuery()
+                                ->getResult();
+    }
+
     public function save(Shop $shop, array $contacts):void
     {
         foreach ($contacts as $contact) {

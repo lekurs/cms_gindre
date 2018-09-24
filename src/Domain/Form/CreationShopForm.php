@@ -35,6 +35,8 @@ class CreationShopForm extends AbstractType
             ->add('status', EntityType::class, [
                 'class' => StatusShop::class,
                 'choice_label' => 'status',
+                'expanded' => true,
+                'multiple' => false,
                 'constraints' => new UniqueEntity(['fields' => 'id'])
             ])
             ->add('prospect', ChoiceType::class, [
