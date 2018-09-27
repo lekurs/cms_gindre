@@ -9,6 +9,7 @@
 namespace App\Domain\Models;
 
 
+use App\Domain\DTO\ContactEditFormDTO;
 use Ramsey\Uuid\Uuid;
 
 class Contact
@@ -187,8 +188,15 @@ class Contact
         $this->shop = $shop;
     }
 
-    public function updateContact(): Contact
+    public function updateContact(ContactEditFormDTO $DTO): void
     {
-
+        $this->name = $DTO->name;
+        $this->lastName = $DTO->lastName;
+        $this->phoneOne = $DTO->phoneOne;
+        $this->phoneMobile = $DTO->phoneMobile;
+        $this->email = $DTO->email;
+        $this->role = $DTO->role;
+        $this->main = $DTO->main;
+        $this->slug = $DTO->slug;
     }
 }

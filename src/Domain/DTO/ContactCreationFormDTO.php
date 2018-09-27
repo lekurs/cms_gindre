@@ -50,15 +50,15 @@ class ContactCreationFormDTO implements ContactCreationFormDTOInterface
      */
     public $main;
 
-
     /**
      * ContactCreationFormDTO constructor.
      *
      * @param string $name
      * @param string $lastName
-     * @param int $phoneOne
+     * @param int|null $phoneOne
      * @param int $phoneMobile
      * @param string $email
+     * @param Role $role
      * @param bool $main
      */
     public function __construct(

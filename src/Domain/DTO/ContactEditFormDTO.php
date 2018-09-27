@@ -9,12 +9,14 @@
 namespace App\Domain\DTO;
 
 
+use App\Domain\DTO\Interfaces\ContactEditFormDTOInterface;
 use App\Domain\Models\Role;
+use Ramsey\Uuid\Uuid;
 
-class ContactEditFormDTO
+class ContactEditFormDTO implements ContactEditFormDTOInterface
 {
     /**
-     * @var string
+     * @var Uuid
      */
     public $id;
 
@@ -54,17 +56,24 @@ class ContactEditFormDTO
     public $main;
 
     /**
+     * @var string
+     */
+    public $slug;
+
+    /**
      * ContactEditFormDTO constructor.
-     * @param string $id
+     *
+     * @param Uuid $id
      * @param string $name
      * @param string $lastName
-     * @param int $phoneOne
+     * @param int|null $phoneOne
      * @param int $phoneMobile
      * @param string $email
      * @param Role $role
      * @param bool $main
+     * @param string $slug
      */
-    public function __construct(string $id, string $name, string $lastName, int $phoneOne, int $phoneMobile, string $email, Role $role, bool $main)
+    public function __construct(Uuid $id, string $name, string $lastName, int $phoneOne = null, int $phoneMobile, string $email, Role $role, bool $main, string $slug)
     {
         $this->id = $id;
         $this->name = $name;
@@ -74,5 +83,6 @@ class ContactEditFormDTO
         $this->email = $email;
         $this->role = $role;
         $this->main = $main;
+        $this->slug = $slug;
     }
 }

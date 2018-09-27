@@ -46,4 +46,9 @@ class ContactRepository extends ServiceEntityRepository implements ContactReposi
         $this->_em->persist($contact);
         $this->_em->flush();
     }
+
+    public function update():void
+    {
+        $this->_em->flush();
+    }
 }
