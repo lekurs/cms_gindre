@@ -25,7 +25,8 @@ class CreationMessageForm extends AbstractType
     {
         $builder
             ->add('message', TextareaType::class,[
-                'attr' => ['id' => 'message']
+                'attr' => ['id' => 'message'],
+                'required' => false
             ])
             ->add('contactType', EntityType::class, [
                 'class' => ContactType::class,

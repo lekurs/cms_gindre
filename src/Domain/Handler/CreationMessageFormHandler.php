@@ -76,8 +76,6 @@ class CreationMessageFormHandler implements CreationMessageFormHandlerInterface
 
 //            $this->validator->validate([]);
 
-            dd($message);
-
             $this->messageRepo->save($message);
 
             $this->session->getFlashBag("success", "Message Ajouté");

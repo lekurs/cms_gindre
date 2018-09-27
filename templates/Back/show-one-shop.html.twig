@@ -1,7 +1,7 @@
 {% extends "layout.html.twig" %}
 
 {% block title %}
-    <title>Etablissement : </title>
+    Shop : {{ shop.name }}
 {% endblock %}
 
 {% block body %}
@@ -17,20 +17,27 @@
                 <h2>Contacts</h2>
                 {% for contact in shop.contacts %}
                     <p>{{ contact.name }}</p>
+                    <p>{{ contact.lastName }}</p>
+                    <p>{{ contact.main }}</p>
+                    <p><i class="fa fa-eye contact-edit-icon" data-slug="{{ contact.id }}" data-shop="{{ shop.slug }}" data-toggle="modal" data-target="#editContact"></i></p>
+
                 {% endfor %}
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newContact">Ajouter Contact</button>
             </div>
         </div>
         <div class="row">
+            <h2>Notes</h2>
             {% for message in shop.messages if message is not empty%}
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                {{ message.message }}
+                <p>{{ message.dateContact | date('d M Y') }}</p>
+                <p>{{ message.message |raw }}</p>
             </div>
             {% else %}
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                 <p>aucune note</p>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newMessage">Ajouter</button>
             </div>
             {% endfor %}
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newMessage">Ajouter Message</button>
         </div>
     </div>
 
@@ -60,4 +67,63 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="newContact" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                        {{ form_start(formContact) }}
+                        {{ form_widget(formContact) }}
+                        <button type="submit">Enregistrer</button>
+                        {{ form_end(formContact) }}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editContact" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal Edit</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12" id="edit-contact-form">
+                        {#{{ form_start(formContact) }}#}
+                        {#{{ form_widget(formContact) }}#}
+                        {#<button type="submit">Enregistrer</button>#}
+                        {#{{ form_end(formContact) }}#}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script type="text/javascript" src="{{ asset('js/edit-contact.js') }}">
+</script>
+<script>
+    tinymce.init({
+        selector: '#creation_message_form_message'
+    });
+</script>
 {% endblock %}

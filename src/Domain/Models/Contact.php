@@ -77,8 +77,17 @@ class Contact
      * @param string $slug
      * @throws \Exception
      */
-    public function __construct(string $name, string $lastName, int $phoneOne = null, int $phoneMobile, string $email, Role $role, bool $main = true, string $slug)
-    {
+    public function __construct(
+        string $name,
+        string $lastName,
+        int $phoneOne = null,
+        int $phoneMobile,
+        string $email,
+        Role $role,
+        bool $main = true,
+        string $slug,
+        Shop $shop = null
+    ) {
         $this->id = Uuid::uuid4();
         $this->name = $name;
         $this->lastName = $lastName;
@@ -88,6 +97,7 @@ class Contact
         $this->role = $role;
         $this->main = $main;
         $this->slug = $slug;
+        $this->shop = $shop;
     }
 
     /**
@@ -117,9 +127,11 @@ class Contact
     /**
      * @return int
      */
-    public function getPhoneOne(): int
+    public function getPhoneOne()
     {
-        return $this->phoneOne;
+        if ($this->phoneOne != null) {
+            return $this->phoneOne;
+        }
     }
 
     /**
@@ -147,6 +159,22 @@ class Contact
     }
 
     /**
+     * @return Shop
+     */
+    public function getShop(): Shop
+    {
+        return $this->shop;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlug(): string
+    {
+        return $this->slug;
+    }
+
+    /**
      * @return bool
      */
     public function isMain(): bool
@@ -157,5 +185,10 @@ class Contact
     public function manageShop(Shop $shop): void
     {
         $this->shop = $shop;
+    }
+
+    public function updateContact(): Contact
+    {
+
     }
 }

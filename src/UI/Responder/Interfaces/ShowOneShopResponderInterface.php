@@ -9,7 +9,7 @@
 namespace App\UI\Responder\Interfaces;
 
 
-interface ShowShopResponderInterface
+interface ShowOneShopResponderInterface
 {
 
 }

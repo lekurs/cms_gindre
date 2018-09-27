@@ -24,6 +24,7 @@ interface ContactFactoryInterface
      * @param Role $role
      * @param bool $main
      * @param string $slug
+     * @param Shop|null $shop
      * @return Contact
      */
     public function create(
@@ -34,6 +35,7 @@ interface ContactFactoryInterface
         string $email,
         Role $role,
         bool $main,
-        string $slug
+        string $slug,
+        Shop $shop = null
     ): Contact;
 }

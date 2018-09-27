@@ -9,14 +9,14 @@
 namespace App\UI\Responder\Back;
 
 
-use App\UI\Responder\Interfaces\ShowShopResponderInterface;
+use App\UI\Responder\Interfaces\ShowOneShopResponderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Environment;
 
-class ShowOneShopResponder implements ShowShopResponderInterface
+class ShowOneOneShopResponder implements ShowOneShopResponderInterface
 {
     /**
      * @var Environment
@@ -29,7 +29,7 @@ class ShowOneShopResponder implements ShowShopResponderInterface
     private $urlGenerator;
 
     /**
-     * ShowOneShopResponder constructor.
+     * ShowOneOneShopResponder constructor.
      * @param Environment $twig
      * @param UrlGeneratorInterface $urlGenerator
      */
@@ -48,10 +48,11 @@ class ShowOneShopResponder implements ShowShopResponderInterface
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function response($redirect = false, FormInterface $form = null, $shop): Response
+    public function response($redirect = false, FormInterface $form = null, FormInterface $formContact = null, $shop, $slug = null): Response
     {
-        $redirect ? $response = new RedirectResponse($this->urlGenerator->generate('showOneShop')) : $response =  new Response($this->twig->render('Back/show-one-shop.html.twig', [
+        $redirect ? $response = new RedirectResponse($this->urlGenerator->generate('showOneShop', ['slug' => $slug])) : $response =  new Response($this->twig->render('Back/show-one-shop.html.twig', [
             'form' => $form->createView(),
+            'formContact' => $formContact->createView(),
             'shop' => $shop
         ]));
 

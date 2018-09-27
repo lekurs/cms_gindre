@@ -37,9 +37,10 @@ class ContactFactory implements ContactFactoryInterface
         string $email,
         Role $role,
         bool $main,
-        string $slug
+        string $slug,
+        Shop $shop = null
     ): Contact
     {
-        return new Contact($name, $lastName, $phoneOne, $phoneMobile, $email, $role, $main, $slug);
+        return new Contact($name, $lastName, $phoneOne, $phoneMobile, $email, $role, $main, $slug, $shop);
     }
 }

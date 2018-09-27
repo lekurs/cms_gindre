@@ -2,19 +2,22 @@
 /**
  * Created by PhpStorm.
  * User: Maxime GINDRE
- * Date: 21/09/2018
- * Time: 12:56
+ * Date: 25/09/2018
+ * Time: 10:18
  */
 
 namespace App\Domain\DTO;
 
 
-use App\Domain\DTO\Interfaces\ContactCreationFormDTOInterface;
 use App\Domain\Models\Role;
-use Ramsey\Uuid\Uuid;
 
-class ContactCreationFormDTO implements ContactCreationFormDTOInterface
+class ContactEditFormDTO
 {
+    /**
+     * @var string
+     */
+    public $id;
+
     /**
      * @var string
      */
@@ -51,30 +54,19 @@ class ContactCreationFormDTO implements ContactCreationFormDTOInterface
     public $main;
 
     /**
-     * @var Uuid
-     */
-    public $id;
-
-    /**
-     * ContactCreationFormDTO constructor.
-     *
+     * ContactEditFormDTO constructor.
+     * @param string $id
      * @param string $name
      * @param string $lastName
      * @param int $phoneOne
      * @param int $phoneMobile
      * @param string $email
+     * @param Role $role
      * @param bool $main
      */
-    public function __construct(
-        string $name,
-        string $lastName,
-        int $phoneOne = null,
-        int $phoneMobile,
-        string $email,
-        Role $role,
-        bool $main = true,
-        Uuid $id = null
-    ) {
+    public function __construct(string $id, string $name, string $lastName, int $phoneOne, int $phoneMobile, string $email, Role $role, bool $main)
+    {
+        $this->id = $id;
         $this->name = $name;
         $this->lastName = $lastName;
         $this->phoneOne = $phoneOne;
@@ -82,6 +74,5 @@ class ContactCreationFormDTO implements ContactCreationFormDTOInterface
         $this->email = $email;
         $this->role = $role;
         $this->main = $main;
-        $this->id = $id;
     }
 }

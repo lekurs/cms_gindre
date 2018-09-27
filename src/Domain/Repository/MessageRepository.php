@@ -20,4 +20,21 @@ class MessageRepository extends ServiceEntityRepository implements MessageReposi
     {
         parent::__construct($registry, Message::class);
     }
+
+    public function getAll(Shop $shop): array
+    {
+        return $this->createQueryBuilder('message')
+                                ->leftJoin('message.shop', 'shop')
+                                ->where('message.shop = :shop')
+                                ->setParameter('shop', $shop)
+                                ->orderBy('message.dateContact', 'DESC')
+                                ->getQuery()
+                                ->getResult();
+    }
+
+    public function save(Message $message): void
+    {
+        $this->_em->persist($message);
+        $this->_em->flush();
+    }
 }
