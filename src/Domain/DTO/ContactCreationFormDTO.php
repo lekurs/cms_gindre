@@ -50,10 +50,6 @@ class ContactCreationFormDTO implements ContactCreationFormDTOInterface
      */
     public $main;
 
-    /**
-     * @var Uuid
-     */
-    public $id;
 
     /**
      * ContactCreationFormDTO constructor.
@@ -72,8 +68,7 @@ class ContactCreationFormDTO implements ContactCreationFormDTOInterface
         int $phoneMobile,
         string $email,
         Role $role,
-        bool $main = true,
-        Uuid $id = null
+        bool $main = true
     ) {
         $this->name = $name;
         $this->lastName = $lastName;
@@ -82,6 +77,5 @@ class ContactCreationFormDTO implements ContactCreationFormDTOInterface
         $this->email = $email;
         $this->role = $role;
         $this->main = $main;
-        $this->id = $id;
     }
 }

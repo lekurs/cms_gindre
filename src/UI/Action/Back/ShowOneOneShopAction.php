@@ -130,8 +130,7 @@ class ShowOneOneShopAction implements ShowOneShopActionInterface
             $contact->getEmail(),
             $contact->getRole(),
             $contact->isMain(),
-            $contact->getShop(),
-            $contact->getId()
+            $contact->getShop()
         );
 
         $form = $this->formFactory->create(ContactCreationForm::class, $editContact);
