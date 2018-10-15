@@ -9,6 +9,7 @@
 namespace App\UI\Responder\Interfaces;
 
 
+use App\Domain\Models\Shop;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -27,7 +28,8 @@ interface EditContactResponderInterface
     /**
      * @param bool $redirect
      * @param FormInterface|null $form
+     * @param Shop $shop
      * @return Response
      */
-    public function response($redirect = false, FormInterface $form = null): Response;
+    public function response($redirect = false, FormInterface $form = null, Shop $shop): Response;
 }

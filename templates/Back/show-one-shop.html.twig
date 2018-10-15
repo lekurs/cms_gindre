@@ -20,6 +20,7 @@
                     <p>{{ contact.lastName }}</p>
                     <p>{{ contact.main }}</p>
                     <p><i class="fa fa-eye contact-edit-icon" data-slug="{{ contact.id }}" data-shop="{{ shop.slug }}" data-toggle="modal" data-target="#editContact"></i></p>
+                    <p><i class="fa fa-trash delete-contact" data-slug="{{ contact.slug }}"></i></p>
 
                 {% endfor %}
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newContact">Ajouter Contact</button>
@@ -116,8 +117,8 @@
 
 {% block javascripts %}
 {{ parent() }}
-<script type="text/javascript" src="{{ asset('js/edit-contact.js') }}">
-</script>
+<script type="text/javascript" src="{{ asset('js/edit-contact.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/delete-contact.js') }}"></script>
 <script>
     tinymce.init({
         selector: '#creation_message_form_message'

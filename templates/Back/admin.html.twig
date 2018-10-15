@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+
+    {% block stylesheet %}
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+        <link href="https://fonts.googleapis.com/css?family=Assistant:200,300,400,600,700,800|Playfair+Display:400,700" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/fh-3.1.4/r-2.2.2/datatables.min.css"/>
+        <link href="{{ asset('/css/style/style.css') }}" rel="stylesheet" />
+        <link href="{{ asset('/css/style/admin/admin.css') }}" rel="stylesheet" />
+        <link href="{{ asset('fonts/font-awesome.css') }}" rel="stylesheet" />
+    {% endblock %}
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Si icone -->
+    {#<link rel="icon" type="image/ico" href="/images/ico-livre.ico" />#}
+    <!--[if IE]><link rel="shortcut icon" type="image/x-icon" href="images/velo-marqueur.png" /><!-->
+
+    {% block meta %}
+        <!-- Création des metatags réseaux sociaux -->
+        <!-- Metatags FB -->
+        <meta property="og:title" content="Gestion clients MySPA" />
+        <meta property="og:type" content="Gestion clients MySPA" />
+        <meta property="og:url" content="crmmyspa.mclwebservices.com" />
+        <meta property="og:description" content="Gestion clients MySPA" />
+        <meta property="og:image" content="/css/images/" />
+
+        <!-- Metatag Twitter -->
+        <meta name="twitter:card" content="Gestion clients MySPA" />
+        <meta name="twitter:tittle" content="Gestion clients MySPA" />
+        <meta name="twitter:description" content="Gestion clients MySPA" />
+    {% endblock %}
+    <title>
+        {% block title %}
+
+        {% endblock %}
+    </title>
+
+    {% block stylesheets %}
+    {% endblock %}
+</head>
+
+<body>
+
+{% block body %}
+<div class="container">
+    <div class="menu-container">
+        <div class="burger">
+            <span class="line-1"></span>
+            <span class="line-2"></span>
+            <span class="line-3"></span>
+        </div>
+        <ul class="menu-content">
+            <li class="active"><span class="icon-menu"><i class="fa fa-home"></i> </span>menu_1<span class="arrow"><i class="fa fa-chevron-right"></i> </span></li>
+            <li >menu_2<span class="arrow"><i class="fa fa-chevron-right"></i> </span></li>
+                <ul class="sub-menu">
+                    <li>sub-1</li>
+                    <li>sub-2</li>
+                    <li>sub-3</li>
+                </ul>
+            <li>menu_3<span class="arrow"><i class="fa fa-chevron-right"></i> </span></li>
+            <li>menu_4<span class="arrow"><i class="fa fa-chevron-right"></i> </span></li>
+            <li>menu_5<span class="arrow"><i class="fa fa-chevron-right"></i> </span></li>
+            <li>menu_6<span class="arrow"><i class="fa fa-chevron-right"></i> </span></li>
+        </ul>
+    </div>
+    {% block container %}
+    <div class="row content">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <h2>Admin</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur rhoncus justo in ullamcorper porta. Nulla feugiat vulputate dictum. Donec vitae ipsum nec metus ultricies ultricies. Aenean aliquam vulputate magna, vel feugiat ante viverra sit amet. Morbi vitae tincidunt libero, at pulvinar arcu. Mauris id nibh quis nunc interdum aliquam. Cras pellentesque ex sed libero tincidunt, eget ultricies diam aliquam. Aenean nec odio id lacus dictum mattis quis vel odio. Duis et sagittis arcu. In elementum tortor quis interdum convallis. Ut at lectus sit amet orci dapibus bibendum. Fusce finibus vel justo sed accumsan. Praesent iaculis libero at ligula elementum egestas. Aliquam eget elit sodales, euismod quam in, sollicitudin arcu. Aliquam vitae pretium lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed at lacus a nisi egestas efficitur at ut orci. Curabitur neque quam, pulvinar elementum sollicitudin non, feugiat ut nunc. Phasellus urna nunc, finibus et justo vel, rutrum rhoncus purus. In eu orci lacinia, accumsan urna nec, pharetra elit. Vestibulum blandit sagittis ante vel maximus. Proin tincidunt consectetur eros eget vulputate. Duis ac augue ultrices, tempus dui sit amet, vulputate libero. Phasellus lacus lectus, lacinia nec diam sit amet, facilisis mattis felis. Donec sem erat, ultricies vitae metus ut, scelerisque faucibus justo. Aenean placerat eget enim ut gravida. Integer nibh orci, lacinia sit amet neque vitae, lacinia vestibulum massa. Vivamus semper porta tellus, ut iaculis quam tristique ac. Aliquam blandit rhoncus massa. Maecenas convallis mauris elementum tristique feugiat. Aliquam sapien orci, convallis sed est eu, molestie accumsan leo. Phasellus volutpat ex sed nibh porta dapibus. In varius justo vel commodo facilisis. Donec vestibulum purus at elementum posuere. Morbi condimentum scelerisque consequat. Curabitur suscipit luctus lacus mollis lobortis. Proin luctus tortor nec magna dignissim tempus. Donec a tortor et mi gravida pharetra in rutrum ex. Nulla vehicula nec dui dapibus congue. Nunc vehicula, eros ac fermentum varius, enim lorem maximus eros, sed cursus ligula est id metus. Aliquam hendrerit auctor mi, sed sollicitudin odio semper id. Duis sed porttitor neque. Phasellus scelerisque nulla sit amet interdum elementum. Mauris id sapien eu urna vulputate consectetur ac suscipit sem. Etiam cursus nisi condimentum tellus placerat pulvinar. Etiam eu metus sed metus varius facilisis vitae tristique ex. Quisque mollis massa orci, in blandit eros semper sed. Fusce ut consequat lectus. Donec commodo elementum lacus mollis viverra. In vehicula efficitur est, sit amet sodales enim tincidunt a. Proin ac ipsum ac purus vestibulum maximus ac quis mi. Phasellus sit amet eleifend nisl, vel pellentesque mi. Donec vel ornare libero. Aliquam erat volutpat. Proin eget tortor et nibh rhoncus pretium vitae laoreet quam. Curabitur auctor nisi ac elit hendrerit ultrices. Maecenas quis arcu vulputate, venenatis nunc sit amet, semper elit.
+
+            </p>
+        </div>
+    </div>
+    {% endblock %}
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/jquery.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.js') }}"></script>
+    <script src="{{ asset('js/active-menu.js') }}"></script>
+    <script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>
+{% endblock %}
+</body>
+
+</html>

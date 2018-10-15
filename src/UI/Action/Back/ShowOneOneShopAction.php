@@ -22,6 +22,7 @@ use App\Domain\Repository\Interfaces\ShopRepositoryInterface;
 use App\UI\Action\Interfaces\ShowOneShopActionInterface;
 use App\UI\Responder\Back\GetContactAjaxResponder;
 use App\UI\Responder\Interfaces\EditContactResponderInterface;
+use App\UI\Responder\Interfaces\ShowAllShopsResponderInterface;
 use App\UI\Responder\Interfaces\ShowOneShopResponderInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -62,17 +63,14 @@ class ShowOneOneShopAction implements ShowOneShopActionInterface
     private $formEditContactHandler;
 
     /**
-     * @var SessionInterface
-     */
-    private $session;
-
-    /**
      * ShowOneOneShopAction constructor.
      *
      * @param ShopRepositoryInterface $shopRepo
+     * @param ContactRepositoryInterface $contactRepo
      * @param FormFactoryInterface $formFactory
      * @param CreationMessageFormHandlerInterface $formMessageHandler
      * @param CreationContactFormHandlerInterface $formContactHandler
+     * @param EditContactFormHandlerInterface $formEditContactHandler
      */
     public function __construct(
         ShopRepositoryInterface $shopRepo,
@@ -80,8 +78,7 @@ class ShowOneOneShopAction implements ShowOneShopActionInterface
         FormFactoryInterface $formFactory,
         CreationMessageFormHandlerInterface $formMessageHandler,
         CreationContactFormHandlerInterface $formContactHandler,
-        EditContactFormHandlerInterface $formEditContactHandler,
-        SessionInterface $session
+        EditContactFormHandlerInterface $formEditContactHandler
     ) {
         $this->shopRepo = $shopRepo;
         $this->contactRepo = $contactRepo;
@@ -89,7 +86,6 @@ class ShowOneOneShopAction implements ShowOneShopActionInterface
         $this->formMessageHandler = $formMessageHandler;
         $this->formContactHandler = $formContactHandler;
         $this->formEditContactHandler = $formEditContactHandler;
-        $this->session = $session;
     }
 
 
@@ -128,6 +124,10 @@ class ShowOneOneShopAction implements ShowOneShopActionInterface
      */
     public function getContactForm(Request $request, GetContactAjaxResponder $responder)
     {
+        if (!$request->isXmlHttpRequest()) {
+            return new \Exception("No Ajax !");
+        }
+
         $contact = $this->contactRepo->getOne($request->query->get('id'));
 
         $editContact = new ContactEditFormDTO(
@@ -170,13 +170,32 @@ class ShowOneOneShopAction implements ShowOneShopActionInterface
             $contact->getSlug()
         );
 
+        $shop = $contact->getShop();
+
         $form = $this->formFactory->create(ContactEditForm::class, $editContact)->handleRequest($request);
 
         if ($this->formEditContactHandler->handle($form, $contact)) {
 
-            return $responder->response(true, null);
+            return $responder->response(true, null, $shop);
         }
 
-        return $responder->response(false, $form);
+        return $responder->response(false, $form, $shop);
+    }
+
+    /**
+     * @Route(name="deleteShop", path="/admin/shop/one/contact/delete", methods={"POST"})
+     * @param Request $request
+     * @param ShowAllShopsResponderInterface $responder
+     * @return Response
+     */
+    public function deleteContact(Request $request, ShowAllShopsResponderInterface $responder): Response
+    {
+        $shop = $this->contactRepo->getOneBySlug($request->request->get('slug'));
+
+        $shops = $this->shopRepo->getAll();
+
+        $this->shopRepo->delete($shop);
+
+        return $responder->response($shops);
     }
 }

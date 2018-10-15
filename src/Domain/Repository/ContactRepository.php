@@ -17,11 +17,20 @@ use Doctrine\Common\Persistence\ManagerRegistry;
 
 class ContactRepository extends ServiceEntityRepository implements ContactRepositoryInterface
 {
+    /**
+     * ContactRepository constructor.
+     *
+     * @param ManagerRegistry $registry
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Contact::class);
     }
 
+    /**
+     * @param Shop $shop
+     * @return array
+     */
     public function getAll(Shop $shop): array
     {
         return $this->createQueryBuilder('contact')
@@ -32,6 +41,11 @@ class ContactRepository extends ServiceEntityRepository implements ContactReposi
                                 ->getResult();
     }
 
+    /**
+     * @param $id
+     * @return Contact
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function getOne($id): Contact
     {
         return $this->createQueryBuilder('contact')
@@ -41,14 +55,43 @@ class ContactRepository extends ServiceEntityRepository implements ContactReposi
                                 ->getOneOrNullResult();
     }
 
+    /**
+     * @param $slug
+     * @return Contact
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function getOneBySlug($slug): Contact
+    {
+        return $this->createQueryBuilder('contact')
+            ->where('contact.slug = :slug')
+            ->setParameter('slug', $slug)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+    /**
+     * @param Contact $contact
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
     public function save(Contact $contact): void
     {
         $this->_em->persist($contact);
         $this->_em->flush();
     }
 
+    /**
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
     public function update():void
     {
+        $this->_em->flush();
+    }
+
+    public function delete(Contact $contact):void
+    {
+        $this->_em->remove($contact);
         $this->_em->flush();
     }
 }

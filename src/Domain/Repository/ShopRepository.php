@@ -64,4 +64,9 @@ class ShopRepository extends ServiceEntityRepository implements ShopRepositoryIn
         $this->_em->flush();
     }
 
+    public function delete(Shop $shop): void
+    {
+        $this->_em->remove($shop);
+        $this->_em->flush();
+    }
 }
