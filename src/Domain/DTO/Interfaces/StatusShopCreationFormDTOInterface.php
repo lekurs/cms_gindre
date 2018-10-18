@@ -9,10 +9,10 @@
 namespace App\Domain\DTO\Interfaces;
 
 
-interface CreationStatusShopFormDTOInterface
+interface StatusShopCreationFormDTOInterface
 {
     /**
-     * CreationStatusShopFormDTOInterface constructor.
+     * StatusShopCreationFormDTOInterface constructor.
      *
      * @param string $status
      */

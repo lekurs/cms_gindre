@@ -9,9 +9,9 @@
 namespace App\Domain\DTO;
 
 
-use App\Domain\DTO\Interfaces\CreationRoleFormDTOInterface;
+use App\Domain\DTO\Interfaces\RoleCreationFormDTOInterface;
 
-class CreationRoleFormDTO implements CreationRoleFormDTOInterface
+class RoleCreationFormDTO implements RoleCreationFormDTOInterface
 {
     /**
      * @var string
@@ -19,7 +19,7 @@ class CreationRoleFormDTO implements CreationRoleFormDTOInterface
     public $role;
 
     /**
-     * CreationRoleFormDTO constructor.
+     * RoleCreationFormDTO constructor.
      *
      * @param string $role
      */

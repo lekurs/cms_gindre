@@ -9,9 +9,9 @@
 namespace App\Domain\DTO;
 
 
-use App\Domain\DTO\Interfaces\CreationStatusShopFormDTOInterface;
+use App\Domain\DTO\Interfaces\StatusShopCreationFormDTOInterface;
 
-class CreationStatusShopFormDTO implements CreationStatusShopFormDTOInterface
+class StatusShopCreationFormDTO implements StatusShopCreationFormDTOInterface
 {
     /**
      * @var string
@@ -19,7 +19,7 @@ class CreationStatusShopFormDTO implements CreationStatusShopFormDTOInterface
     public $status;
 
     /**
-     * CreationStatusShopFormDTO constructor.
+     * StatusShopCreationFormDTO constructor.
      *
      * @param string $status
      */

@@ -9,7 +9,7 @@
 namespace App\Domain\Form;
 
 
-use App\Domain\DTO\CreationProductTypeFormDTO;
+use App\Domain\DTO\ProductTypeFormCreationDTO;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -27,9 +27,9 @@ class CreationProductTypeForm extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => CreationProductTypeFormDTO::class,
+            'data_class' => ProductTypeFormCreationDTO::class,
             'empty_data' => function (FormInterface $form) {
-                return new CreationProductTypeFormDTO($form->get('type')->getData());
+                return new ProductTypeFormCreationDTO($form->get('type')->getData());
             }
         ]);
     }

@@ -9,7 +9,7 @@
 namespace App\Domain\Form;
 
 
-use App\Domain\DTO\CreationStatusShopFormDTO;
+use App\Domain\DTO\StatusShopCreationFormDTO;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -27,9 +27,9 @@ class CreationStatusShopForm extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => CreationStatusShopFormDTO::class,
+            'data_class' => StatusShopCreationFormDTO::class,
             'empty_data' => function (FormInterface $form) {
-                return new CreationStatusShopFormDTO($form->get('status')->getData());
+                return new StatusShopCreationFormDTO($form->get('status')->getData());
             }
         ]);
     }

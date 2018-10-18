@@ -9,7 +9,7 @@
 namespace App\Domain\Factory;
 
 
-use App\Domain\DTO\Interfaces\StatutShopFactoryInterface;
+use App\Domain\Factory\Interfaces\StatutShopFactoryInterface;
 use App\Domain\Models\StatusShop;
 
 class StatutShopFactory implements StatutShopFactoryInterface

@@ -9,10 +9,10 @@
 namespace App\Domain\DTO\Interfaces;
 
 
-interface ContactTypeFormDTOInterface
+interface ContactTypeCreationFormDTOInterface
 {
     /**
-     * ContactTypeFormDTOInterface constructor.
+     * ContactTypeCreationFormDTOInterface constructor.
      *
      * @param string $type
      */

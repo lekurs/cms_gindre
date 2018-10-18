@@ -9,11 +9,11 @@
 namespace App\Domain\DTO;
 
 
-use App\Domain\DTO\Interfaces\CreationShopFormDTOInterface;
+use App\Domain\DTO\Interfaces\ShopFormCreationDTOInterface;
 use App\Domain\Models\Region;
 use App\Domain\Models\StatusShop;
 
-class CreationShopFormDTO implements CreationShopFormDTOInterface
+class ShopFormCreationDTO implements ShopFormCreationDTOInterface
 {
     /**
      * @var string
@@ -61,7 +61,7 @@ class CreationShopFormDTO implements CreationShopFormDTOInterface
     public $number;
 
     /**
-     * CreationShopFormDTO constructor.
+     * ShopFormCreationDTO constructor.
      *
      * @param string $name
      * @param string $address

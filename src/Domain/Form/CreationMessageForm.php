@@ -9,7 +9,7 @@
 namespace App\Domain\Form;
 
 
-use App\Domain\DTO\CreationMessageFormDTO;
+use App\Domain\DTO\MessageCreationFormDTO;
 use App\Domain\Models\ContactType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -38,9 +38,9 @@ class CreationMessageForm extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => CreationMessageFormDTO::class,
+            'data_class' => MessageCreationFormDTO::class,
             'empty_data' => function (FormInterface $form) {
-                return new CreationMessageFormDTO(
+                return new MessageCreationFormDTO(
                    $form->get('message')->getData(),
                    $form->get('contactType')->getData()
                 );

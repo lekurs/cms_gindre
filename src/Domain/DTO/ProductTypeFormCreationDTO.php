@@ -9,9 +9,9 @@
 namespace App\Domain\DTO;
 
 
-use App\Domain\DTO\Interfaces\CreationProductTypeFormDTOInterface;
+use App\Domain\DTO\Interfaces\ProductTypeFormCreationDTOInterface;
 
-class CreationProductTypeFormDTO implements CreationProductTypeFormDTOInterface
+class ProductTypeFormCreationDTO implements ProductTypeFormCreationDTOInterface
 {
     /**
      * @var string
@@ -19,7 +19,7 @@ class CreationProductTypeFormDTO implements CreationProductTypeFormDTOInterface
     public $type;
 
     /**
-     * CreationProductTypeFormDTO constructor.
+     * ProductTypeFormCreationDTO constructor.
      *
      * @param string $type
      */

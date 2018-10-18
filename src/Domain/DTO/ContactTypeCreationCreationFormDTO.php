@@ -9,9 +9,9 @@
 namespace App\Domain\DTO;
 
 
-use App\Domain\DTO\Interfaces\ContactTypeFormDTOInterface;
+use App\Domain\DTO\Interfaces\ContactTypeCreationFormDTOInterface;
 
-class CreationContactTypeFormDTO implements ContactTypeFormDTOInterface
+class ContactTypeCreationCreationFormDTO implements ContactTypeCreationFormDTOInterface
 {
     /**
      * @var string
@@ -19,7 +19,7 @@ class CreationContactTypeFormDTO implements ContactTypeFormDTOInterface
     public $type;
 
     /**
-     * CreationContactTypeFormDTO constructor.
+     * ContactTypeCreationCreationFormDTO constructor.
      * @param string $type
      */
     public function __construct(string $type)

@@ -9,7 +9,7 @@
 namespace App\Domain\DTO\Interfaces;
 
 
-interface CreationMessageFormDTOInterface
+interface MessageCreationFormDTOInterface
 {
 
 }

@@ -9,7 +9,7 @@
 namespace App\Domain\Form;
 
 
-use App\Domain\DTO\CreationShopFormDTO;
+use App\Domain\DTO\ShopFormCreationDTO;
 use App\Domain\Models\Region;
 use App\Domain\Models\StatusShop;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -64,9 +64,9 @@ class CreationShopForm extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => CreationShopFormDTO::class,
+            'data_class' => ShopFormCreationDTO::class,
             'empty_data' => function (FormInterface $form) {
-                return new CreationShopFormDTO(
+                return new ShopFormCreationDTO(
                    $form->get('name')->getData(),
                    $form->get('address')->getData(),
                    $form->get('zip')->getData(),

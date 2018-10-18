@@ -12,7 +12,7 @@ namespace App\Domain\DTO;
 use App\Domain\Models\ContactType;
 use App\Domain\Models\Shop;
 
-class CreationMessageFormDTO
+class MessageCreationFormDTO
 {
     /**
      * @var string
@@ -30,7 +30,7 @@ class CreationMessageFormDTO
     public $shop;
 
     /**
-     * CreationMessageFormDTO constructor.
+     * MessageCreationFormDTO constructor.
      *
      * @param string $message
      * @param ContactType $contactType

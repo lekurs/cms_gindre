@@ -6,7 +6,7 @@
  * Time: 14:45
  */
 
-namespace App\Domain\DTO\Interfaces;
+namespace App\Domain\Factory\Interfaces;
 
 
 use App\Domain\Models\StatusShop;

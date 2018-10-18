@@ -9,7 +9,7 @@
 namespace App\Domain\Form;
 
 
-use App\Domain\DTO\CreationRoleFormDTO;
+use App\Domain\DTO\RoleFormDTOCreation;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -34,9 +34,9 @@ class CreationRoleForm extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => CreationRoleFormDTO::class,
+            'data_class' => RoleFormDTOCreation::class,
             'empty_data' => function (FormInterface $form) {
-                return new CreationRoleFormDTO($form->get('role')->getData());
+                return new RoleFormDTOCreation($form->get('role')->getData());
             }
         ]);
     }

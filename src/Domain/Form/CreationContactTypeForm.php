@@ -9,7 +9,7 @@
 namespace App\Domain\Form;
 
 
-use App\Domain\DTO\CreationContactTypeFormDTO;
+use App\Domain\DTO\ContactTypeCreationCreationFormDTO;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -27,9 +27,9 @@ class CreationContactTypeForm extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => CreationContactTypeFormDTO::class,
+            'data_class' => ContactTypeCreationCreationFormDTO::class,
             'empty_data' => function (FormInterface $form) {
-                return new CreationContactTypeFormDTO($form->get('type')->getData());
+                return new ContactTypeCreationCreationFormDTO($form->get('type')->getData());
             }
         ]);
     }
