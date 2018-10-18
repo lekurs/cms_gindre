@@ -39,6 +39,47 @@ class ShopRepository extends ServiceEntityRepository implements ShopRepositoryIn
                                 ->getOneOrNullResult();
     }
 
+    public function getAllByDpt(): array
+    {
+        return $this->createQueryBuilder('shop')
+            ->leftJoin('shop.region', 'region')
+            ->innerJoin('region.departements', 'departements')
+            ->where('shop.prospect = 1')
+            ->orderBy('shop.name', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getClients(): array
+    {
+        return $this->createQueryBuilder('shop')
+            ->leftJoin('shop.region', 'region')
+            ->innerJoin('region.departements', 'departements')
+            ->where('shop.prospect = 1')
+            ->orderBy('shop.name', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getAllWithRegion(): array
+    {
+        return $this->createQueryBuilder('shop')
+            ->innerJoin('shop.region', 'region')
+            ->orderBy('shop.name', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getClientWithRegion(): array
+    {
+        return $this->createQueryBuilder('shop')
+            ->leftJoin('shop.region', 'region')
+            ->where('shop.prospect = 0')
+            ->orderBy('shop.name', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
     /**
      * @param Region $region
      * @return array

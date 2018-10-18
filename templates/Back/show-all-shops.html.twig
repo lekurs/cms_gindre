@@ -20,7 +20,7 @@
                     <tbody>
                         {% for shop in shops %}
                             <tr>
-                                <td>{{ shop.name }}</td>
+                                <td><a href="{{ path('showOneShop', { 'slug': shop.slug }) }}">{{ shop.name }}</a></td>
                                 <td>{{ shop.region.region }}</td>
                                 <td>{{ shop.status.status }}</td>
                                 <td>{% if shop.prospect %} Prospect {% else %} Client {% endif %}</td>

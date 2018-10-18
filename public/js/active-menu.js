@@ -12,12 +12,12 @@ $(document).ready(function () {
         $(menuContent).toggleClass('show');
     });
 
-    $(list).hover(function () {
-        let elt = $(this).find('span.arrow');
-
-        $(this).toggleClass('active');
-        $(elt).toggleClass('hover');
-    });
+    // $(list).hover(function () {
+    //     let elt = $(this).find('span.arrow');
+    //
+    //     $(this).toggleClass('active');
+    //     $(elt).toggleClass('hover');
+    // });
 
     $(list).click(function () {
         let elt = $(this).next();

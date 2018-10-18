@@ -1,13 +1,12 @@
-{% extends "layout.html.twig" %}
+{% extends "Back/admin.html.twig" %}
 
 {% block title %}
     Shop : {{ shop.name }}
 {% endblock %}
 
-{% block body %}
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+{% block container %}
+    <div class="row content">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                 {{ shop.name }}
 
             </div>

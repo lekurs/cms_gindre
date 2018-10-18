@@ -10,10 +10,11 @@ namespace App\Domain\Repository;
 
 
 use App\Domain\Models\Departement;
+use App\Domain\Repository\Interfaces\DepartementRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
-class DepartementRepository extends ServiceEntityRepository
+class DepartementRepository extends ServiceEntityRepository implements DepartementRepositoryInterface
 {
     /**
      * DepartementRepository constructor.
@@ -32,6 +33,17 @@ class DepartementRepository extends ServiceEntityRepository
                                 ->setParameter('zip', $zip)
                                 ->getQuery()
                                 ->getOneOrNullResult();
+    }
+
+    public function getAllWithShop(): array
+    {
+        return $this->createQueryBuilder('departement')
+                                ->leftJoin('departement.region', 'region')
+                                ->leftJoin('region.shops', 'shops')
+                                ->where('shops.prospect = 0')
+                                ->orderBy('departement.departement', 'ASC')
+                                ->getQuery()
+                                ->getResult();
     }
 
 }

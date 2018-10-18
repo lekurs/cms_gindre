@@ -1,0 +1,133 @@
+.menu-container {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 2%;
+    background: #5a6268;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transition: width .5s ease-in-out;
+}
+
+.burger {
+    margin-top: 1em;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    cursor: pointer;
+}
+
+.line-1, .line-2, .line-3 {
+    width: 100%;
+    height: 2px;
+    background: #FFFFFF;
+    position: absolute;
+    left: 0;
+    transition: all .5s ease-in-out;
+}
+
+.line-1 {
+    top: 2px;
+}
+
+.line-2 {
+    top: 10px;
+}
+
+.line-3 {
+    bottom: 0;
+}
+
+.burger.active .line-2 {
+    display: none;
+}
+
+.burger.active .line-1 {
+    transform: rotate(405deg);
+    top: 10px;
+}
+
+.burger.active .line-3 {
+    transform: rotate(-405deg);
+    top: 10px;
+}
+
+.menu-container.active {
+    width: 20%;
+}
+
+.menu-content {
+    margin-top: 2em;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .5s ease-in-out;
+}
+
+.menu-content.show {
+    width: 90%;
+    opacity: 1;
+    visibility: visible;
+    padding: 0;
+    margin:  2em auto;
+}
+
+.menu-content > li {
+    list-style: none;
+    color: #FFFFFF;
+    width: 100%;
+    line-height: 30px;
+    cursor: pointer;
+    position: relative;
+    border-bottom: 1px solid #23282e;
+    border-left: 3px solid grey;
+    transition: all .8s ease;
+}
+
+.arrow {
+    position: absolute;
+    width: 10%;
+    right: 0;
+    transition: all .5s ease-in-out;
+}
+
+.arrow.hover {
+    transform-origin: left;
+    transform: rotate(90deg);
+}
+
+.menu-content > li.active {
+    border-left: 3px solid orange;
+    background: #202326;
+}
+
+span.icon-menu {
+    width: 10px;
+    position: relative;
+    padding-left: 10px;
+}
+
+ul.sub-menu {
+    opacity: 0;
+    height: 0;
+    transition: height .5s ease-in-out;
+    list-style: none;
+    background: #202326;
+    border-left: 2px solid yellow;
+    color: #FFFFFF;
+}
+
+ul.sub-menu.active {
+    opacity: 1;
+    height: auto;
+}
+
+.content {
+    transition: transform .5s ease-in-out;
+}
+
+.content.push {
+    transform: translateX(20%);
+}

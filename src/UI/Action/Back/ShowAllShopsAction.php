@@ -33,7 +33,7 @@ class ShowAllShopsAction implements ShowAllShopsActionInterface
     }
 
     /**
-     * @Route(name="showAllShops", path="/admin/shop/all")
+     * @Route(name="showAllShops", path="/admin/shop")
      * @param ShowAllShopsResponderInterface $responder
      * @return Response
      */
