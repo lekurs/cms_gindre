@@ -32,9 +32,23 @@ class MessageRepository extends ServiceEntityRepository implements MessageReposi
                                 ->getResult();
     }
 
+    public function getOne($id): Message
+    {
+        return $this->createQueryBuilder('message')
+                                    ->where('message.id = :id')
+                                    ->setParameter('id', $id)
+                                    ->getQuery()
+                                    ->getOneOrNullResult();
+    }
+
     public function save(Message $message): void
     {
         $this->_em->persist($message);
+        $this->_em->flush();
+    }
+
+    public function edit(): void
+    {
         $this->_em->flush();
     }
 }

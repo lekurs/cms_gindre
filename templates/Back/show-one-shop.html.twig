@@ -7,17 +7,17 @@
 {% block container %}
     <div class="row content">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                {{ shop.name }}
-
+                <h2>{{ shop.name }}</h2>
             </div>
         </div>
         <div class="row">
             <div class="col-xl-12 col-lg-12 col-12 col-sm-12 col-12">
-                <h2>Contacts</h2>
+                <h3>Contacts</h3>
                 {% for contact in shop.contacts %}
                     <p>{{ contact.name }}</p>
                     <p>{{ contact.lastName }}</p>
-                    <p>{{ contact.main }}</p>
+                    <p><i class="fa fa-star"></i>{{ contact.main }}</p>
+                    <p>{{ contact.email }}</p>
                     <p><i class="fa fa-eye contact-edit-icon" data-slug="{{ contact.id }}" data-shop="{{ shop.slug }}" data-toggle="modal" data-target="#editContact"></i></p>
                     <p><i class="fa fa-trash delete-contact" data-slug="{{ contact.slug }}"></i></p>
 
@@ -29,8 +29,16 @@
             <h2>Notes</h2>
             {% for message in shop.messages if message is not empty%}
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                <p>{{ message.dateContact | date('d M Y') }}</p>
-                <p>{{ message.message |raw }}</p>
+                <div class="row message-container">
+                    <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-10">
+                        <p>{{ message.dateContact | date('d M Y') }}</p>
+                        <p>{{ message.message |raw }}</p>
+                    </div>
+                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+                        <p><i class="fa fa-edit edit-message" data-id="{{ message.id }}"></i></p>
+                        <p><i class="fa fa-trash"></i> </p>
+                    </div>
+                </div>
             </div>
             {% else %}
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -118,9 +126,11 @@
 {{ parent() }}
 <script type="text/javascript" src="{{ asset('js/edit-contact.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/delete-contact.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/message-edit-form.js') }}"></script>
 <script>
     tinymce.init({
         selector: '#creation_message_form_message'
     });
 </script>
+
 {% endblock %}

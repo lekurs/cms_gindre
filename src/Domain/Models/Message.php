@@ -9,6 +9,7 @@
 namespace App\Domain\Models;
 
 
+use App\Domain\DTO\MessageEditDTO;
 use Ramsey\Uuid\Uuid;
 
 class Message
@@ -85,5 +86,18 @@ class Message
     public function getContactType(): ContactType
     {
         return $this->contactType;
+    }
+
+    /**
+     * @return Shop
+     */
+    public function getShop(): Shop
+    {
+        return $this->shop;
+    }
+
+    public function editMessage(MessageEditDTO $editDTO): void
+    {
+        $this->message = $editDTO->message;
     }
 }

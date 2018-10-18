@@ -1,0 +1,10 @@
+{{ form_start(form, {'attr': {'class': 'test-form'}, 'action': path('editMessage', { 'id': message.id }), 'method' : 'POST' }) }}
+{{ form_widget(form.message, { 'id' : 'edit_message_form_message' }) }}
+<button type="submit">Mettre à jour</button>
+{{ form_end(form) }}
+
+<script>
+    tinymce.init({
+        selector: '#edit_message_form_message'
+    });
+</script>
