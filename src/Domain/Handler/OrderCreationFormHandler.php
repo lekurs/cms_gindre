@@ -41,13 +41,18 @@ class OrderCreationFormHandler implements OrderCreationFormHandlerInterface
 
     /**
      * OrderCreationFormHandler constructor.
+     *
      * @param OrderFactoryInterface $orderFactory
      * @param OrderRepositoryInterface $orderRepo
      * @param SessionInterface $session
      * @param ValidatorInterface $validator
      */
-    public function __construct(OrderFactoryInterface $orderFactory, OrderRepositoryInterface $orderRepo, SessionInterface $session, ValidatorInterface $validator)
-    {
+    public function __construct(
+        OrderFactoryInterface $orderFactory,
+        OrderRepositoryInterface $orderRepo,
+        SessionInterface $session,
+        ValidatorInterface $validator
+    ) {
         $this->orderFactory = $orderFactory;
         $this->orderRepo = $orderRepo;
         $this->session = $session;
