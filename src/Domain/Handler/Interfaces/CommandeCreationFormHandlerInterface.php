@@ -9,7 +9,7 @@
 namespace App\Domain\Handler\Interfaces;
 
 
-interface OrderCreationFormHandlerInterface
+interface CommandeCreationFormHandlerInterface
 {
 
 }

@@ -30,6 +30,18 @@ class CommandeRepository extends ServiceEntityRepository implements CommandeRepo
                                 ->getResult();
     }
 
+    public function getLimitByShop(Shop $shop): array
+    {
+        return $this->createQueryBuilder('commande')
+            ->leftJoin('commande.shop', 'shop')
+            ->where('commande.shop = :shop')
+            ->setParameter('shop', $shop->getId())
+            ->setMaxResults(3)
+            ->orderBy('commande.dateCommande', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
     public function getOne($id): Commande
     {
 
@@ -43,6 +55,16 @@ class CommandeRepository extends ServiceEntityRepository implements CommandeRepo
                                 ->setParameter('shop', $shop->getId())
                                 ->getQuery()
                                 ->getResult();
+    }
+
+    public function getAllBySlugShop($slug): array
+    {
+        return $this->createQueryBuilder('commande')
+            ->leftJoin('commande.shop', 'shop')
+            ->where('shop.slug = :slug')
+            ->setParameter('slug', $slug)
+            ->getQuery()
+            ->getResult();
     }
 
     public function save(Commande $order): void

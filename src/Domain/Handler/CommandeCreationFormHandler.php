@@ -10,14 +10,14 @@ namespace App\Domain\Handler;
 
 
 use App\Domain\Factory\Interfaces\CommandeFactoryInterface;
-use App\Domain\Handler\Interfaces\OrderCreationFormHandlerInterface;
+use App\Domain\Handler\Interfaces\CommandeCreationFormHandlerInterface;
 use App\Domain\Models\Shop;
 use App\Domain\Repository\Interfaces\CommandeRepositoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-class CommandeCreationFormHandler implements OrderCreationFormHandlerInterface
+class CommandeCreationFormHandler implements CommandeCreationFormHandlerInterface
 {
     /**
      * @var CommandeFactoryInterface
@@ -76,7 +76,7 @@ class CommandeCreationFormHandler implements OrderCreationFormHandlerInterface
 
             $this->orderRepo->save($order);
 
-            $this->session->getFlashBag()->add('success', 'Commande ajoutée');
+//            $this->session->getFlashBag()->add('success', 'Commande ajoutée');
 
             return true;
         }

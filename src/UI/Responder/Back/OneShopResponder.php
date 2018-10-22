@@ -42,18 +42,21 @@ class OneShopResponder implements OneShopResponderInterface
     /**
      * @param bool $redirect
      * @param FormInterface|null $form
+     * @param FormInterface|null $formContact
+     * @param FormInterface|null $formOrder
      * @param $shop
+     * @param array $orders
+     * @param null $slug
      * @return Response
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function response($redirect = false, FormInterface $form = null, FormInterface $formContact = null, FormInterface $formOrder = null, $shop, $slug = null, array $orders): Response
+    public function response($redirect = false, FormInterface $form = null, FormInterface $formContact = null, $shop, array $orders, $slug = null): Response
     {
         $redirect ? $response = new RedirectResponse($this->urlGenerator->generate('showOneShop', ['slug' => $slug])) : $response =  new Response($this->twig->render('Back/show-one-shop.html.twig', [
             'form' => $form->createView(),
             'formContact' => $formContact->createView(),
-            'formOrder' => $formOrder->createView(),
             'shop' => $shop,
             'orders' => $orders
         ]));

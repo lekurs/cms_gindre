@@ -13,11 +13,11 @@ use App\Domain\DTO\ContactEditFormDTO;
 use App\Domain\Form\ContactCreationForm;
 use App\Domain\Form\ContactEditForm;
 use App\Domain\Form\MessageCreationForm;
-use App\Domain\Form\OrderCreationForm;
+use App\Domain\Form\CommandeCreationForm;
 use App\Domain\Handler\Interfaces\CreationContactFormHandlerInterface;
 use App\Domain\Handler\Interfaces\CreationMessageFormHandlerInterface;
 use App\Domain\Handler\Interfaces\EditContactFormHandlerInterface;
-use App\Domain\Handler\Interfaces\OrderCreationFormHandlerInterface;
+use App\Domain\Handler\Interfaces\CommandeCreationFormHandlerInterface;
 use App\Domain\Repository\Interfaces\ContactRepositoryInterface;
 use App\Domain\Repository\Interfaces\CommandeRepositoryInterface;
 use App\Domain\Repository\Interfaces\ShopRepositoryInterface;
@@ -69,9 +69,9 @@ class OneShopAction implements OneShopActionInterface
     private $formEditContactHandler;
 
     /**
-     * @var OrderCreationFormHandlerInterface
+     * @var CommandeCreationFormHandlerInterface
      */
-    private $orderCreationFormHandler;
+    private $commandeCreationFormHandler;
 
     /**
      * OneShopAction constructor.
@@ -83,7 +83,7 @@ class OneShopAction implements OneShopActionInterface
      * @param CreationMessageFormHandlerInterface $formMessageHandler
      * @param CreationContactFormHandlerInterface $formContactHandler
      * @param EditContactFormHandlerInterface $formEditContactHandler
-     * @param OrderCreationFormHandlerInterface $orderCreationFormHandler
+     * @param CommandeCreationFormHandlerInterface $commandeCreationFormHandler
      */
     public function __construct(
         ShopRepositoryInterface $shopRepo,
@@ -93,7 +93,7 @@ class OneShopAction implements OneShopActionInterface
         CreationMessageFormHandlerInterface $formMessageHandler,
         CreationContactFormHandlerInterface $formContactHandler,
         EditContactFormHandlerInterface $formEditContactHandler,
-        OrderCreationFormHandlerInterface $orderCreationFormHandler
+        CommandeCreationFormHandlerInterface $commandeCreationFormHandler
     ) {
         $this->shopRepo = $shopRepo;
         $this->orderRepo = $orderRepo;
@@ -102,7 +102,7 @@ class OneShopAction implements OneShopActionInterface
         $this->formMessageHandler = $formMessageHandler;
         $this->formContactHandler = $formContactHandler;
         $this->formEditContactHandler = $formEditContactHandler;
-        $this->orderCreationFormHandler = $orderCreationFormHandler;
+        $this->commandeCreationFormHandler = $commandeCreationFormHandler;
     }
 
 
@@ -116,30 +116,23 @@ class OneShopAction implements OneShopActionInterface
     {
         $shop = $this->shopRepo->getOne($request->attributes->get('slug'));
 
-        $orders = $this->orderRepo->getAllByShop($shop);
+        $orders = $this->orderRepo->getLimitByShop($shop);
 
         $form = $this->formFactory->create(MessageCreationForm::class)->handleRequest($request);
 
         $formContact = $this->formFactory->create(ContactCreationForm::class)->handleRequest($request);
 
-        $formOrder = $this->formFactory->create(OrderCreationForm::class)->handleRequest($request);
-
         if ($this->formContactHandler->handle($formContact, $shop)) {
 
-            return $responder->response(true, null, null, null, $shop, $shop->getSlug(), $orders);
+            return $responder->response(true, null, null, $shop, $orders, $shop->getSlug());
         }
 
         elseif ($this->formMessageHandler->handle($form, $shop)) {
 
-            return $responder->response(true, null, null, null, $shop, $shop->getSlug(), $orders);
+            return $responder->response(true, null, null, $shop, $orders, $shop->getSlug());
         }
 
-        elseif ($this->orderCreationFormHandler->handle($formOrder, $shop)) {
-
-            return $responder->response(true, null, null, null, $shop, $shop->getSlug(), $orders);
-        }
-
-        return $responder->response(false, $form, $formContact, $formOrder, $shop, null, $orders);
+        return $responder->response(false, $form, $formContact, $shop, $orders);
     }
 
     /**
