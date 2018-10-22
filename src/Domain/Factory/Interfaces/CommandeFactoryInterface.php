@@ -9,18 +9,18 @@
 namespace App\Domain\Factory\Interfaces;
 
 
-use App\Domain\Models\Order;
+use App\Domain\Models\Commande;
 use App\Domain\Models\ProductType;
 use App\Domain\Models\Shop;
 
-interface OrderFactoryInterface
+interface CommandeFactoryInterface
 {
     /**
      * @param Shop $shop
      * @param ProductType $productType
      * @param \DateTime $dateOrder
      * @param int $amount
-     * @return Order
+     * @return Commande
      */
-    public function create(Shop $shop, ProductType $productType, \DateTime $dateOrder, int $amount): Order;
+    public function create(Shop $shop, ProductType $productType, \DateTime $dateOrder, int $amount): Commande;
 }

@@ -77,7 +77,7 @@ class Shop
     /**
      * @var \ArrayAccess
      */
-    private $orders;
+    private $commandes;
 
     /**
      * Shop constructor.
@@ -184,9 +184,9 @@ class Shop
     /**
      * @return \ArrayAccess
      */
-    public function getOrders(): \ArrayAccess
+    public function getCommandes(): \ArrayAccess
     {
-        return $this->orders;
+        return $this->commandes;
     }
 
     /**

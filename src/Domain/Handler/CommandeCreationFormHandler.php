@@ -9,23 +9,23 @@
 namespace App\Domain\Handler;
 
 
-use App\Domain\Factory\Interfaces\OrderFactoryInterface;
+use App\Domain\Factory\Interfaces\CommandeFactoryInterface;
 use App\Domain\Handler\Interfaces\OrderCreationFormHandlerInterface;
 use App\Domain\Models\Shop;
-use App\Domain\Repository\Interfaces\OrderRepositoryInterface;
+use App\Domain\Repository\Interfaces\CommandeRepositoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-class OrderCreationFormHandler implements OrderCreationFormHandlerInterface
+class CommandeCreationFormHandler implements OrderCreationFormHandlerInterface
 {
     /**
-     * @var OrderFactoryInterface
+     * @var CommandeFactoryInterface
      */
     private $orderFactory;
 
     /**
-     * @var OrderRepositoryInterface
+     * @var CommandeRepositoryInterface
      */
     private $orderRepo;
 
@@ -40,16 +40,16 @@ class OrderCreationFormHandler implements OrderCreationFormHandlerInterface
     private $validator;
 
     /**
-     * OrderCreationFormHandler constructor.
+     * CommandeCreationFormHandler constructor.
      *
-     * @param OrderFactoryInterface $orderFactory
-     * @param OrderRepositoryInterface $orderRepo
+     * @param CommandeFactoryInterface $orderFactory
+     * @param CommandeRepositoryInterface $orderRepo
      * @param SessionInterface $session
      * @param ValidatorInterface $validator
      */
     public function __construct(
-        OrderFactoryInterface $orderFactory,
-        OrderRepositoryInterface $orderRepo,
+        CommandeFactoryInterface $orderFactory,
+        CommandeRepositoryInterface $orderRepo,
         SessionInterface $session,
         ValidatorInterface $validator
     ) {

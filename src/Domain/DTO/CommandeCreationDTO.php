@@ -9,11 +9,11 @@
 namespace App\Domain\DTO;
 
 
-use App\Domain\DTO\Interfaces\OrderCreationDTOInterface;
+use App\Domain\DTO\Interfaces\CommandeCreationDTOInterface;
 use App\Domain\Models\ProductType;
 use App\Domain\Models\Shop;
 
-class OrderCreationDTO implements OrderCreationDTOInterface
+class CommandeCreationDTO implements CommandeCreationDTOInterface
 {
     /**
      * @var \DateTime
@@ -36,7 +36,7 @@ class OrderCreationDTO implements OrderCreationDTOInterface
     public $amount;
 
     /**
-     * OrderCreationDTO constructor.
+     * CommandeCreationDTO constructor.
      *
      * @param \DateTime $dateOrder
      * @param Shop $shop

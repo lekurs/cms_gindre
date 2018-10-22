@@ -11,7 +11,7 @@ namespace App\Domain\Models;
 
 use Ramsey\Uuid\Uuid;
 
-class Order
+class Commande
 {
     /**
      * @var Uuid
@@ -31,29 +31,29 @@ class Order
     /**
      * @var \DateTime
      */
-    private $dateOrder;
+    private $dateCommande;
 
     /**
      * @var int
      */
-    private $amout;
+    private $amount;
 
     /**
-     * Order constructor.
+     * Commande constructor.
      *
      * @param Shop $shop
      * @param ProductType $productType
-     * @param int $amout
+     * @param int $amount
      * @param \DateTime $dateOrder
      * @throws \Exception
      */
-    public function __construct(Shop $shop, ProductType $productType, \DateTime $dateOrder, int $amout)
+    public function __construct(Shop $shop, ProductType $productType, \DateTime $dateOrder, int $amount)
     {
         $this->id = Uuid::uuid4();
         $this->shop = $shop;
         $this->productType = $productType;
-        $this->dateOrder = $dateOrder;
-        $this->amout = $amout;
+        $this->dateCommande = $dateOrder;
+        $this->amount = $amount;
     }
 
     /**
@@ -83,16 +83,16 @@ class Order
     /**
      * @return \DateTime
      */
-    public function getDateOrder(): \DateTime
+    public function getDateCommande(): \DateTime
     {
-        return $this->dateOrder;
+        return $this->dateCommande;
     }
 
     /**
      * @return int
      */
-    public function getAmout(): int
+    public function getAmount(): int
     {
-        return $this->amout;
+        return $this->amount;
     }
 }

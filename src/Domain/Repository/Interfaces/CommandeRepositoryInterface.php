@@ -9,7 +9,7 @@
 namespace App\Domain\Repository\Interfaces;
 
 
-interface OrderRepositoryInterface
+interface CommandeRepositoryInterface
 {
 
 }

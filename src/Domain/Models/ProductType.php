@@ -26,7 +26,7 @@ class ProductType
     /**
      * @var \ArrayAccess
      */
-    private $orders;
+    private $commandes;
 
     /**
      * ProductType constructor.
@@ -59,8 +59,8 @@ class ProductType
     /**
      * @return \ArrayAccess
      */
-    public function getOrders(): \ArrayAccess
+    public function getCommandes(): \ArrayAccess
     {
-        return $this->orders;
+        return $this->commandes;
     }
 }

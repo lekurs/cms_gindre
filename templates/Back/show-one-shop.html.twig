@@ -59,6 +59,13 @@
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newMessage">Ajouter Message</button>
         </div>
     </div>
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                {% for order in orders %}
+                    {{ order.amount }}
+                {% endfor %}
+            </div>
+        </div>
     <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#newCommand">Ajouter une commande</button>

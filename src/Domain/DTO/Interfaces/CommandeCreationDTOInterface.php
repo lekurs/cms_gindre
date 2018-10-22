@@ -12,10 +12,10 @@ namespace App\Domain\DTO\Interfaces;
 use App\Domain\Models\ProductType;
 use App\Domain\Models\Shop;
 
-interface OrderCreationDTOInterface
+interface CommandeCreationDTOInterface
 {
     /**
-     * OrderCreationDTOInterface constructor.
+     * CommandeCreationDTOInterface constructor.
      *
      * @param \DateTime $dateOrder
      * @param Shop $shop

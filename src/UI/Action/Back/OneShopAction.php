@@ -9,7 +9,6 @@
 namespace App\UI\Action\Back;
 
 
-use App\Domain\DTO\ContactCreationFormDTO;
 use App\Domain\DTO\ContactEditFormDTO;
 use App\Domain\Form\ContactCreationForm;
 use App\Domain\Form\ContactEditForm;
@@ -20,6 +19,7 @@ use App\Domain\Handler\Interfaces\CreationMessageFormHandlerInterface;
 use App\Domain\Handler\Interfaces\EditContactFormHandlerInterface;
 use App\Domain\Handler\Interfaces\OrderCreationFormHandlerInterface;
 use App\Domain\Repository\Interfaces\ContactRepositoryInterface;
+use App\Domain\Repository\Interfaces\CommandeRepositoryInterface;
 use App\Domain\Repository\Interfaces\ShopRepositoryInterface;
 use App\UI\Action\Interfaces\OneShopActionInterface;
 use App\UI\Responder\Back\GetContactAjaxResponder;
@@ -29,7 +29,6 @@ use App\UI\Responder\Interfaces\OneShopResponderInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class OneShopAction implements OneShopActionInterface
@@ -38,6 +37,11 @@ class OneShopAction implements OneShopActionInterface
      * @var ShopRepositoryInterface
      */
     private $shopRepo;
+
+    /**
+     * @var CommandeRepositoryInterface
+     */
+    private $orderRepo;
 
     /**
      * @var ContactRepositoryInterface
@@ -73,14 +77,17 @@ class OneShopAction implements OneShopActionInterface
      * OneShopAction constructor.
      *
      * @param ShopRepositoryInterface $shopRepo
+     * @param CommandeRepositoryInterface $orderRepo
      * @param ContactRepositoryInterface $contactRepo
      * @param FormFactoryInterface $formFactory
      * @param CreationMessageFormHandlerInterface $formMessageHandler
      * @param CreationContactFormHandlerInterface $formContactHandler
      * @param EditContactFormHandlerInterface $formEditContactHandler
+     * @param OrderCreationFormHandlerInterface $orderCreationFormHandler
      */
     public function __construct(
         ShopRepositoryInterface $shopRepo,
+        CommandeRepositoryInterface $orderRepo,
         ContactRepositoryInterface $contactRepo,
         FormFactoryInterface $formFactory,
         CreationMessageFormHandlerInterface $formMessageHandler,
@@ -89,6 +96,7 @@ class OneShopAction implements OneShopActionInterface
         OrderCreationFormHandlerInterface $orderCreationFormHandler
     ) {
         $this->shopRepo = $shopRepo;
+        $this->orderRepo = $orderRepo;
         $this->contactRepo = $contactRepo;
         $this->formFactory = $formFactory;
         $this->formMessageHandler = $formMessageHandler;
@@ -108,6 +116,8 @@ class OneShopAction implements OneShopActionInterface
     {
         $shop = $this->shopRepo->getOne($request->attributes->get('slug'));
 
+        $orders = $this->orderRepo->getAllByShop($shop);
+
         $form = $this->formFactory->create(MessageCreationForm::class)->handleRequest($request);
 
         $formContact = $this->formFactory->create(ContactCreationForm::class)->handleRequest($request);
@@ -116,20 +126,20 @@ class OneShopAction implements OneShopActionInterface
 
         if ($this->formContactHandler->handle($formContact, $shop)) {
 
-            return $responder->response(true, null, null, null, $shop, $shop->getSlug());
+            return $responder->response(true, null, null, null, $shop, $shop->getSlug(), $orders);
         }
 
         elseif ($this->formMessageHandler->handle($form, $shop)) {
 
-            return $responder->response(true, null, null, null, $shop, $shop->getSlug());
+            return $responder->response(true, null, null, null, $shop, $shop->getSlug(), $orders);
         }
 
         elseif ($this->orderCreationFormHandler->handle($formOrder, $shop)) {
 
-            return $responder->response(true, null, null, null, $shop, $shop->getSlug());
+            return $responder->response(true, null, null, null, $shop, $shop->getSlug(), $orders);
         }
 
-        return $responder->response(false, $form, $formContact, $formOrder, $shop);
+        return $responder->response(false, $form, $formContact, $formOrder, $shop, null, $orders);
     }
 
     /**

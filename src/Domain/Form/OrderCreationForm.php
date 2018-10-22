@@ -9,7 +9,7 @@
 namespace App\Domain\Form;
 
 
-use App\Domain\DTO\OrderCreationDTO;
+use App\Domain\DTO\CommandeCreationDTO;
 use App\Domain\Models\ProductType;
 use App\Domain\Models\Shop;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -38,9 +38,9 @@ class OrderCreationForm extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => OrderCreationDTO::class,
+            'data_class' => CommandeCreationDTO::class,
             'empty_data' => function (FormInterface $form) {
-                return new OrderCreationDTO(
+                return new CommandeCreationDTO(
                    $form->get('dateOrder')->getData(),
                    $form->get('productType')->getData(),
                    $form->get('amount')->getData()

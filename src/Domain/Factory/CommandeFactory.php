@@ -9,23 +9,23 @@
 namespace App\Domain\Factory;
 
 
-use App\Domain\Factory\Interfaces\OrderFactoryInterface;
-use App\Domain\Models\Order;
+use App\Domain\Factory\Interfaces\CommandeFactoryInterface;
+use App\Domain\Models\Commande;
 use App\Domain\Models\ProductType;
 use App\Domain\Models\Shop;
 
-class OrderFactory implements OrderFactoryInterface
+class CommandeFactory implements CommandeFactoryInterface
 {
     /**
      * @param Shop $shop
      * @param ProductType $productType
      * @param \DateTime $dateOrder
      * @param int $amount
-     * @return Order
+     * @return Commande
      * @throws \Exception
      */
-    public function create(Shop $shop, ProductType $productType, \DateTime $dateOrder, int $amount): Order
+    public function create(Shop $shop, ProductType $productType, \DateTime $dateOrder, int $amount): Commande
     {
-        return new Order($shop, $productType, $dateOrder, $amount);
+        return new Commande($shop, $productType, $dateOrder, $amount);
     }
 }

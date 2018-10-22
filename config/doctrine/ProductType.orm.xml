@@ -8,7 +8,7 @@
         <id type="uuid" name="id" column="id" />
         <field name="product" type="string" length="100" unique="true" nullable="false" />
 
-        <one-to-many field="orders" target-entity="App\Domain\Models\Order" mapped-by="productType">
+        <one-to-many field="commandes" target-entity="App\Domain\Models\Commande" mapped-by="productType">
             <cascade>
                 <cascade-persist/>
                 <cascade-remove/>
