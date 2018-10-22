@@ -95,6 +95,17 @@ class ShopRepository extends ServiceEntityRepository implements ShopRepositoryIn
                                 ->getResult();
     }
 
+    public function getWithCommandes($slug): Shop
+    {
+        return $this->createQueryBuilder('shop')
+                                    ->leftJoin('shop.commandes', 'commandes')
+                                    ->where('shop.slug = :slug')
+                                    ->setParameter('slug', $slug)
+                                    ->orderBy('commandes.dateCommande', 'ASC')
+                                    ->getQuery()
+                                    ->getOneOrNullResult();
+    }
+
     public function save(Shop $shop, array $contacts):void
     {
         foreach ($contacts as $contact) {

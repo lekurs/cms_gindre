@@ -72,4 +72,9 @@ class CommandeRepository extends ServiceEntityRepository implements CommandeRepo
         $this->_em->persist($order);
         $this->_em->flush();
     }
+
+    public function edit(): void
+    {
+        $this->_em->flush();
+    }
 }
