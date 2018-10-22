@@ -9,34 +9,45 @@
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                 <h2>{{ shop.name }}</h2>
             </div>
-        </div>
         <div class="row">
             <div class="col-xl-12 col-lg-12 col-12 col-sm-12 col-12">
                 <h3>Contacts</h3>
+                <div class="row contacts-container">
                 {% for contact in shop.contacts %}
-                    <p>{{ contact.name }}</p>
-                    <p>{{ contact.lastName }}</p>
-                    <p><i class="fa fa-star"></i>{{ contact.main }}</p>
-                    <p>{{ contact.email }}</p>
-                    <p><i class="fa fa-eye contact-edit-icon" data-slug="{{ contact.id }}" data-shop="{{ shop.slug }}" data-toggle="modal" data-target="#editContact"></i></p>
-                    <p><i class="fa fa-trash delete-contact" data-slug="{{ contact.slug }}"></i></p>
-
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 contact-content">
+                        <p>{{ contact.name }} - {{ contact.lastName }} <i class="fa fa-star{% if contact.main == 1 %} icon-contact-main {% endif %}"></i></p>
+                        <p>{{ contact.email }}</p>
+                        <div class="icon-contact-edit-container">
+                            <p><i class="fa fa-edit contact-edit-icon" data-slug="{{ contact.id }}" data-shop="{{ shop.slug }}" data-toggle="modal" data-target="#editContact"></i></p>
+                            <p><i class="fa fa-trash delete-contact" data-slug="{{ contact.slug }}"></i></p>
+                        </div>
+                    </div>
                 {% endfor %}
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newContact">Ajouter Contact</button>
+                </div>
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newContact">Ajouter Contact</button>
+                    </div>
             </div>
         </div>
         <div class="row">
-            <h2>Notes</h2>
+            <h2>Observations</h2>
             {% for message in shop.messages if message is not empty%}
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                <div class="row message-container">
-                    <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-10">
-                        <p>{{ message.dateContact | date('d M Y') }}</p>
-                        <p>{{ message.message |raw }}</p>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 message-container">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        <div class="row justify-content-center">
+                            <h5 class="text-capitalize">{{ message.dateContact | date('d M Y') }}</h5>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 icon-contact-edit-container">
+                                <p><i class="fa fa-edit edit-message" data-id="{{ message.id }}"></i></p>
+                                <p><i class="fa fa-trash"></i> </p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-                        <p><i class="fa fa-edit edit-message" data-id="{{ message.id }}"></i></p>
-                        <p><i class="fa fa-trash"></i> </p>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 message-content {% if loop.index is divisible by (2) %} inverse {% endif %}">
+                        <p>{{ message.message |raw }}</p>
                     </div>
                 </div>
             </div>
@@ -48,7 +59,7 @@
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newMessage">Ajouter Message</button>
         </div>
     </div>
-
+</div>
 
 
     <!-- Modal -->

@@ -183,19 +183,21 @@ class OneShopAction implements OneShopActionInterface
     }
 
     /**
-     * @Route(name="deleteShop", path="/admin/shop/one/contact/delete", methods={"POST"})
+     * @Route(name="deleteContact", path="/admin/shop/one/contact/delete", methods={"POST"})
      * @param Request $request
      * @param AllShopsResponderInterface $responder
      * @return Response
      */
     public function deleteContact(Request $request, AllShopsResponderInterface $responder): Response
     {
-        $shop = $this->contactRepo->getOneBySlug($request->request->get('slug'));
-
-        $shops = $this->shopRepo->getAll();
-
-        $this->shopRepo->delete($shop);
-
-        return $responder->response($shops);
+//        $shop = $this->contactRepo->getOneBySlug($request->request->get('slug'));
+//
+//        $shops = $this->shopRepo->getAll();
+//
+//        $contact = $this->contactRepo->getOneBySlug($request->request->get('slug'));
+//
+////        $this->contactRepo->delete($contact);
+//
+//        return $responder->response($shops);
     }
 }
