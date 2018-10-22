@@ -34,19 +34,26 @@ class Order
     private $dateOrder;
 
     /**
+     * @var int
+     */
+    private $amout;
+
+    /**
      * Order constructor.
      *
      * @param Shop $shop
      * @param ProductType $productType
+     * @param int $amout
      * @param \DateTime $dateOrder
      * @throws \Exception
      */
-    public function __construct(Shop $shop, ProductType $productType, \DateTime $dateOrder)
+    public function __construct(Shop $shop, ProductType $productType, \DateTime $dateOrder, int $amout)
     {
         $this->id = Uuid::uuid4();
         $this->shop = $shop;
         $this->productType = $productType;
         $this->dateOrder = $dateOrder;
+        $this->amout = $amout;
     }
 
     /**
@@ -79,5 +86,13 @@ class Order
     public function getDateOrder(): \DateTime
     {
         return $this->dateOrder;
+    }
+
+    /**
+     * @return int
+     */
+    public function getAmout(): int
+    {
+        return $this->amout;
     }
 }

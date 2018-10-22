@@ -7,12 +7,11 @@
     <entity name="App\Domain\Models\Order" repository-class="App\Domain\Repository\OrderRepository" table="cms_gindre_order">
         <id name="id" type="uuid" column="id" />
         <field name="dateOrder" type="date" />
+        <field name="amout" type="integer" nullable="false" unique="false" />
 
         <many-to-one field="shop" target-entity="App\Domain\Models\Shop" inversed-by="orders" />
 
         <many-to-one field="productType" target-entity="App\Domain\Models\ProductType" inversed-by="orders" />
 
     </entity>
-
-
 </doctrine-mapping>

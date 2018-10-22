@@ -20,4 +20,23 @@ class OrderRepository extends ServiceEntityRepository implements OrderRepository
     {
         parent::__construct($registry, Order::class);
     }
+
+    public function getAll(): array
+    {
+        return $this->createQueryBuilder('order')
+                                ->orderBy('order.dateOrder', 'ASC')
+                                ->getQuery()
+                                ->getResult();
+    }
+
+    public function getOne($id): Order
+    {
+
+    }
+
+    public function save(Order $order): void
+    {
+        $this->_em->persist($order);
+        $this->_em->flush();
+    }
 }

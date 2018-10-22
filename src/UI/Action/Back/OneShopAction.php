@@ -14,9 +14,11 @@ use App\Domain\DTO\ContactEditFormDTO;
 use App\Domain\Form\ContactCreationForm;
 use App\Domain\Form\ContactEditForm;
 use App\Domain\Form\MessageCreationForm;
+use App\Domain\Form\OrderCreationForm;
 use App\Domain\Handler\Interfaces\CreationContactFormHandlerInterface;
 use App\Domain\Handler\Interfaces\CreationMessageFormHandlerInterface;
 use App\Domain\Handler\Interfaces\EditContactFormHandlerInterface;
+use App\Domain\Handler\Interfaces\OrderCreationFormHandlerInterface;
 use App\Domain\Repository\Interfaces\ContactRepositoryInterface;
 use App\Domain\Repository\Interfaces\ShopRepositoryInterface;
 use App\UI\Action\Interfaces\OneShopActionInterface;
@@ -63,6 +65,11 @@ class OneShopAction implements OneShopActionInterface
     private $formEditContactHandler;
 
     /**
+     * @var OrderCreationFormHandlerInterface
+     */
+    private $orderCreationFormHandler;
+
+    /**
      * OneShopAction constructor.
      *
      * @param ShopRepositoryInterface $shopRepo
@@ -78,7 +85,8 @@ class OneShopAction implements OneShopActionInterface
         FormFactoryInterface $formFactory,
         CreationMessageFormHandlerInterface $formMessageHandler,
         CreationContactFormHandlerInterface $formContactHandler,
-        EditContactFormHandlerInterface $formEditContactHandler
+        EditContactFormHandlerInterface $formEditContactHandler,
+        OrderCreationFormHandlerInterface $orderCreationFormHandler
     ) {
         $this->shopRepo = $shopRepo;
         $this->contactRepo = $contactRepo;
@@ -86,6 +94,7 @@ class OneShopAction implements OneShopActionInterface
         $this->formMessageHandler = $formMessageHandler;
         $this->formContactHandler = $formContactHandler;
         $this->formEditContactHandler = $formEditContactHandler;
+        $this->orderCreationFormHandler = $orderCreationFormHandler;
     }
 
 
@@ -103,17 +112,24 @@ class OneShopAction implements OneShopActionInterface
 
         $formContact = $this->formFactory->create(ContactCreationForm::class)->handleRequest($request);
 
+        $formOrder = $this->formFactory->create(OrderCreationForm::class)->handleRequest($request);
+
         if ($this->formContactHandler->handle($formContact, $shop)) {
 
-            return $responder->response(true, null, null, $shop, $shop->getSlug());
+            return $responder->response(true, null, null, null, $shop, $shop->getSlug());
         }
 
         elseif ($this->formMessageHandler->handle($form, $shop)) {
 
-            return $responder->response(true, null, null, $shop, $shop->getSlug());
+            return $responder->response(true, null, null, null, $shop, $shop->getSlug());
         }
 
-        return $responder->response(false, $form, $formContact, $shop);
+        elseif ($this->orderCreationFormHandler->handle($formOrder, $shop)) {
+
+            return $responder->response(true, null, null, null, $shop, $shop->getSlug());
+        }
+
+        return $responder->response(false, $form, $formContact, $formOrder, $shop);
     }
 
     /**
