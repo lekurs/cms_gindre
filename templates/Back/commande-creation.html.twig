@@ -16,7 +16,7 @@
                         <p>{{ commande.productType.product }}</p>
                         <p>{{ commande.dateCommande | date('d-M-Y')}}</p>
                         <p>{{ commande.amount }}</p>
-                        <p><i class="fa fa-edit" data-toggle="modal" data-target="#editCommand"></i> <i class="fa fa-trash"></i> </p>
+                        <p><i class="fa fa-edit commande-edit-icon" data-toggle="modal" data-target="#editCommand" data-slug="{{ commande.shop.slug }}" data-id="{{ commande.id }}"></i> <i class="fa fa-trash"></i> </p>
                     </div>
                 {% endfor %}
             </div>
@@ -79,4 +79,9 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script src="{{ asset('js/commande-edit.js') }}" type="text/javascript"></script>
 {% endblock %}

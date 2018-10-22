@@ -85,9 +85,4 @@ class CommandeCreationAction implements CommandeCreationActionInterface
 
         return $responder->response(false, $form, $shop->getCommandes()->toArray(), $shop);
     }
-
-    public function editCommande(Request $request): Response
-    {
-
-    }
 }
