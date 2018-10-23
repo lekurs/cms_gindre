@@ -1,12 +1,33 @@
 /** MAP FRANCE  **/
 
+.page-title-info-map {
+    background-color: #877C80;
+    width: 98%;
+    margin-left: 2%;
+    height: 100px;
+    padding-left: 5%;
+    color: #ffffff;
+    text-transform: uppercase;
+    display: flex;
+    display: -ms-flex;
+    display: -ms-flexbox;
+    align-items: center;
+}
+
+.page-title-info-map H2 {
+    margin-left: 40px;
+    font-weight: lighter;
+    font-size: 3.5em;
+    color: #ffffff;
+}
+
 .map-image {
-    width: 80%;
-    float: left;
+    width: 60%;
+    margin: 0 auto;
 }
 
 .map-image path {
-    fill: #202326;
+    fill: #4E4E4E;
     stroke: #ffffff;
     stroke-width: 1px;
     -webkit-transition: fill .3s;
@@ -17,7 +38,7 @@
 }
 
 .map-image path:hover {
-    fill: rgba(32, 35, 38, 0.44);
+    fill: rgba(135, 124, 128, 0.5);
 }
 
 /*.map-list {*/
@@ -36,6 +57,24 @@
 }
 
 .txt-region {
-    fill: blue;
+    fill: #ffffff;
     font-size: .9em;
+}
+
+.button-map {
+    background: #4E4E4E;
+    border-radius: 15px;
+    position: relative;
+    width: 15%;
+    color: #ffffff;
+    height: 35px;
+    padding-left: 2rem;
+}
+
+button.button-map > i {
+    position: absolute;
+    left: -4px;
+    font-size: 2.3em;
+    top: -1px;
+    color: #ffffff;
 }

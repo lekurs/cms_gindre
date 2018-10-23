@@ -6,6 +6,7 @@
     {% block stylesheet %}
         <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
         <link href="https://fonts.googleapis.com/css?family=Assistant:200,300,400,600,700,800|Playfair+Display:400,700" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/fh-3.1.4/r-2.2.2/datatables.min.css"/>
         <link href="{{ asset('/css/style/style.css') }}" rel="stylesheet" />
         <link href="{{ asset('/css/style/admin/admin.css') }}" rel="stylesheet" />
@@ -48,36 +49,33 @@
 </head>
 
 <body>
-
 {% block body %}
-<div class="container">
     <div class="menu-container">
         <div class="burger">
             <span class="line-1"></span>
             <span class="line-2"></span>
             <span class="line-3"></span>
         </div>
-        <ul class="menu-content">
-            <li class="active"><span class="icon-menu"><i class="fa fa-home"></i> </span>Accueil<span class="arrow"><i class="fa fa-chevron-right"></i> </span></li>
-            <li><span class="icon-menu"><i class="fa fa-map"></i> </span><a href="{{ path('showMap')}}"> Carte de France</a><span class="arrow"><i class="fa fa-chevron-right"></i> </span></li>
-            <li ><span class="icon-menu"><i class="fa fa-shopping-bag"></i> </span><a href="{{ path('showAllShops') }}"> Magasin</a><span class="arrow"><i class="fa fa-chevron-right"></i> </span></li>
-            <li>menu_3<span class="arrow"><i class="fa fa-chevron-right"></i> </span></li>
-            <ul class="sub-menu">
-                <li>sub-1</li>
-                <li>sub-2</li>
-                <li>sub-3</li>
+        <!-- NAV -->
+        <div class="navigation">
+            <ul class="menu-content">
+                <li><a href="{{ path('admin') }}"><i class="fa fa-home"></i> <span class="nav-name">Home</span></a></li>
+                <li><a href="{{ path('showMap') }}"><i class="fa fa-map"></i> <span class="nav-name">Carte</span> </a></li>
+                <li><a href="#"><i class="fa fa-smile-o"></i> <span class="nav-name">Clients</span> </a></li>
+                    <ul class="sub-nav-content">
+                        <li><a href="{{ path('showAllShops') }}">Voir tous</a></li>
+                        <li><a href="{{ path('creationShop') }}">Ajouter un magasin</a></li>
+                    </ul>
             </ul>
-            <li>menu_4<span class="arrow"><i class="fa fa-chevron-right"></i> </span></li>
-            <li>menu_5<span class="arrow"><i class="fa fa-chevron-right"></i> </span></li>
-            <li>menu_6<span class="arrow"><i class="fa fa-chevron-right"></i> </span></li>
-        </ul>
+        </div>
     </div>
     {% block container %}
-    <div class="row content">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-            <div class="row">
+        <div class=" page-title-info-admin content">
+            <i class="fa fa-home fa-3x"></i> <h2>Admin</h2>
+        </div>
+        <div class="container-fluid content">
+            <div class="row ">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <h2>Admin</h2>
                     <p>1/ Nombre de clients par département</p>
                     <p>2/ Le CA total par département</p>
                     {% for shop in shops %}
@@ -87,6 +85,7 @@
                     {% endfor %}
                 </div>
             </div>
+
             <!-- Recontact spa -->
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -126,10 +125,10 @@
                     <div id="container-charts-prospect"></div>
                 </div>
             </div>
-        </div>
+
     </div>
     {% endblock %}
-</div>
+
 {% endblock %}
 
 {% block javascripts %}
@@ -138,6 +137,7 @@
     <script src="{{ asset('js/active-menu.js') }}"></script>
     <script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/fh-3.1.4/r-2.2.2/datatables.min.js"></script>
 {% endblock %}
 
 {% block charts %}

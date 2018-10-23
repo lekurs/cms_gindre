@@ -4,13 +4,6 @@
 
 }
 
-.contact-content {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #000000;
-    margin-right: 5px;
-}
-
 .icon-contact-edit-container {
     display: flex;
     justify-content: space-around;
@@ -22,9 +15,6 @@
 
 
 /** MESSAGES **/
-.message-container {
-    margin-bottom: 15px;
-}
 
 
 .message-content {

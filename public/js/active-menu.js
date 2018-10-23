@@ -27,4 +27,8 @@ $(document).ready(function () {
         elt.toggleClass('active');
         chevron.toggleClass('hover');
     });
+
+    $('.sub-nav-content').click(function () {
+        $(this).toggleClass('active');
+    });
 });
