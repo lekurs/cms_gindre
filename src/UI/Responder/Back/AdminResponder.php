@@ -29,11 +29,13 @@ class AdminResponder implements AdminResponderInterface
         $this->twig = $twig;
     }
 
-    public function response(array $shops, array $regions): Response
+    public function response(array $shops, array $regions, array $shopNoMessages, array $shopNoCommandes): Response
     {
         return new Response($this->twig->render('Back/admin.html.twig', [
             'shops' => $shops,
-            'regions' => $regions
+            'regions' => $regions,
+            'shopNoMessages' => $shopNoMessages,
+            'shopNoCommandes' => $shopNoCommandes
         ]));
     }
 }

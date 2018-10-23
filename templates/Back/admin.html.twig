@@ -87,6 +87,39 @@
                     {% endfor %}
                 </div>
             </div>
+            <!-- Recontact spa -->
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <h5>SPA non recontactés depuis 2 mois</h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    {% for shopNoMessage in shopNoMessages  if shopNoMessage is not null%}
+                        <p><a href="{{ path('showOneShop', { 'slug': shopNoMessage.slug }) }}">{{ shopNoMessage.name}}</a></p>
+                    {% else %}
+                        <p>Pas de clients non recontactés depuis 2 mois.</p>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Recontact spa -->
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <h5>Clients sans commandes depuis 3 Mois</h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    {% for shopNoCommande in shopNoCommandes if shopNoCommande is not null%}
+                            <p><a href="{{ path('showOneShop', { 'slug': shopNoCommande.slug }) }}">{{ shopNoCommande.name }}</a></p>
+                        {% else %}
+                        <p>Pas de magasin n'ayant pas passé de commande depuis moins de 3 mois.</p>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- CHARTS -->
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div id="container-charts"></div>

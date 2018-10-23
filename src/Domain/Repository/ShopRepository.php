@@ -106,6 +106,27 @@ class ShopRepository extends ServiceEntityRepository implements ShopRepositoryIn
                                     ->getOneOrNullResult();
     }
 
+    public function getNoCommande(\DateTime $date): array
+    {
+        return $this->createQueryBuilder('shop')
+            ->leftJoin('shop.commandes', 'commandes')
+            ->where(':date > commandes.dateCommande')
+            ->setParameter('date', $date)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getAllNotRecontacted($date)
+    {
+        return $this->createQueryBuilder('shop')
+            ->leftJoin('shop.messages', 'messages')
+            ->where(':date > messages.dateContact')
+            ->setParameter('date', $date)
+            ->orderBy('messages.dateContact', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
     public function save(Shop $shop, array $contacts):void
     {
         foreach ($contacts as $contact) {
