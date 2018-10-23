@@ -32,6 +32,16 @@ class MessageRepository extends ServiceEntityRepository implements MessageReposi
                                 ->getResult();
     }
 
+    public function getAllRetarded($date)
+    {
+        return $this->createQueryBuilder('message')
+                                ->where(':date > message.dateContact')
+                                ->setParameter('date', $date)
+                                ->orderBy('message.dateContact', 'ASC')
+                                ->getQuery()
+                                ->getResult();
+    }
+
     public function getOne($id): Message
     {
         return $this->createQueryBuilder('message')
