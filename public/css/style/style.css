@@ -1,0 +1,238 @@
+/** GLOBAL **/
+body, H1, H2, H3, H4, H5, H6 {
+    font-family: Assistant;
+    color: #4E4E4E;
+}
+
+button:focus {
+    outline: none !important;
+}
+
+.container-fluid {
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.container-fluid.content {
+    margin-bottom: 5em;
+}
+
+/** ADMIN **/
+
+.page-title-info-admin {
+    background-color: #B1CAD1;
+    width: 98%;
+    margin-left: 2%;
+    height: 100px;
+    padding-left: 5%;
+    color: #ffffff;
+    text-transform: uppercase;
+    display: flex;
+    display: -ms-flex;
+    display: -ms-flexbox;
+    align-items: center;
+}
+
+.page-title-info-admin H2 {
+    margin-left: 40px;
+    font-weight: lighter;
+    font-size: 3.5em;
+    color: #ffffff;
+}
+
+.page-title-info-admin > i {
+    font-size: 3.5em;
+}
+
+
+
+/** CLIENTS **/
+
+.page-title-info-client {
+    background-color: #C4C978;
+    width: 98%;
+    margin-left: 2%;
+    height: 100px;
+    padding-left: 5%;
+    color: #ffffff;
+    text-transform: uppercase;
+    display: flex;
+    display: -ms-flex;
+    display: -ms-flexbox;
+    align-items: center;
+}
+
+.page-title-info-client H2 {
+    margin-left: 40px;
+    font-weight: lighter;
+    font-size: 3.5em;
+    color: #ffffff;
+}
+
+.page-title-info-client > i {
+    font-size: 3.5em;
+}
+
+H2.title-shop-name {
+    font-size: 1.7em;
+    font-weight: 600;
+    width: 90%;
+    margin-left: -12px;
+}
+
+.title-page-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-top: 5em;
+    margin-bottom: .5em;
+    padding-bottom: .4em;
+    border-bottom: 1px solid #4E4E4E;
+}
+
+.button-title-container {
+    margin-bottom: 0.5rem;
+}
+
+span.button-title-container {
+    width: 15%;
+}
+
+button.button-title {
+    background: #4E4E4E;
+    border-radius: 15px;
+    position: relative;
+    width: 100%;
+    color: #ffffff;
+    height: 35px;
+    padding-left: 2rem;
+}
+
+button.button-title > i {
+    position: absolute;
+    left: -4px;
+    font-size: 2.3em;
+    top: -1px;
+    color: #ffffff;
+}
+
+.contact-content {
+    margin: 1em 5px 2em 0;
+}
+
+.contact-name {
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.contact-details {
+    padding-left: 8px !important;
+}
+
+.contact-details p {
+    margin: 0;
+    font-weight: lighter;
+}
+
+.fa-smile.black {
+    color: #4E4E4E;
+}
+
+.icon-contact-edit-container p {
+    width: 50%;
+    text-align: center;
+}
+
+.icon-contact-edit-container i {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.icon-contact-edit-container p:first-of-type {
+    width: 50%;
+    text-align: left;
+    padding-left: 12%;
+}
+
+.messages-title-container {
+    margin-bottom: .5em;
+    padding-bottom: .4em;
+    border-bottom: 1px solid #4E4E4E;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.message-container {
+    margin: 30px -15px;
+    background: rgba(196, 201, 120, .3);
+}
+
+.message-container-second {
+    margin: 30px -15px;
+    background: rgba(177, 202, 209, 0.3);
+}
+
+input[type="search"].form-control {
+    border: none;
+}
+
+th.sorting_asc::before {
+    color: #4E4E4E;
+    font-weight: bold;
+}
+
+th.sorting_asc::after {
+    color: #C4C978;
+    font-weight: bold;
+}
+
+th.sorting::before {
+    color: #4E4E4E;
+    font-weight: bold;
+}
+
+th.sorting::after {
+    color: #C4C978;
+    font-weight: bold;
+}
+
+.dataTables_info {
+    display: none;
+}
+
+.page-item.active .page-link {
+    background-color: #C4C978;
+    border-color: #C4C978;
+}
+
+.commandes-title-container {
+    margin-bottom: 2em;
+    padding-bottom: .4em;
+    border-bottom: 1px solid #4E4E4E;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+
+/** ALL SHOPS **/
+
+.all-shops-container {
+    padding-bottom: .4em;
+    border-bottom: 1px solid #4E4E4E;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin: 5em 0 3em 0;
+}
+
+.shops-table a {
+    color: #4E4E4E;
+}
+
+.shops-table a:hover {
+    color: #C4C978;
+    text-decoration: none;
+    font-size: 1.2em
+}

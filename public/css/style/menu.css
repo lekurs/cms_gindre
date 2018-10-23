@@ -5,7 +5,7 @@
     justify-content: flex-start;
     align-items: center;
     width: 2%;
-    background: #5a6268;
+    background: #4E4E4E;
     height: 100%;
     top: 0;
     left: 0;
@@ -59,8 +59,12 @@
     width: 20%;
 }
 
-.menu-content {
+ul.menu-content {
+    color: #ffffff;
+    font-size: 1.2em;
     margin-top: 2em;
+    list-style: none;
+    text-transform: uppercase;
     opacity: 0;
     visibility: hidden;
     transition: opacity .5s ease-in-out;
@@ -74,54 +78,54 @@
     margin:  2em auto;
 }
 
-.menu-content > li {
-    list-style: none;
-    color: #FFFFFF;
+.navigation {
     width: 100%;
-    line-height: 30px;
-    cursor: pointer;
-    position: relative;
-    border-bottom: 1px solid #23282e;
-    border-left: 3px solid grey;
-    transition: all .8s ease;
+    padding-left: 5%;
 }
 
-.arrow {
-    position: absolute;
-    width: 10%;
-    right: 0;
-    transition: all .5s ease-in-out;
-}
-
-.arrow.hover {
-    transform-origin: left;
-    transform: rotate(90deg);
-}
-
-.menu-content > li.active {
-    border-left: 3px solid orange;
-    background: #202326;
-}
-
-span.icon-menu {
-    width: 10px;
-    position: relative;
+span.nav-name {
     padding-left: 10px;
 }
 
-ul.sub-menu {
-    opacity: 0;
-    height: 0;
-    transition: height .5s ease-in-out;
-    list-style: none;
-    background: #202326;
-    border-left: 2px solid yellow;
-    color: #FFFFFF;
+.menu-content > li {
+    line-height: 35px;
+    cursor: pointer;
 }
 
-ul.sub-menu.active {
-    opacity: 1;
-    height: auto;
+.menu-content a {
+    color: #ffffff;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.menu-content  a:hover {
+    color: #C4C978;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+ul.sub-nav-content {
+    list-style: none;
+    font-size: 0.8em;
+    text-transform: none;
+    display: none;
+}
+
+ul.sub-nav-content.active {
+    list-style: none;
+    font-size: 0.8em;
+    text-transform: none;
+    display: block;
+}
+
+ul.sub-nav-content > li {
+    line-height: 35px;
+    cursor: pointer;
+    margin-left: -7px;
+}
+
+ul.sub-nav-content a:hover {
+    color: #C4C978;
 }
 
 .content {
@@ -129,5 +133,5 @@ ul.sub-menu.active {
 }
 
 .content.push {
-    transform: translateX(20%);
+    transform: translateX(18.4%);
 }

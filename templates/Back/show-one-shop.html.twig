@@ -5,73 +5,110 @@
 {% endblock %}
 
 {% block container %}
-    <div class="row content">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                <h2>{{ shop.name }}</h2>
+  <div class=" page-title-info-client content">
+            <i class="fas fa-grin fa-3x"></i>
+            <h2>Clients</h2>
+        </div>
+        <div class="container-fluid content">
+            <div class="row ">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 title-page-container">
+                    <h2 class="title-shop-name">Société {{ shop.name }}</h2>
+                    <span class="button-title-container"><button type="button" class="button-title" data-toggle="modal" data-target="#newContact"><i class="fas fa-grin"></i> Ajouter un contact</button> </span>
+                </div>
             </div>
-        <div class="row">
-            <div class="col-xl-12 col-lg-12 col-12 col-sm-12 col-12">
-                <h3>Contacts</h3>
-                <div class="row contacts-container">
-                {% for contact in shop.contacts %}
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 contact-content">
-                        <p>{{ contact.name }} - {{ contact.lastName }} <i class="fa fa-star{% if contact.main == 1 %} icon-contact-main {% endif %}"></i></p>
-                        <p>{{ contact.email }}</p>
-                        <div class="icon-contact-edit-container">
+
+            <div class="row contacts-container">
+            {% for contact in shop.contacts %}
+                <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-12 contact-content">
+                    <div class="row no-gutters">
+                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
+                            <i class="fas fa-smile black"></i>
+                        </div>
+                        <div class="col-xl-11 col-lg-11 col-md-11 col-sm-11 col-11 contact-details">
+                            <p class="contact-name font-weight-bold">{{ contact.name }} - {{ contact.lastName }}</p>
+                            <p>{{ contact.email }}</p>
+                            <p>0{{ contact.phoneOne }}</p>
+                            <p>{{ contact.phoneMobile }}</p>
+                            <p>{{ shop.address }}</p>
+                            <p>{{ shop.zip }} {{ shop.city }}</p>
+                        </div>
+                    </div>
+                    <div class="row no-gutters">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 icon-contact-edit-container">
                             <p><i class="fa fa-edit contact-edit-icon" data-slug="{{ contact.id }}" data-shop="{{ shop.slug }}" data-toggle="modal" data-target="#editContact"></i></p>
                             <p><i class="fa fa-trash delete-contact" data-slug="{{ contact.slug }}"></i></p>
                         </div>
                     </div>
-                {% endfor %}
                 </div>
-                <div class="row">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newContact">Ajouter Contact</button>
-                    </div>
+            {% endfor %}
+            </div>
+
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 messages-title-container">
+                <h2 class="title-shop-name">Observations</h2>
+                <span class="button-title-container"><button type="button" class="button-title" data-toggle="modal" data-target="#newMessage"><i class="fas fa-arrow-alt-circle-right"></i> Ajouter un message</button> </span>
             </div>
         </div>
-        <div class="row">
-            <h2>Observations</h2>
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             {% for message in shop.messages if message is not empty%}
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 message-container">
-                <div class="row">
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
-                        <div class="row justify-content-center">
-                            <h5 class="text-capitalize">{{ message.dateContact | date('d M Y') }}</h5>
-                        </div>
+                <div class="row {% if loop.index is divisible by (2) %} message-container-second {% else %} message-container {% endif %}">
+                    <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-12">
+                            <p class="text-capitalize">{{ message.dateContact | date('d.m.Y') }}</p>
+                            <p class="text-capitalize font-weight-bold">{{ message.contactType.type }}</p>
                         <div class="row">
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 icon-contact-edit-container">
-                                <p><i class="fa fa-edit edit-message" data-id="{{ message.id }}"></i></p>
-                                <p><i class="fa fa-trash"></i> </p>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                <p><i class="fa fa-edit"></i></p>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                <p><i class="fa fa-edit edit-message" data-id="{{ message.message }}"></i></p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 message-content {% if loop.index is divisible by (2) %} inverse {% endif %}">
+                    <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-12">
                         <p>{{ message.message |raw }}</p>
                     </div>
                 </div>
-            </div>
-            {% else %}
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                <p>aucune note</p>
-            </div>
+                    {% else %}
+                <div class="row message-container">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <p>aucune note</p>
+                    </div>
+                </div>
             {% endfor %}
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newMessage">Ajouter Message</button>
-        </div>
-    </div>
-        <div class="row">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                {% for order in orders %}
-                    {{ order.amount }}
-                {% endfor %}
+                </div>
             </div>
+
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 commandes-title-container">
+                    <h2 class="title-shop-name">Commandes</h2>
+                    <span class="button-title-container"><a href="{{ path('commande', { 'slug': shop.slug }) }}"><button type="button" class="button-title"><i class="fas fa-arrow-alt-circle-right"></i> Ajouter une commande</button> </a></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <table id="commandes" class="table">
+                        <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Produits</th>
+                            <th>Chiffre d'affaire</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for commande in orders %}
+                            <tr>
+                                <td><a href="{{ path('showOneShop', { 'slug': shop.slug }) }}">{{ commande.dateCommande | date('d-m-y') }}</a></td>
+                                <td>{{ commande.productType.product }}</td>
+                                <td>{{ commande.amount }} €</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        <!-- endblock -->
         </div>
-    <div class="row">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-            <a href="{{ path('commande', { 'slug': shop.slug }) }}">Voir toutes les commandes</a>
-        </div>
-    </div>
-</div>
 
 
     <!-- Modal -->
@@ -154,6 +191,11 @@
 <script>
     tinymce.init({
         selector: '#creation_message_form_message'
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $('#commandes').DataTable();
     });
 </script>
 

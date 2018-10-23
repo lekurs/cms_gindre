@@ -5,10 +5,21 @@
 {% endblock %}
 
 {% block container %}
-    <div class="row content">
+<div class=" page-title-info-client content">
+    <i class="fas fa-grin fa-3x"></i>
+    <h2>Clients</h2>
+</div>
+<div class="container-fluid content">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 all-shops-container">
+            <h2 class="title-shop-name">Clients</h2>
+            <span class="button-title-container"><a href="{{ path('creationShop') }}"><button type="button" class="button-title"><i class="fas fa-arrow-alt-circle-right"></i> Ajouter un client</button> </a></span>
+        </div>
+    </div>
+
+    <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-            <h2>Admin</h2>
-                <table id="shops" class="table">
+            <table id="shops" class="table shops-table">
                     <thead>
                         <tr>
                             <th>Nom</th>
@@ -29,7 +40,8 @@
                     </tbody>
                 </table>
             </div>
-    </div>
+        </div>
+</div>
 {% endblock %}
 
 {% block javascripts %}
