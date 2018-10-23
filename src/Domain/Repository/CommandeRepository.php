@@ -17,6 +17,11 @@ use Doctrine\Common\Persistence\ManagerRegistry;
 
 class CommandeRepository extends ServiceEntityRepository implements CommandeRepositoryInterface
 {
+    /**
+     * CommandeRepository constructor.
+     *
+     * @param ManagerRegistry $registry
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Commande::class);
@@ -44,7 +49,11 @@ class CommandeRepository extends ServiceEntityRepository implements CommandeRepo
 
     public function getOne($id): Commande
     {
-
+        return $this->createQueryBuilder('commande')
+                                    ->where('commande.id = :id')
+                                    ->setParameter('id', $id)
+                                    ->getQuery()
+                                    ->getOneOrNullResult();
     }
 
     public function getAllByShop(Shop $shop): array
@@ -65,6 +74,17 @@ class CommandeRepository extends ServiceEntityRepository implements CommandeRepo
             ->setParameter('slug', $slug)
             ->getQuery()
             ->getResult();
+    }
+
+    public function totalAmountByShop(Shop $shop): int
+    {
+        return $this->createQueryBuilder('commande')
+                                ->leftJoin('commande.shop', 'shop')
+                                ->where('commande.shop = :shop')
+                                ->setParameter('shop', $shop)
+                                ->select('SUM(commande.amount) as total')
+                                ->getQuery()
+                                ->getSingleScalarResult();
     }
 
     public function save(Commande $order): void

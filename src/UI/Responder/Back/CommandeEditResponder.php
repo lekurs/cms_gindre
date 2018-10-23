@@ -9,6 +9,7 @@
 namespace App\UI\Responder\Back;
 
 
+use App\Domain\Models\Commande;
 use App\Domain\Models\Shop;
 use App\UI\Responder\Interfaces\CommandeEditResponderInterface;
 use Symfony\Component\Form\FormInterface;
@@ -45,15 +46,18 @@ class CommandeEditResponder implements CommandeEditResponderInterface
      * @param bool $redirect
      * @param FormInterface|null $form
      * @param Shop $shop
+     * @param Commande $commande
      * @return Response
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function response($redirect = false, FormInterface $form = null, Shop $shop): Response
+    public function response($redirect = false, FormInterface $form = null, Shop $shop, Commande $commande): Response
     {
-        $redirect ? $response = new RedirectResponse($this->urlGenerator->generate('admin')) : $response = new Response($this->twig->render('Form/commande-edit.html.twig', [
-            'form' => $form->createView()
+        $redirect ? $response = new RedirectResponse($this->urlGenerator->generate('showOneShop',  ['slug' => $shop->getSlug()])) : $response = new Response($this->twig->render('Back/commande-edit-form.html.twig', [
+            'form' => $form->createView(),
+            'shop' => $shop,
+            'commande' => $commande
         ]));
 
         return $response;

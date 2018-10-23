@@ -74,15 +74,15 @@ class CommandeCreationAction implements CommandeCreationActionInterface
     {
         $shop = $this->shopRepo->getWithCommandes($request->attributes->get('slug'));
 
-        $allCommandes = array_map(function (Commande $commande) { return $commande; }, $shop->getCommandes()->toArray());
+        $total = $this->commandeRepo->totalAmountByShop($shop);
 
         $form = $this->formFactory->create(CommandeCreationForm::class)->handleRequest($request);
 
         if ($this->commandeCreationFormHandler->handle($form, $shop)) {
 
-            return $responder->response(true, null, $shop->getCommandes()->toArray(), $shop);
+            return $responder->response(true, null, $shop->getCommandes()->toArray(), $shop, $total);
         }
 
-        return $responder->response(false, $form, $shop->getCommandes()->toArray(), $shop);
+        return $responder->response(false, $form, $shop->getCommandes()->toArray(), $shop, $total);
     }
 }

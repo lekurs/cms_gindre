@@ -39,26 +39,31 @@ class CommandeEditAction implements CommandeEditActionInterface
 
     /**
      * CommandeEditAction constructor.
+     *
      * @param FormFactoryInterface $formFactory
      * @param CommandeRepositoryInterface $commandeRepo
      * @param CommandeEditFormHandlerInterface $commandeEditFormHandler
      */
-    public function __construct(FormFactoryInterface $formFactory, CommandeRepositoryInterface $commandeRepo, CommandeEditFormHandlerInterface $commandeEditFormHandler)
-    {
+    public function __construct(
+        FormFactoryInterface $formFactory,
+        CommandeRepositoryInterface $commandeRepo,
+        CommandeEditFormHandlerInterface $commandeEditFormHandler
+    ) {
         $this->formFactory = $formFactory;
         $this->commandeRepo = $commandeRepo;
         $this->commandeEditFormHandler = $commandeEditFormHandler;
     }
 
     /**
-     * @Route(name="editCommande", path="admin/shop/one/{slug}/commande/edit{id}")
+     * @Route(name="editCommande", path="admin/shop/one/{slug}/commande/edit/{id}")
      * @param Request $request
      * @param CommandeEditResponderInterface $responder
      * @return Response
      */
     public function edit(Request $request, CommandeEditResponderInterface $responder): Response
     {
-        $commande = $this->commandeRepo->getOne($request->request->get('id'));
+        dump($request->attributes->get('id'));
+        $commande = $this->commandeRepo->getOne($request->attributes->get('id'));
 
         $commandeEdit = new CommandeEditDTO(
             $commande->getAmount(),
@@ -69,9 +74,9 @@ class CommandeEditAction implements CommandeEditActionInterface
 
         if ($this->commandeEditFormHandler->handle($formEdit, $commande)) {
 
-            return $responder->response(true, null, $commande->getShop());
+            return $responder->response(true, null, $commande->getShop(), $commande);
         }
 
-        return $responder->response(false, $formEdit, $commande->getShop());
+        return $responder->response(false, $formEdit, $commande->getShop(), $commande);
     }
 }
