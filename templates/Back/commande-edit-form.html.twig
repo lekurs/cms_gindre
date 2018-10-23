@@ -1,0 +1,17 @@
+{% extends 'Back/admin.html.twig' %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block container %}
+<div class="row content">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button type="submit" class="btn btn-dark">Mettre à jour</button>
+        {{ form_end(form) }}
+    </div>
+</div>
+
+{% endblock %}

@@ -9,9 +9,10 @@
 namespace App\Domain\Models;
 
 
+use App\Domain\DTO\Interfaces\CommandeEditDTOInterface;
 use Ramsey\Uuid\Uuid;
 
-class Order
+class Commande
 {
     /**
      * @var Uuid
@@ -31,22 +32,33 @@ class Order
     /**
      * @var \DateTime
      */
-    private $dateOrder;
+    private $dateCommande;
 
     /**
-     * Order constructor.
+     * @var int
+     */
+    private $amount;
+
+    /**
+     * Commande constructor.
      *
      * @param Shop $shop
      * @param ProductType $productType
+     * @param int $amount
      * @param \DateTime $dateOrder
      * @throws \Exception
      */
-    public function __construct(Shop $shop, ProductType $productType, \DateTime $dateOrder)
-    {
+    public function __construct(
+        Shop $shop,
+        ProductType $productType,
+        \DateTime $dateOrder,
+        int $amount
+    ) {
         $this->id = Uuid::uuid4();
         $this->shop = $shop;
         $this->productType = $productType;
-        $this->dateOrder = $dateOrder;
+        $this->dateCommande = $dateOrder;
+        $this->amount = $amount;
     }
 
     /**
@@ -76,8 +88,22 @@ class Order
     /**
      * @return \DateTime
      */
-    public function getDateOrder(): \DateTime
+    public function getDateCommande(): \DateTime
     {
-        return $this->dateOrder;
+        return $this->dateCommande;
+    }
+
+    /**
+     * @return int
+     */
+    public function getAmount(): int
+    {
+        return $this->amount;
+    }
+
+    public function editCommande(CommandeEditDTOInterface $editDTO): void
+    {
+        $this->amount = $editDTO->amount;
+        $this->productType = $editDTO->productType;
     }
 }

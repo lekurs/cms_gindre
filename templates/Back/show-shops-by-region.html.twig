@@ -1,12 +1,11 @@
-{% extends "layout.html.twig" %}
+{% extends "Back/admin.html.twig" %}
 
 {% block title %}
     <title>Etablissements</title>
 {% endblock %}
 
-{% block body %}
-    <div class="container">
-        <div class="row">
+{% block container %}
+        <div class="row content">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                 <table id="shops" class="table">
                     <thead>
@@ -21,7 +20,7 @@
                     <tbody>
                     {% for shop in shops %}
                         <tr>
-                            <td>{{ shop.name }}</td>
+                            <td><a href="{{ path('showOneShop', { 'slug': shop.slug }) }}">{{ shop.name }}</a></td>
                             <td>{{ shop.region.region }}</td>
                             <td>{{ shop.status.status }}</td>
                             <td>{% if shop.prospect %} Prospect {% else %} Client {% endif %}</td>
@@ -32,7 +31,6 @@
                 </table>
             </div>
         </div>
-    </div>
 {% endblock %}
 
 {% block javascripts %}

@@ -11,6 +11,7 @@ namespace App\UI\Action\Back;
 
 use App\Domain\Repository\RegionRepository;
 use App\UI\Responder\Back\RegionResponder;
+use App\UI\Responder\Interfaces\RegionResponderInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -33,14 +34,12 @@ class RegionAction
 
     /**
      * @Route(name="showMap", path="admin/map")
-     * @param RegionResponder $responder
+     * @param RegionResponderInterface $responder
      * @return Response
      */
-    public function show(RegionResponder $responder): Response
+    public function show(RegionResponderInterface $responder): Response
     {
         $regions = $this->regionRepo->getAll();
-
-        dump(count($regions[11]->getShops()));
 
         foreach ($regions as $region) {
             $mesregions[$region->getId()] = $region;

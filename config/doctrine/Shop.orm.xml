@@ -30,7 +30,7 @@
             </cascade>
         </one-to-many>
 
-        <one-to-many field="orders" target-entity="App\Domain\Models\Order" mapped-by="shop">
+        <one-to-many field="commandes" target-entity="App\Domain\Models\Commande" mapped-by="shop">
             <cascade>
                 <cascade-persist/>
                 <cascade-remove/>

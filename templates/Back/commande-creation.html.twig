@@ -1,0 +1,60 @@
+{% extends 'Back/admin.html.twig' %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block container %}
+<div class="row content">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <h4>Récapitulatif des commandes</h4>
+        </div>
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="row">
+                {% for  commande in commandes %}
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
+                        <p>{{ commande.productType.product }}</p>
+                        <p>{{ commande.dateCommande | date('d-M-Y')}}</p>
+                        <p>{{ commande.amount }}</p>
+                        {#</a>#}
+                        {#data-toggle="modal" data-target="#editCommand"#}
+                        <p><a href="{{ path('editCommande', { 'slug': commande.shop.slug, 'id': commande.id}) }}"><i class="fa fa-edit commande-edit-icon" data-slug="{{ commande.shop.slug }}" data-id="{{ commande.id }}"></i> </a><i class="fa fa-trash"></i> </p>
+                    </div>
+                {% endfor %}
+            </div>
+    </div>
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#newCommand">Créer une commande</button>
+    </div>
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" id="test">
+        <p>Chiffre d'affaire total généré : {{ total }} € HT</p>
+    </div>
+</div>
+
+
+    {#Modal pour commande#}
+    <div class="modal fade" id="newCommand" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal Edit</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12" id="edit-contact-form">
+                        {{ form_start(form) }}
+                        {{ form_widget(form) }}
+                        <button type="submit" class="btn btn-dark">Enregistrer</button>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

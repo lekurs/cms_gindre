@@ -9,6 +9,7 @@
 namespace App\UI\Responder\Back;
 
 
+use App\Domain\Models\Shop;
 use App\UI\Responder\Interfaces\AllShopsResponderInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;

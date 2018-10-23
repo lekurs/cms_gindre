@@ -1,0 +1,39 @@
+/** SHOW ONE SHOP **/
+
+.contacts-container {
+
+}
+
+.contact-content {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #000000;
+    margin-right: 5px;
+}
+
+.icon-contact-edit-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.icon-contact-main {
+    color: gold;
+}
+
+
+/** MESSAGES **/
+.message-container {
+    margin-bottom: 15px;
+}
+
+
+.message-content {
+    /*width: 50%;*/
+    border-radius: 8px;
+    background-color: #28a745;
+}
+
+.message-content.inverse {
+    order: -1;
+    background-color: #5eb5e0;
+}

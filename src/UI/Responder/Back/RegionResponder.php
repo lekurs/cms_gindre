@@ -9,10 +9,11 @@
 namespace App\UI\Responder\Back;
 
 
+use App\UI\Responder\Interfaces\RegionResponderInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 
-class RegionResponder
+class RegionResponder implements RegionResponderInterface
 {
     /**
      * @var Environment

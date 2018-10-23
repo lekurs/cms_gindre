@@ -50,8 +50,6 @@ class ShopsByRegionAction implements ShopsByRegionActionInterface
     {
         $shops = $this->shopRepo->getAllByRegion($request->attributes->get('region'));
 
-        dump($shops);
-
         return $responder->response($shops);
     }
 
