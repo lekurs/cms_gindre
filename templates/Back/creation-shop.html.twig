@@ -1,7 +1,7 @@
 {% extends "Back/admin.html.twig" %}
 
 {% block title %}
-    <title>Ajout d'un type de produit</title>
+    Ajout d'un type de produit
 {% endblock %}
 
 {% block container %}
@@ -20,26 +20,68 @@
         <div class="row">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                 {{ form_start(form) }}
-                {{ form_row(form.name) }}
-                {{ form_row(form.address) }}
-                {{ form_row(form.zip) }}
-                {{ form_row(form.city) }}
-                {{ form_row(form.number) }}
-                {{ form_label(form.contact) }}
-                <ul id="email-fields-list"
-                    data-prototype="{{ form_widget(form.contact.vars.prototype)|e }}"
-                    data-widget-tags="{{ '<div></div>'|e }}">
-                    {% for contactField in form.contact %}
-                        <li>
-                            {{ form_errors(contactField) }}
-                            {{ form_widget(contactField) }}
-                        </li>
-                    {% endfor %}
-                </ul>
-                <button type="button"
-                        class="add-another-collection-widget"
-                        data-list="#email-fields-list">Ajouter un contact</button>
-
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="floating-label">
+                            {{ form_widget(form.name) }}
+                            <span class="highlight"></span>
+                            {{ form_label(form.name) }}
+                        </div>
+                        <div class="floating-label">
+                            {{ form_widget(form.address) }}
+                            <span class="highlight"></span>
+                            {{ form_label(form.address) }}
+                        </div>
+                        <div class="floating-label">
+                            {{ form_widget(form.zip) }}
+                            <span class="highlight"></span>
+                            {{ form_label(form.zip) }}
+                        </div>
+                        <div class="floating-label">
+                            {{ form_widget(form.city) }}
+                            <span class="highlight"></span>
+                            {{ form_label(form.city) }}
+                        </div>
+                        <div class="floating-label">
+                            {{ form_widget(form.number) }}
+                            <span class="highlight"></span>
+                            {{ form_label(form.number) }}
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                {{ form_label(form.status) }}
+                                {{ form_widget(form.status) }}
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                {{ form_label(form.prospect) }}
+                                {{ form_widget(form.prospect) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                        <button type="button"
+                                class="add-another-collection-widget"
+                                data-list="#email-fields-list">Ajouter un contact</button>
+                        <ul id="email-fields-list"
+                            data-prototype="{% form_theme form 'Form/prototype-form.html.twig' %}{{ form_widget(form.contact.vars.prototype)|e }}"
+                            data-widget-tags="{{ '<div></div>'|e }}">
+                            {% for contactField in form.contact %}
+                                <li>
+                                    {% form_theme form 'Form/prototype-form.html.twig' %}
+                                    <div class="floating-label">
+                                        {{ form_widget(contactFiedl) }}
+                                        <span class="highlight"></span>
+                                        {{ form_label(contactFiedl) }}
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col12">
                 <button type="submit">Ajouter</button>
                 {{ form_end(form) }}
             </div>

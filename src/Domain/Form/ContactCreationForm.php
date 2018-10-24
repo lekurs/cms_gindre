@@ -27,13 +27,27 @@ class ContactCreationForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class)
-            ->add('lastName', TextType::class)
-            ->add('phoneOne', TelType::class, [
-                'required' => false
+            ->add('name', TextType::class, [
+                'label_attr' => ['class' => 'float'],
+                'attr' => ['class' => 'floating-input', 'placeholder' => ' '],
             ])
-            ->add('phoneMobile', TelType::class)
-            ->add('email', EmailType::class)
+            ->add('lastName', TextType::class, [
+                'label_attr' => ['class' => 'float'],
+                'attr' => ['class' => 'floating-input', 'placeholder' => ' ']
+            ])
+            ->add('phoneOne', TelType::class, [
+                'label_attr' => ['class' => 'float'],
+                'attr' => ['class' => 'floating-input', 'placeholder' => ' '],
+                'required' => false,
+            ])
+            ->add('phoneMobile', TelType::class, [
+                'label_attr' => ['class' => 'float'],
+                'attr' => ['class' => 'floating-input', 'placeholder' => ' ']
+            ])
+            ->add('email', EmailType::class, [
+                'label_attr' => ['class' => 'float'],
+                'attr' => ['class' => 'floating-input', 'placeholder' => ' ']
+            ])
             ->add('role', EntityType::class, [
                 'class' => Role::class,
                 'choice_label' => 'role',

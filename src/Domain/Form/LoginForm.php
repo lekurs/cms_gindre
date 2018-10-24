@@ -22,8 +22,14 @@ class LoginForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username', TextType::class)
-            ->add('password', PasswordType::class);
+            ->add('username', TextType::class, [
+                 'label_attr' => ['class' => 'float-administrator'],
+                'attr' => ['class' => 'floating-input-administrator', 'placeholder' => ' '],
+            ])
+            ->add('password', PasswordType::class, [
+                 'label_attr' => ['class' => 'float-administrator'],
+                'attr' => ['class' => 'floating-input-administrator', 'placeholder' => ' '],
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
