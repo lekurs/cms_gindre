@@ -71,4 +71,12 @@ class Departement
     {
         return $this->region;
     }
+
+    /**
+     * @return string
+     */
+    public function getZip(): string
+    {
+        return $this->zip;
+    }
 }

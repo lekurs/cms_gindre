@@ -55,7 +55,7 @@ class ShopRepository extends ServiceEntityRepository implements ShopRepositoryIn
         return $this->createQueryBuilder('shop')
             ->leftJoin('shop.region', 'region')
             ->innerJoin('region.departements', 'departements')
-            ->where('shop.prospect = 1')
+            ->where('shop.prospect = 0')
             ->orderBy('shop.name', 'ASC')
             ->getQuery()
             ->getResult();

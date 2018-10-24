@@ -38,8 +38,8 @@ class DepartementRepository extends ServiceEntityRepository implements Departeme
     public function getAllWithShop(): array
     {
         return $this->createQueryBuilder('departement')
-                                ->leftJoin('departement.region', 'region')
-                                ->leftJoin('region.shops', 'shops')
+                                ->innerJoin('departement.region', 'region')
+                                ->innerJoin('region.shops', 'shops')
                                 ->where('shops.prospect = 0')
                                 ->orderBy('departement.departement', 'ASC')
                                 ->getQuery()

@@ -9,12 +9,9 @@
 namespace App\UI\Action\Back;
 
 
-use App\Domain\Models\Commande;
 use App\Domain\Models\Departement;
-use App\Domain\Models\Message;
 use App\Domain\Models\Region;
 use App\Domain\Models\Shop;
-use App\Domain\Repository\DepartementRepository;
 use App\Domain\Repository\Interfaces\CommandeRepositoryInterface;
 use App\Domain\Repository\Interfaces\DepartementRepositoryInterface;
 use App\Domain\Repository\Interfaces\MessageRepositoryInterface;
@@ -48,18 +45,25 @@ class AdminAction implements AdminActionInterface
     private $departementRepo;
 
     /**
+     * @var CommandeRepositoryInterface
+     */
+    private $commandeRepo;
+
+    /**
      * AdminAction constructor.
      * @param ShopRepositoryInterface $shopRepo
      * @param MessageRepositoryInterface $messageRepo
      * @param RegionRepositoryInterface $regionRepo
      * @param DepartementRepositoryInterface $departementRepo
+     * @param CommandeRepositoryInterface $commandeRepo
      */
-    public function __construct(ShopRepositoryInterface $shopRepo, MessageRepositoryInterface $messageRepo, RegionRepositoryInterface $regionRepo, DepartementRepositoryInterface $departementRepo)
+    public function __construct(ShopRepositoryInterface $shopRepo, MessageRepositoryInterface $messageRepo, RegionRepositoryInterface $regionRepo, DepartementRepositoryInterface $departementRepo, CommandeRepositoryInterface $commandeRepo)
     {
         $this->shopRepo = $shopRepo;
         $this->messageRepo = $messageRepo;
         $this->regionRepo = $regionRepo;
         $this->departementRepo = $departementRepo;
+        $this->commandeRepo = $commandeRepo;
     }
 
 
@@ -88,10 +92,45 @@ class AdminAction implements AdminActionInterface
 
         $dpt = array_map(function (Departement $dpt) { return $dpt; }, $this->departementRepo->getAllWithShop());
 
-        foreach ($shops as $shop) {
-            $data[$shop->getRegion()->getRegion()][]= $shop;
-        }
+        $test = $this->shopRepo->getClients();
 
-        return $responder->response($shops, $regions, $shopNoMessages, $shopNoCommandes);
+        $comm = $this->commandeRepo->totalByDepartement();
+
+        dump($comm);
+        $amount = [];
+        foreach ($shops as $shop) {
+            $idRegion = $shop->getRegion()->getId();
+            foreach($shop->getCommandes()->toArray() as $commande) {
+                if (isset($amount[$idRegion])) {
+                    $amount[$idRegion] += $commande->getAmount();
+                } else {
+                    $amount[$idRegion] = $commande->getAmount();
+                }
+            }
+        }
+        dd($amount);
+
+//        dump($test);
+//
+//        foreach ($test as $region) {
+//            dump($region->getRegion());
+//        }
+
+        $data = [
+            ['92' => '32560']
+        ];
+
+//        foreach ($dpt as $dep) {
+//            dump($dep);
+//            foreach ($dep->getRegion()->getShops() as $region) {
+////                dump($region);
+//            }
+//        }
+
+//        foreach ($shops as $shop) {
+//            $data[$shop->getRegion()->getRegion()][]= $shop;
+//        }
+
+        return $responder->response($comm, $regions, $shopNoMessages, $shopNoCommandes);
     }
 }

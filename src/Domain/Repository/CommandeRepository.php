@@ -30,7 +30,7 @@ class CommandeRepository extends ServiceEntityRepository implements CommandeRepo
     public function getAll(): array
     {
         return $this->createQueryBuilder('commande')
-                                ->orderBy('commande.dateOrder', 'ASC')
+                                ->orderBy('commande.dateCommande', 'ASC')
                                 ->getQuery()
                                 ->getResult();
     }
@@ -85,6 +85,17 @@ class CommandeRepository extends ServiceEntityRepository implements CommandeRepo
                                 ->select('SUM(commande.amount) as total')
                                 ->getQuery()
                                 ->getSingleScalarResult();
+    }
+
+    public function totalByDepartement()
+    {
+        return $this->createQueryBuilder('commande')
+                                ->innerJoin('commande.shop', 'shop')
+                                ->innerJoin('shop.region', 'region')
+                                ->select('region.id, SUM(commande.amount) as total')
+                                ->groupBy('region.id')
+                                ->getQuery()
+                                ->getResult();
     }
 
     public function save(Commande $order): void
