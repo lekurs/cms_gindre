@@ -1,29 +1,170 @@
-/** SHOW ONE SHOP **/
 
-.contacts-container {
+/*.icon-contact-edit-container {*/
+    /*display: flex;*/
+    /*justify-content: space-around;*/
+/*}*/
 
+/*.icon-contact-main {*/
+    /*color: gold;*/
+/*}*/
+
+
+/*!** MESSAGES **!*/
+
+
+/*.message-content {*/
+    /*!*width: 50%;*!*/
+    /*border-radius: 8px;*/
+    /*background-color: #28a745;*/
+/*}*/
+
+/*.message-content.inverse {*/
+    /*order: -1;*/
+    /*background-color: #5eb5e0;*/
+/*}*/
+
+.form-control:focus {
+    background: transparent;
 }
 
-.icon-contact-edit-container {
+/****  floating-Lable style start ****/
+.floating-label {
+    position:relative;
+    margin-bottom:20px;
+}
+.floating-input-administrator , .floating-select {
+    font-size:14px;
+    padding:4px 4px;
+    display:block;
+    width:100%;
+    height:30px;
+    background-color: transparent;
+    border:none;
+    /*border-bottom:1px solid #757575;*/
+    border-radius: 0;
+}
+
+.floating-input-administrator:focus , .floating-select:focus {
+    outline:none;
+    /*border-bottom:2px solid #5264AE;*/
+}
+
+label.float-administrator {
+    color:#ffffff;
+    font-size:18px;
+    font-weight:lighter;
+    position:absolute;
+    pointer-events:none;
+    left:5px;
+    top:2px;
+    transition:0.2s ease all;
+    -moz-transition:0.2s ease all;
+    -webkit-transition:0.2s ease all;
+}
+
+.floating-input-administrator:focus ~ label.float-administrator, .floating-input-administrator:not(:placeholder-shown) ~ label.float-administrator {
+    top:-18px;
+    font-size:14px;
+    color:#5264AE;
+}
+
+.floating-select:focus ~ label.float , .floating-select:not([value=""]):valid ~ label.float-administrator {
+    top:-18px;
+    font-size:14px;
+    color:#5264AE;
+    background: transparent;
+}
+
+/* active state */
+.floating-input-administrator:focus ~ .bar:before, .floating-input-administrator:focus ~ .bar:after, .floating-select:focus ~ .bar:before, .floating-select:focus ~ .bar:after {
+    width:50%;
+}
+
+*, *:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.floating-textarea {
+    min-height: 30px;
+    max-height: 260px;
+    overflow:hidden;
+    overflow-x: hidden;
+}
+
+/* highlighter */
+.highlight {
+    position:absolute;
+    height:50%;
+    width:100%;
+    top:15%;
+    left:0;
+    pointer-events:none;
+    opacity:0.5;
+}
+
+/* active state */
+.floating-input-administrator:focus ~ .highlight , .floating-select:focus ~ .highlight {
+    -webkit-animation:inputHighlighter 0.3s ease;
+    -moz-animation:inputHighlighter 0.3s ease;
+    animation:inputHighlighter 0.3s ease;
+}
+
+/* animation */
+@-webkit-keyframes inputHighlighter {
+    from { background:#5264AE; }
+    to 	{ width:0; background:transparent; }
+}
+@-moz-keyframes inputHighlighter {
+    from { background:#5264AE; }
+    to 	{ width:0; background:transparent; }
+}
+@keyframes inputHighlighter {
+    from { background:#5264AE; }
+    to 	{ width:0; background:transparent; }
+}
+
+/**administrator **/
+.container-fluid.administrator-container-fluid {
+    padding: 0;
+}
+
+.administrator-container {
+    height: 100vh;
+    background: url("../../../images/images/background_home.png") center center no-repeat;
+}
+
+.administrator-form-container {
     display: flex;
-    justify-content: space-around;
+    align-items: center;
+    justify-content: center;
 }
 
-.icon-contact-main {
-    color: gold;
+.administrator-icon-form {
+    position: absolute;
+    left: -20px;
+    top: 7px;
+    color: #fff;
+    font-weight: lighter;
 }
 
-
-/** MESSAGES **/
-
-
-.message-content {
-    /*width: 50%;*/
-    border-radius: 8px;
-    background-color: #28a745;
+button.administrator-button-connection {
+    height: 35px;
+    width: 100%;
+    position: relative;
+    margin-left: -30px;
+    background: transparent;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: lighter;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
 }
 
-.message-content.inverse {
-    order: -1;
-    background-color: #5eb5e0;
+button.administrator-button-connection >i {
+    position: absolute;
+    left: 12px;
+    top: 9px;
 }

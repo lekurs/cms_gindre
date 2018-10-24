@@ -1,14 +1,77 @@
-{% extends "layout.html.twig" %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
 
+    {% block stylesheet %}
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+        <link href="https://fonts.googleapis.com/css?family=Assistant:200,300,400,600,700,800|Playfair+Display:400,700" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/fh-3.1.4/r-2.2.2/datatables.min.css"/>
+        <link href="{{ asset('/css/style/style.css') }}" rel="stylesheet" />
+        <link href="{{ asset('/css/style/admin/admin.css') }}" rel="stylesheet" />
+        <link href="{{ asset('/css/style/menu.css') }}" rel="stylesheet" />
+        <link href="{{ asset('/css/style/floating-label.css') }}" rel="stylesheet" />
+        <link href="{{ asset('fonts/font-awesome.css') }}" rel="stylesheet" />
+    {% endblock %}
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Si icone -->
+    {#<link rel="icon" type="image/ico" href="/images/ico-livre.ico" />#}
+    <!--[if IE]><link rel="shortcut icon" type="image/x-icon" href="images/velo-marqueur.png" /><!-->
+
+    {% block meta %}
+        <!-- Création des metatags réseaux sociaux -->
+        <!-- Metatags FB -->
+        <meta property="og:title" content="Gestion clients MySPA" />
+        <meta property="og:type" content="Gestion clients MySPA" />
+        <meta property="og:url" content="crmmyspa.mclwebservices.com" />
+        <meta property="og:description" content="Gestion clients MySPA" />
+        <meta property="og:image" content="/css/images/" />
+
+        <!-- Metatag Twitter -->
+        <meta name="twitter:card" content="Gestion clients MySPA" />
+        <meta name="twitter:tittle" content="Gestion clients MySPA" />
+        <meta name="twitter:description" content="Gestion clients MySPA" />
+    {% endblock %}
+    <title>
+        {% block title %}
+            Connexion
+        {% endblock %}
+    </title>
+
+    {% block stylesheets %}
+    {% endblock %}
+</head>
+
+<body>
 {% block body %}
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+{% block container %}
+    <div class="container-fluid administrator-container-fluid">
+        <div class="row administrator-container">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 administrator-form-container">
                 {{ form_start(form) }}
-                {{ form_widget(form) }}
-                <button type="submit" class="btn btn-dark">Connexion</button>
+                <div class="floating-label">
+                    <span class="administrator-icon-form"><i class="fas fa-smile"></i> </span> {{ form_widget(form.username) }}
+                    {{ form_label(form.username) }}
+                    <span class="highlight"></span>
+                </div>
+                <div class="floating-label">
+                    <span class="administrator-icon-form"><i class="fas fa-key"></i> </span>{{ form_widget(form.password) }}
+                    {{ form_label(form.password) }}
+                    <span class="highlight"></span>
+                </div>
+                <button type="submit" class="administrator-button-connection"><i class="fas fa-thumbs-up"></i>Connexion</button>
                 {{ form_end(form) }}
             </div>
         </div>
     </div>
+{% endblock %}
+
 {% endblock %}
