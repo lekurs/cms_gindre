@@ -11,6 +11,7 @@
         <link href="{{ asset('/css/style/style.css') }}" rel="stylesheet" />
         <link href="{{ asset('/css/style/admin/admin.css') }}" rel="stylesheet" />
         <link href="{{ asset('/css/style/menu.css') }}" rel="stylesheet" />
+        <link href="{{ asset('/css/style/floating-label.css') }}" rel="stylesheet" />
         <link href="{{ asset('fonts/font-awesome.css') }}" rel="stylesheet" />
     {% endblock %}
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -40,7 +41,7 @@
     {% endblock %}
     <title>
         {% block title %}
-
+            Administration
         {% endblock %}
     </title>
 
@@ -74,6 +75,12 @@
             <i class="fa fa-home fa-3x"></i> <h2>Admin</h2>
         </div>
         <div class="container-fluid content">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 infos-admin-title-container">
+                    <h2 class="title-admin">Alertes</h2>
+                    {#<span class="button-title-container"><a href="{{ path('admin') }}"><button type="button" class="button-title"><i class="fas fa-arrow-alt-circle-right"></i> Retour</button> </a></span>#}
+                </div>
+            </div>
             <div class="row ">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <p>1/ Nombre de clients par département</p>
@@ -118,6 +125,12 @@
                 </div>
             </div>
 
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 infos-admin-title-container">
+                    <h2 class="title-admin">Indicateurs</h2>
+                    {#<span class="button-title-container"><a href="{{ path('admin') }}"><button type="button" class="button-title"><i class="fas fa-arrow-alt-circle-right"></i> Retour</button> </a></span>#}
+                </div>
+            </div>
             <!-- CHARTS -->
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">

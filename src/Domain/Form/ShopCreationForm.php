@@ -28,10 +28,22 @@ class ShopCreationForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class)
-            ->add('address', TextType::class)
-            ->add('zip', TextType::class)
-            ->add('city', TextType::class)
+            ->add('name', TextType::class, [
+                'label_attr' => ['class' => 'float'],
+                'attr' => ['class' => 'floating-input', 'placeholder' => ' ']
+            ])
+            ->add('address', TextType::class, [
+                'label_attr' => ['class' => 'float'],
+                'attr' => ['class' => 'floating-input', 'placeholder' => ' ']
+            ])
+            ->add('zip', TextType::class, [
+                'label_attr' => ['class' => 'float'],
+                'attr' => ['class' => 'floating-input', 'placeholder' => ' ']
+            ])
+            ->add('city', TextType::class, [
+                'label_attr' => ['class' => 'float'],
+                'attr' => ['class' => 'floating-input', 'placeholder' => ' ']
+            ])
             ->add('status', EntityType::class, [
                 'class' => StatusShop::class,
                 'choice_label' => 'status',
@@ -45,7 +57,8 @@ class ShopCreationForm extends AbstractType
                 'choices' => [
                     'Client' => false,
                     'Prospect' => true
-                ]
+                ],
+                'label_attr' => ['class' => 'radio-label']
             ])
             ->add('contact', CollectionType::class, [
                 'entry_type' => ContactCreationForm::class,
@@ -54,10 +67,14 @@ class ShopCreationForm extends AbstractType
                 ],
                 'allow_add' => true,
                 'allow_delete' => true,
-                'prototype' => true
+                'prototype' => true,
+                'block_name' => '_my_proto',
+                'label_attr' => ['class' => 'legend-contact']
             ])
             ->add('number', TextType::class, [
-                'required' => false
+                'required' => false,
+                'label_attr' => ['class' => 'float'],
+                'attr' => ['class' => 'floating-input', 'placeholder' => ' ']
             ]);
     }
 
