@@ -32,6 +32,7 @@ class ShopActionCreation implements ShopCreationActionInterface
 
     /**
      * ShopActionCreation constructor.
+     *
      * @param FormFactoryInterface $formFactory
      * @param CreationShopFormHandlerInterface $creationShopFormHandler
      */
@@ -57,5 +58,4 @@ class ShopActionCreation implements ShopCreationActionInterface
         }
         return $responder->response(false, $form);
     }
-
 }

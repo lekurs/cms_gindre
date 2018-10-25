@@ -11,13 +11,14 @@ namespace App\UI\Action\Back;
 
 use App\Domain\Form\ContactTypeCreationForm;
 use App\Domain\Handler\Interfaces\CreationContactTypeFormHandlerInterface;
+use App\UI\Action\Interfaces\ContactTypeCreationActionInterface;
 use App\UI\Responder\Interfaces\ContactTypeCreationResponderInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ContactTypeCreationAction
+class ContactTypeCreationAction implements ContactTypeCreationActionInterface
 {
     /**
      * @var FormFactoryInterface
@@ -42,6 +43,7 @@ class ContactTypeCreationAction
 
     /**
      * @Route(name="CreationContactType", path="/admin/contact/type/add")
+     * @param ContactTypeCreationResponderInterface $responder
      * @param Request $request
      * @return Response
      */
@@ -56,6 +58,4 @@ class ContactTypeCreationAction
 
         return $responder->response(false, $form);
     }
-
-
 }
