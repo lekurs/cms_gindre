@@ -11,6 +11,12 @@
         <field name="departement" type="string" length="100" unique="true" nullable="false" />
 
         <many-to-one field="region" target-entity="App\Domain\Models\Region" inversed-by="departements" />
+        <one-to-many field="shops" target-entity="App\Domain\Models\Shop" mapped-by="departement">
+            <cascade>
+                <cascade-persist/>
+                <cascade-remove/>
+            </cascade>
+        </one-to-many>
 
     </entity>
     

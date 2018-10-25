@@ -127,6 +127,17 @@ class ShopRepository extends ServiceEntityRepository implements ShopRepositoryIn
             ->getResult();
     }
 
+    public function getAllByDepartement(): array
+    {
+        return $this->createQueryBuilder('shop')
+            ->innerJoin('shop.departement', 'departement')
+            ->where('shop.prospect = 0')
+            ->select('departement.id, COUNT(shop.id) as total_shop')
+            ->groupBy('departement.id')
+            ->getQuery()
+            ->getResult();
+    }
+
     public function save(Shop $shop, array $contacts):void
     {
         foreach ($contacts as $contact) {

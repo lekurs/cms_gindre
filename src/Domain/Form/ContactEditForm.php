@@ -47,13 +47,22 @@ class ContactEditForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class)
-            ->add('lastName', TextType::class)
+            ->add('name', TextType::class, [
+                'attr' => ['class' => 'floating-input'],
+            ])
+            ->add('lastName', TextType::class, [
+                'attr' => ['class' => 'floating-input'],
+            ])
             ->add('phoneOne', TelType::class, [
                 'required' => false,
+                'attr' => ['class' => 'floating-input'],
             ])
-            ->add('phoneMobile', TelType::class)
-            ->add('email', EmailType::class)
+            ->add('phoneMobile', TelType::class, [
+                'attr' => ['class' => 'floating-input'],
+            ])
+            ->add('email', EmailType::class, [
+                'attr' => ['class' => 'floating-input'],
+            ])
             ->add('role', EntityType::class, [
                 'class' => Role::class,
                 'choice_label' => 'role',

@@ -72,7 +72,7 @@
     </div>
     {% block container %}
         <div class=" page-title-info-admin content">
-            <i class="fa fa-home fa-3x"></i> <h2>Admin</h2>
+            <i class="fa fa-home fa-3x"></i> <h1>Admin</h1>
         </div>
         <div class="container-fluid content">
             <div class="row">
@@ -80,22 +80,11 @@
                     <h2 class="title-admin">Alertes</h2>
                 </div>
             </div>
-            <div class="row ">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <p>1/ Nombre de clients par département</p>
-                    <p>2/ Le CA total par département</p>
-                    {% for shop in shops %}
-                       {{ shop.shop.region.region }}
-                        {{ shops | length }}
-                       {{ shop.amount }}
-                    {% endfor %}
-                </div>
-            </div>
 
             <!-- Recontact spa -->
             <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <h5>SPA non recontactés depuis 2 mois</h5>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 sub-title-admin-container">
+                    <h2 class="sub-title-admin">SPA non recontactés depuis 2 mois</h2>
                 </div>
             </div>
             <div class="row">
@@ -110,8 +99,8 @@
 
             <!-- Recontact spa -->
             <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <h5>Clients sans commandes depuis 3 Mois</h5>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 sub-title-admin-container">
+                    <h2 class="sub-title-admin">Clients sans commandes depuis 3 Mois</h2>
                 </div>
             </div>
             <div class="row">
@@ -132,9 +121,12 @@
             </div>
             <!-- CHARTS -->
             <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                     <div id="container-charts"></div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                     <div id="container-charts-prospect"></div>
+                </div>
                 </div>
             </div>
 
@@ -158,35 +150,66 @@
             var myChart = Highcharts.chart('container-charts', {
                 chart: {
                     type: 'column',
-                    plotBackgroundColor: null,
-                    plotBorderWidth: 0,
-                    plotShadow: false
+                    width: 500,
+                },
+                responsive: {
+                    rules: [{
+                        condition: {
+                            maxWidth: 500
+                        },
+                        chartOptions: {
+                            legend: {
+                                enabled: false
+                            }
+                        }
+                    }]
                 },
                 title: {
-                    text: 'Répartition <br>des clients<br>par region',
-                    align: 'center',
-                    verticalAlign: 'middle',
-                    y: 40
+                    text: 'CA TOTAL PAR DEPARTEMENT'
                 },
-                // tooltip: {
-                //     pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-                // },
+                subtitle: {
+                    // text: 'Source: <a href="http://en.wikipedia.org/wiki/List_of_cities_proper_by_population">Wikipedia</a>'
+                },
                 xAxis: {
-                    categories: [{%  if shops is defined %}{% for key, shop in shops %} '{{ key }}', {% endfor %}{% endif %}]
+                    type: 'category',
+                    labels: {
+                        rotation: -45,
+                        style: {
+                            fontSize: '13px',
+                            fontFamily: 'Assistant'
+                        }
+                    }
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'CA TOTAL en K€'
+                    }
+                },
+                legend: {
+                    enabled: false
+                },
+                tooltip: {
+                    pointFormat: 'CA: <b>{point.y:.1f} K€</b>'
                 },
                 series: [{
+                    name: 'Population',
                     data: [
-                        {%  if shops is defined %}
-                            {% for details in shops %}
-                        {% for detail in details %}
-                        {% for dept in detail.region.departements %}
-                        {{ dept.departement }}
-                            {% endfor %}
-                            {% endfor %}
-                            {% endfor %}
-                        {% endif %}
+                        {% for caByDepartement in caByDepartements %}
+                        ['{{ caByDepartement.id }}', {{ caByDepartement.total }}],
+                        {% endfor %}
                     ],
-                    showInLegend: false
+                    dataLabels: {
+                        enabled: true,
+                        rotation: -90,
+                        color: '#FFFFFF',
+                        align: 'right',
+                        y: 10, // 10 pixels down from the top
+                        style: {
+                            fontSize: '13px',
+                            fontFamily: 'Assistant'
+                        }
+                    }
                 }]
             });
         });
@@ -195,34 +218,55 @@
         $(function () {
             var myChart = Highcharts.chart('container-charts-prospect', {
                 chart: {
-                    plotBackgroundColor: null,
-                    plotBorderWidth: 0,
-                    plotShadow: false
+                    type: 'column',
+                    width: 500
                 },
                 title: {
-                    text: 'Répartition <br>des clients<br>par type',
-                    align: 'left',
-                    verticalAlign: 'top',
-                    y: 40
+                    text: 'MAGASINS PAR DEPARTEMENT'
+                },
+                subtitle: {
+                    // text: 'Source: <a href="http://en.wikipedia.org/wiki/List_of_cities_proper_by_population">Wikipedia</a>'
                 },
                 xAxis: {
-                    categories: [{%  if shops is defined %}{% for key, shop in shops %} '{{ key }}', {% endfor %}{% endif %}]
+                    type: 'category',
+                    labels: {
+                        rotation: -45,
+                        style: {
+                            fontSize: '13px',
+                            fontFamily: 'Assistant'
+                        }
+                    }
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'NB DE MAGASINS'
+                    }
+                },
+                legend: {
+                    enabled: false
+                },
+                tooltip: {
+                    pointFormat: 'CA: <b>{point.y:.1f} K€</b>'
                 },
                 series: [{
-                    type: 'column',
-                    colorByPoint: true,
-                    // name: 'Browser share',
-                    // innerSize: '50%',
-
+                    name: 'Population',
                     data: [
-                        {%  if shops is defined %}
-                        {#{% for shop in shops %}#}
-                        {#['{{  shop.prospect }}', {% if shop.prospect == 1 %}0{% else %}1{% endif %}], //On affiche les clients#}
-                        {#['{{ shop.prospect }}',{{ shop.prospect| length }}],#}{# //On affiche les prospects#}
-                        {#{% endfor %}#}
-                        {% endif %}
+                        {% for shopsByDepartement in shopsByDepartements %}
+                        ['{{ shopsByDepartement.id }}', {{ shopsByDepartement.total_shop }}],
+                        {% endfor %}
                     ],
-                    showInLegend: false
+                    dataLabels: {
+                        enabled: true,
+                        rotation: -90,
+                        color: '#FFFFFF',
+                        align: 'right',
+                        y: 10, // 10 pixels down from the top
+                        style: {
+                            fontSize: '13px',
+                            fontFamily: 'Assistant'
+                        }
+                    }
                 }]
             });
         });

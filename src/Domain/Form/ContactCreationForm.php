@@ -28,34 +28,45 @@ class ContactCreationForm extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
+                'label' => 'Nom *',
+                'required' => true,
                 'label_attr' => ['class' => 'float'],
                 'attr' => ['class' => 'floating-input', 'placeholder' => ' '],
             ])
             ->add('lastName', TextType::class, [
+                'label' => 'Prénom *',
+                'required' => true,
                 'label_attr' => ['class' => 'float'],
                 'attr' => ['class' => 'floating-input', 'placeholder' => ' ']
             ])
             ->add('phoneOne', TelType::class, [
+                'label' => 'Teléphone Fixe',
                 'label_attr' => ['class' => 'float'],
                 'attr' => ['class' => 'floating-input', 'placeholder' => ' '],
                 'required' => false,
             ])
             ->add('phoneMobile', TelType::class, [
+                'label' => 'Téléphone mobile *',
+                'required' => true,
                 'label_attr' => ['class' => 'float'],
                 'attr' => ['class' => 'floating-input', 'placeholder' => ' ']
             ])
             ->add('email', EmailType::class, [
+                'required' => true,
                 'label_attr' => ['class' => 'float'],
-                'attr' => ['class' => 'floating-input', 'placeholder' => ' ']
+                'attr' => ['class' => 'floating-input', 'placeholder' => ' '],
+                'label' => 'email@email.com'
             ])
             ->add('role', EntityType::class, [
                 'class' => Role::class,
                 'choice_label' => 'role',
-                'constraints' => new UniqueEntity(['fields' => 'id'])
+                'constraints' => new UniqueEntity(['fields' => 'id']),
+                'label' => 'Statut du contact'
             ])
             ->add('main', CheckboxType::class,[
                 'required' => false,
-                'data' => true
+                'data' => true,
+                'label' => 'Contact principal ?'
             ]);
     }
 

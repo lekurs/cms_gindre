@@ -49,6 +49,11 @@ class OneShopAction implements OneShopActionInterface
     private $contactRepo;
 
     /**
+     * @var CommandeRepositoryInterface
+     */
+    private $commandeRepo;
+
+    /**
      * @var FormFactoryInterface
      */
     private $formFactory;
@@ -89,6 +94,7 @@ class OneShopAction implements OneShopActionInterface
         ShopRepositoryInterface $shopRepo,
         CommandeRepositoryInterface $orderRepo,
         ContactRepositoryInterface $contactRepo,
+        CommandeRepositoryInterface $commandeRepo,
         FormFactoryInterface $formFactory,
         CreationMessageFormHandlerInterface $formMessageHandler,
         CreationContactFormHandlerInterface $formContactHandler,
@@ -98,6 +104,7 @@ class OneShopAction implements OneShopActionInterface
         $this->shopRepo = $shopRepo;
         $this->orderRepo = $orderRepo;
         $this->contactRepo = $contactRepo;
+        $this->commandeRepo = $commandeRepo;
         $this->formFactory = $formFactory;
         $this->formMessageHandler = $formMessageHandler;
         $this->formContactHandler = $formContactHandler;
@@ -122,6 +129,8 @@ class OneShopAction implements OneShopActionInterface
 
         $formContact = $this->formFactory->create(ContactCreationForm::class)->handleRequest($request);
 
+        $total = $this->commandeRepo->totalAmountByShop($shop);
+
         if ($this->formContactHandler->handle($formContact, $shop)) {
 
             return $responder->response(true, null, null, $shop, $orders, $shop->getSlug());
@@ -132,7 +141,7 @@ class OneShopAction implements OneShopActionInterface
             return $responder->response(true, null, null, $shop, $orders, $shop->getSlug());
         }
 
-        return $responder->response(false, $form, $formContact, $shop, $orders);
+        return $responder->response(false, $form, $formContact, $shop, $orders, $total);
     }
 
     /**

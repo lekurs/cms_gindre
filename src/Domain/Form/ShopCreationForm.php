@@ -30,26 +30,31 @@ class ShopCreationForm extends AbstractType
         $builder
             ->add('name', TextType::class, [
                 'label_attr' => ['class' => 'float'],
-                'attr' => ['class' => 'floating-input', 'placeholder' => ' ']
+                'attr' => ['class' => 'floating-input', 'placeholder' => ' '],
+                'label' => 'Nom *'
             ])
             ->add('address', TextType::class, [
                 'label_attr' => ['class' => 'float'],
-                'attr' => ['class' => 'floating-input', 'placeholder' => ' ']
+                'attr' => ['class' => 'floating-input', 'placeholder' => ' '],
+                'label' => 'Adresse *'
             ])
             ->add('zip', TextType::class, [
                 'label_attr' => ['class' => 'float'],
-                'attr' => ['class' => 'floating-input', 'placeholder' => ' ']
+                'attr' => ['class' => 'floating-input', 'placeholder' => ' '],
+                'label' => 'Code Postal *',
             ])
             ->add('city', TextType::class, [
                 'label_attr' => ['class' => 'float'],
-                'attr' => ['class' => 'floating-input', 'placeholder' => ' ']
+                'attr' => ['class' => 'floating-input', 'placeholder' => ' '],
+                'label' => 'Ville *',
             ])
             ->add('status', EntityType::class, [
                 'class' => StatusShop::class,
                 'choice_label' => 'status',
                 'expanded' => true,
                 'multiple' => false,
-                'constraints' => new UniqueEntity(['fields' => 'id'])
+                'constraints' => new UniqueEntity(['fields' => 'id']),
+                'label' => 'Statuts *'
             ])
             ->add('prospect', ChoiceType::class, [
                 'expanded' => true,
@@ -58,7 +63,8 @@ class ShopCreationForm extends AbstractType
                     'Client' => false,
                     'Prospect' => true
                 ],
-                'label_attr' => ['class' => 'radio-label']
+                'label_attr' => ['class' => 'radio-label'],
+                'label' => 'Type de client *'
             ])
             ->add('contact', CollectionType::class, [
                 'entry_type' => ContactCreationForm::class,
@@ -74,7 +80,8 @@ class ShopCreationForm extends AbstractType
             ->add('number', TextType::class, [
                 'required' => false,
                 'label_attr' => ['class' => 'float'],
-                'attr' => ['class' => 'floating-input', 'placeholder' => ' ']
+                'attr' => ['class' => 'floating-input', 'placeholder' => ' '],
+                'label' => 'Numéro client personnel'
             ]);
     }
 

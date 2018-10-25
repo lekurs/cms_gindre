@@ -1,6 +1,6 @@
 {{ form_start(form, {'attr': {'class': 'test-form'}, 'action': path('editMessage', { 'id': message.id }), 'method' : 'POST' }) }}
 {{ form_widget(form.message, { 'id' : 'edit_message_form_message' }) }}
-<button type="submit">Mettre à jour</button>
+<button type="submit" class="modal-button"><i class="fas fa-arrow-alt-circle-right"></i> Mettre à jour</button>
 {{ form_end(form) }}
 
 <script>

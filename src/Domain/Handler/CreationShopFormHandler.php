@@ -90,7 +90,6 @@ class CreationShopFormHandler implements CreationShopFormHandlerInterface
 
             $dpt = $this->departementRepo->getOne($zip);
 
-            if (count($form->getData()->contact > 0)) {
                 $contacts = [];
                 foreach ($form->getData()->contact as $contact) {
                     $contacts[] = $this->contactFactory->create(
@@ -104,7 +103,7 @@ class CreationShopFormHandler implements CreationShopFormHandlerInterface
                         $this->slugHelper->replace($contact->name . '-' . $contact->lastName)
                     );
                 }
-            }
+
 
             $shop = $this->shopFactory->create(
                 $form->getData()->name,
@@ -113,6 +112,7 @@ class CreationShopFormHandler implements CreationShopFormHandlerInterface
                 $form->getData()->city,
                 $contacts ?? [],
                 $dpt->getRegion(),
+                $dpt,
                 $form->getData()->status,
                 $form->getData()->prospect,
                 $form->getData()->number,
@@ -123,7 +123,7 @@ class CreationShopFormHandler implements CreationShopFormHandlerInterface
 
             $this->shopRepo->save($shop, $contacts);
 
-            $this->session->getFlashBag("success", "Magasin enregistré");
+            $this->session->getFlashBag()->add("success", "Magasin enregistré");
 
             return true;
         }

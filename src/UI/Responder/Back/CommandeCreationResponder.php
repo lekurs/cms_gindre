@@ -40,12 +40,21 @@ class CommandeCreationResponder implements CommandeCreationResponderInterface
         $this->urlGenerator = $urlGenerator;
     }
 
-    public function response($redirect = false, FormInterface $form = null, array $commandes, Shop $shop, int  $total): Response
+    /**
+     * @param bool $redirect
+     * @param FormInterface|null $form
+     * @param array $commandes
+     * @param Shop $shop
+     * @return Response
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
+     */
+    public function response($redirect = false, FormInterface $form = null, array $commandes, Shop $shop): Response
     {
         $redirect ? $response = new RedirectResponse($this->urlGenerator->generate('showOneShop', ['slug' => $shop->getSlug()])) : $response = new Response($this->twig->render('Back/commande-creation.html.twig', [
             'commandes' => $commandes,
             'form' => $form->createView(),
-            'total' => $total
         ]));
 
         return $response;

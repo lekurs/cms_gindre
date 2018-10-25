@@ -49,11 +49,10 @@ class ShopCreationResponder implements ShopCreationResponderInterface
      */
     public function response($redirect = false, FormInterface $form = null): Response
     {
-        $redirect ? $response = new RedirectResponse($this->urlGenerator->generate('index')) : $response = new Response($this->twig->render('Back/creation-shop.html.twig', [
+        $redirect ? $response = new RedirectResponse($this->urlGenerator->generate('admin')) : $response = new Response($this->twig->render('Back/creation-shop.html.twig', [
             'form' => $form->createView(),
         ]));
 
         return $response;
     }
-
 }

@@ -17,6 +17,27 @@ button:focus {
     margin-bottom: 5em;
 }
 
+/** BUTTON FOR MODAL **/
+
+button.modal-button {
+    background: #4E4E4E;
+    border-radius: 15px;
+    position: relative;
+    width: 100%;
+    color: #ffffff;
+    height: 35px;
+    padding-left: 2rem;
+    cursor: pointer;
+}
+
+button.modal-button > i {
+    position: absolute;
+    left: -4px;
+    font-size: 2.3em;
+    top: -1px;
+    color: #ffffff;
+}
+
 /** ADMIN **/
 
 .page-title-info-admin {
@@ -33,7 +54,7 @@ button:focus {
     align-items: center;
 }
 
-.page-title-info-admin H2 {
+.page-title-info-admin H1 {
     margin-left: 40px;
     font-weight: lighter;
     font-size: 3.5em;
@@ -56,11 +77,24 @@ button:focus {
 
 h2.title-admin {
     font-size: 1.7em;
-    font-weight: 600;
+    font-weight: bold;
     width: 100%;
     margin-left: -12px;
 }
 
+h2.sub-title-admin {
+    font-size: 1.3em;
+    font-weight: 300;
+    width: 100%;
+    margin-left: -12px;
+}
+
+.sub-title-admin-container {
+    margin-bottom: 2em;
+    margin-top: 2em;
+    padding-bottom: .4em;
+    border-bottom: 1px solid #4E4E4E;
+}
 
 
 /** CLIENTS **/
@@ -123,6 +157,7 @@ button.button-title {
     color: #ffffff;
     height: 35px;
     padding-left: 2rem;
+    cursor: pointer;
 }
 
 button.button-title > i {
@@ -252,4 +287,112 @@ th.sorting::after {
     color: #C4C978;
     text-decoration: none;
     font-size: 1.2em
+}
+
+
+/** SHOP CREATION **/
+
+.contact-form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+button.add-contact-type {
+    background: #4E4E4E;
+    border-radius: 15px;
+    position: relative;
+    width: 50%;
+    color: #ffffff;
+    height: 35px;
+    padding-left: 2rem;
+    align-self: center;
+    cursor: pointer;
+}
+
+button.add-contact-type > i {
+    position: absolute;
+    left: -4px;
+    font-size: 2.3em;
+    top: -1px;
+    color: #ffffff;
+}
+
+.add-shop-button-container {
+    display: flex;
+    justify-content: center;
+}
+
+button.add-shop {
+    background: #4E4E4E;
+    border-radius: 15px;
+    position: relative;
+    width: 50%;
+    color: #ffffff;
+    height: 35px;
+    padding-left: 2rem;
+    margin-top: 3em;
+    cursor: pointer;
+}
+
+button.add-shop > i {
+    position: absolute;
+    left: -4px;
+    font-size: 2.3em;
+    top: -1px;
+    color: #ffffff;
+}
+
+
+/** ADD COMMANDE **/
+
+.title-commande-page-container {
+    display: flex;
+    margin-top: 5em;
+    margin-bottom: .5em;
+    padding-bottom: .4em;
+    border-bottom: 1px solid #4E4E4E;
+}
+
+.title-add-commande {
+    font-size: 1.7em;
+    font-weight: bold;
+    width: 100%;
+    margin-left: -12px;
+}
+
+label.select-product {
+    color: #999;
+    font-size: 18px;
+    font-weight: normal;
+    margin: 2em 0;
+}
+
+p.commande-date {
+    color: #999;
+    font-size: 18px;
+    font-weight: normal;
+    margin: 2em 0;
+}
+
+div.add-commande-button-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3em;
+}
+
+span.button-title-container {
+    text-align: center;
+    width: 100%;
+}
+
+button.add-commande {
+    background: #4E4E4E;
+    border-radius: 15px;
+    position: relative;
+    width: 50%;
+    color: #ffffff;
+    height: 35px;
+    padding-left: 2rem;
+    cursor: pointer;
 }

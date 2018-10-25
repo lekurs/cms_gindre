@@ -1,27 +1,27 @@
 
-/*.icon-contact-edit-container {*/
-    /*display: flex;*/
-    /*justify-content: space-around;*/
-/*}*/
+.icon-contact-edit-container {
+    display: flex;
+    justify-content: space-around;
+}
 
-/*.icon-contact-main {*/
-    /*color: gold;*/
-/*}*/
-
-
-/*!** MESSAGES **!*/
+.icon-contact-main {
+    color: gold;
+}
 
 
-/*.message-content {*/
-    /*!*width: 50%;*!*/
-    /*border-radius: 8px;*/
-    /*background-color: #28a745;*/
-/*}*/
+/** MESSAGES **/
 
-/*.message-content.inverse {*/
-    /*order: -1;*/
-    /*background-color: #5eb5e0;*/
-/*}*/
+
+.message-content {
+    /*width: 50%;*/
+    border-radius: 8px;
+    background-color: #28a745;
+}
+
+.message-content.inverse {
+    order: -1;
+    background-color: #5eb5e0;
+}
 
 .form-control:focus {
     background: transparent;

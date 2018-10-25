@@ -34,7 +34,13 @@ class Departement
     private $region;
 
     /**
+     * @var \ArrayAccess
+     */
+    private $shops;
+
+    /**
      * Departement constructor.
+     *
      * @param string $zip
      * @param string $departement
      * @param Region $region
@@ -78,5 +84,13 @@ class Departement
     public function getZip(): string
     {
         return $this->zip;
+    }
+
+    /**
+     * @return \ArrayAccess
+     */
+    public function getShops(): \ArrayAccess
+    {
+        return $this->shops;
     }
 }

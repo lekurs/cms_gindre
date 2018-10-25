@@ -58,31 +58,34 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 contact-form-container">
                         <button type="button"
-                                class="add-another-collection-widget"
-                                data-list="#email-fields-list">Ajouter un contact</button>
-                        <ul id="email-fields-list"
-                            data-prototype="{% form_theme form 'Form/prototype-form.html.twig' %}{{ form_widget(form.contact.vars.prototype)|e }}"
-                            data-widget-tags="{{ '<div></div>'|e }}">
-                            {% for contactField in form.contact %}
-                                <li>
-                                    {% form_theme form 'Form/prototype-form.html.twig' %}
-                                    <div class="floating-label">
-                                        {{ form_widget(contactFiedl) }}
-                                        <span class="highlight"></span>
-                                        {{ form_label(contactFiedl) }}
-                                    </div>
-                                </li>
-                            {% endfor %}
-                        </ul>
+                                class="add-another-collection-widget add-contact-type"
+                                data-list="#email-fields-list"><i class="fas fa-arrow-alt-circle-right"></i> Ajouter un contact</button>
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <ul id="email-fields-list"
+                                    data-prototype="{{ form_widget(form.contact.vars.prototype)|e }}"
+                                    data-widget-tags="{{ '<div></div>'|e }}">
+                                    {% for contactField in form.contact %}
+                                        <li>
+                                            <div class="floating-label">
+                                                {{ form_widget(contactFiedl) }}
+                                                <span class="highlight"></span>
+                                                {{ form_label(contactFiedl) }}
+                                            </div>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col12">
-                <button type="submit">Ajouter</button>
+        <div class="row justify-content-center">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 add-shop-button-container">
+                <button type="submit" class="add-shop"><i class="fas fa-arrow-alt-circle-right"></i> Ajouter</button>
                 {{ form_end(form) }}
             </div>
         </div>
@@ -92,4 +95,8 @@
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('js/add-collectiontype-widget.js') }}"></script>
+{% endblock %}
+
+{% block charts %}
+
 {% endblock %}

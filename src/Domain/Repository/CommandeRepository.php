@@ -76,7 +76,7 @@ class CommandeRepository extends ServiceEntityRepository implements CommandeRepo
             ->getResult();
     }
 
-    public function totalAmountByShop(Shop $shop): int
+    public function totalAmountByShop(Shop $shop)
     {
         return $this->createQueryBuilder('commande')
                                 ->leftJoin('commande.shop', 'shop')
@@ -87,13 +87,13 @@ class CommandeRepository extends ServiceEntityRepository implements CommandeRepo
                                 ->getSingleScalarResult();
     }
 
-    public function totalByDepartement()
+    public function totalByDepartement(): array
     {
         return $this->createQueryBuilder('commande')
                                 ->innerJoin('commande.shop', 'shop')
-                                ->innerJoin('shop.region', 'region')
-                                ->select('region.id, SUM(commande.amount) as total')
-                                ->groupBy('region.id')
+                                ->innerJoin('shop.departement', 'departement')
+                                ->select('departement.id, SUM(commande.amount) as total')
+                                ->groupBy('departement.id')
                                 ->getQuery()
                                 ->getResult();
     }

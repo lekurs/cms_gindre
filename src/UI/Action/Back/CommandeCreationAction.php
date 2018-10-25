@@ -31,11 +31,6 @@ class CommandeCreationAction implements CommandeCreationActionInterface
     private $formFactory;
 
     /**
-     * @var CommandeRepositoryInterface
-     */
-    private $commandeRepo;
-
-    /**
      * @var ShopRepositoryInterface
      */
     private $shopRepo;
@@ -49,17 +44,14 @@ class CommandeCreationAction implements CommandeCreationActionInterface
      * CommandeCreationAction constructor.
      *
      * @param FormFactoryInterface $formFactory
-     * @param CommandeRepositoryInterface $commandeRepo
      * @param CommandeCreationFormHandlerInterface $commandeCreationFormHandler
      */
     public function __construct(
         FormFactoryInterface $formFactory,
-        CommandeRepositoryInterface $commandeRepo,
         ShopRepositoryInterface $shopRepo,
         CommandeCreationFormHandlerInterface $commandeCreationFormHandler
     ) {
         $this->formFactory = $formFactory;
-        $this->commandeRepo = $commandeRepo;
         $this->shopRepo = $shopRepo;
         $this->commandeCreationFormHandler = $commandeCreationFormHandler;
     }
@@ -73,8 +65,6 @@ class CommandeCreationAction implements CommandeCreationActionInterface
     public function show(Request $request, CommandeCreationResponderInterface $responder): Response
     {
         $shop = $this->shopRepo->getWithCommandes($request->attributes->get('slug'));
-
-        $total = $this->commandeRepo->totalAmountByShop($shop);
 
         $form = $this->formFactory->create(CommandeCreationForm::class)->handleRequest($request);
 

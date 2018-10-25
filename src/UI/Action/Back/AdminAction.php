@@ -9,6 +9,7 @@
 namespace App\UI\Action\Back;
 
 
+use App\Domain\Models\Commande;
 use App\Domain\Models\Departement;
 use App\Domain\Models\Region;
 use App\Domain\Models\Shop;
@@ -37,7 +38,7 @@ class AdminAction implements AdminActionInterface
     /**
      * @var RegionRepositoryInterface
      */
-    private $regionRepo;
+    private $regionRepo; //delete
 
     /**
      * @var DepartementRepositoryInterface
@@ -82,55 +83,13 @@ class AdminAction implements AdminActionInterface
         $dateNotCommande = $date2->sub(new \DateInterval('P90D'));
 
         $messages = $this->shopRepo->getAllNotRecontacted($dateRelance);
-
         $commandes = $this->shopRepo->getNoCommande($dateNotCommande);
 
-        $shops = array_map(function (Shop $shop) { return $shop;}, $this->shopRepo->getClients());
+        $shops = array_map(function (array $shop) { return $shop;}, $this->shopRepo->getAllByDepartement());
         $shopNoMessages = array_map(function (Shop $shop) { return $shop;}, $messages);
         $shopNoCommandes = array_map(function (Shop $shop) { return $shop;}, $commandes);
-        $regions = array_map(function (Region $region) { return $region; }, $this->regionRepo->getAll());
+        $caByDepartement = array_map(function (array $commande) { return $commande; },$this->commandeRepo->totalByDepartement());
 
-        $dpt = array_map(function (Departement $dpt) { return $dpt; }, $this->departementRepo->getAllWithShop());
-
-        $test = $this->shopRepo->getClients();
-
-        $comm = $this->commandeRepo->totalByDepartement();
-
-        dump($comm);
-        $amount = [];
-        foreach ($shops as $shop) {
-            $idRegion = $shop->getRegion()->getId();
-            foreach($shop->getCommandes()->toArray() as $commande) {
-                if (isset($amount[$idRegion])) {
-                    $amount[$idRegion] += $commande->getAmount();
-                } else {
-                    $amount[$idRegion] = $commande->getAmount();
-                }
-            }
-        }
-        dd($amount);
-
-//        dump($test);
-//
-//        foreach ($test as $region) {
-//            dump($region->getRegion());
-//        }
-
-        $data = [
-            ['92' => '32560']
-        ];
-
-//        foreach ($dpt as $dep) {
-//            dump($dep);
-//            foreach ($dep->getRegion()->getShops() as $region) {
-////                dump($region);
-//            }
-//        }
-
-//        foreach ($shops as $shop) {
-//            $data[$shop->getRegion()->getRegion()][]= $shop;
-//        }
-
-        return $responder->response($comm, $regions, $shopNoMessages, $shopNoCommandes);
+        return $responder->response($caByDepartement, $shops, $shopNoMessages, $shopNoCommandes);
     }
 }

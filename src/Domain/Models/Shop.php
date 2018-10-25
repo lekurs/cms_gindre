@@ -50,6 +50,11 @@ class Shop
     private $region;
 
     /**
+     * @var Departement
+     */
+    private $departement;
+
+    /**
      * @var string
      */
     private $number;
@@ -88,13 +93,14 @@ class Shop
      * @param string $city
      * @param array $contacts
      * @param Region $region
+     * @param Departement $departement
      * @param StatusShop $status
      * @param bool $prospect
      * @param string|null $number
      * @param string $slug
      * @throws \Exception
      */
-    public function __construct(string $name, string $address, int $zip, string $city, array $contacts, Region $region, StatusShop $status, bool $prospect = true, string $number = null, string $slug)
+    public function __construct(string $name, string $address, int $zip, string $city, array $contacts, Region $region, Departement $departement, StatusShop $status, bool $prospect = true, string $number = null, string $slug)
     {
         $this->id = Uuid::uuid4();
         $this->name = $name;
@@ -103,6 +109,7 @@ class Shop
         $this->city = $city;
         $this->contacts = new ArrayCollection($contacts ?? []);
         $this->region = $region;
+        $this->departement = $departement;
         $this->status = $status;
         $this->prospect = $prospect;
         $this->number = $number;
@@ -163,6 +170,14 @@ class Shop
     public function getRegion(): Region
     {
         return $this->region;
+    }
+
+    /**
+     * @return Departement
+     */
+    public function getDepartement(): Departement
+    {
+        return $this->departement;
     }
 
     /**

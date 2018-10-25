@@ -14,6 +14,7 @@
         <field name="prospect" type="boolean" nullable="true" />
 
         <many-to-one field="region" target-entity="App\Domain\Models\Region" inversed-by="shops" />
+        <many-to-one field="departement" target-entity="App\Domain\Models\Departement" inversed-by="shops" />
         <many-to-one field="status" target-entity="App\Domain\Models\StatusShop" inversed-by="shops" />
 
         <one-to-many field="contacts" target-entity="App\Domain\Models\Contact" mapped-by="shop">

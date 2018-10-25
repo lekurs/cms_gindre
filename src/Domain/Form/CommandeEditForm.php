@@ -23,10 +23,16 @@ class CommandeEditForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('amount', TextType::class)
+            ->add('amount', TextType::class, [
+                'label' => 'Montant total € HT',
+                'required' => true,
+                'label_attr' => ['class' => 'float'],
+                'attr' => ['class' => 'floating-input', 'placeholder' => ' '],
+            ])
             ->add('productType', EntityType::class, [
                 'class' => ProductType::class,
-                'choice_label' => 'product'
+                'choice_label' => 'product',
+                'label' => 'Type de produit'
             ]);
     }
 

@@ -31,7 +31,8 @@ class MessageCreationForm extends AbstractType
             ->add('contactType', EntityType::class, [
                 'class' => ContactType::class,
                 'choice_label' => 'type',
-                'constraints' => new UniqueEntity(['fields' => 'id'])
+                'constraints' => new UniqueEntity(['fields' => 'id']),
+                'label' => 'Type de contact'
             ]);
     }
 

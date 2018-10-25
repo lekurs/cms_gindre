@@ -27,12 +27,20 @@ class CommandeCreationForm extends AbstractType
         $builder
             ->add('productType', EntityType::class, [
                 'class' => ProductType::class,
-                'choice_label' => 'product'
+                'choice_label' => 'product',
+                'label' => 'Type de produit',
+                'label_attr' => ['class' => 'select-product']
             ])
             ->add('dateOrder', DateType::class, [
-
+                'label' => 'Date de commande',
+                'required' => true,
             ])
-            ->add('amount', TextType::class, []);
+            ->add('amount', TextType::class, [
+                'label_attr' => ['class' => 'float'],
+                'attr' => ['class' => 'floating-input', 'placeholder' => ' '],
+                'label' => 'Total € HT',
+                'required' => true,
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
