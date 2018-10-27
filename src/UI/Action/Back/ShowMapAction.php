@@ -10,12 +10,13 @@ namespace App\UI\Action\Back;
 
 
 use App\Domain\Repository\RegionRepository;
+use App\UI\Action\Interfaces\ShowMapActionInterface;
 use App\UI\Responder\Back\RegionResponder;
 use App\UI\Responder\Interfaces\RegionResponderInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class RegionAction
+class ShowMapAction implements ShowMapActionInterface
 {
     /**
      * @var RegionRepository
@@ -23,7 +24,7 @@ class RegionAction
     private $regionRepo;
 
     /**
-     * RegionAction constructor.
+     * ShowMapAction constructor.
      * @param RegionRepository $regionRepo
      */
     public function __construct(RegionRepository $regionRepo)

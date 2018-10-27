@@ -29,18 +29,18 @@ class ProductTypeCreationAction implements ProductTypeCreationActionInterface
     /**
      * @var CreationProductTypeFormHandlerInterface
      */
-    private $productTypeFormHandler;
+    private $creationProductTypeFormHandler;
 
     /**
      * ProductTypeCreationAction constructor.
      *
      * @param FormFactoryInterface $formFactory
-     * @param CreationProductTypeFormHandlerInterface $productTypeFormHandler
+     * @param CreationProductTypeFormHandlerInterface $creationProductTypeFormHandler
      */
-    public function __construct(FormFactoryInterface $formFactory, CreationProductTypeFormHandlerInterface $productTypeFormHandler)
+    public function __construct(FormFactoryInterface $formFactory, CreationProductTypeFormHandlerInterface $creationProductTypeFormHandler)
     {
         $this->formFactory = $formFactory;
-        $this->productTypeFormHandler = $productTypeFormHandler;
+        $this->creationProductTypeFormHandler = $creationProductTypeFormHandler;
     }
 
     /**
@@ -53,13 +53,11 @@ class ProductTypeCreationAction implements ProductTypeCreationActionInterface
     {
         $form = $this->formFactory->create(ProductTypeCreationForm::class)->handleRequest($request);
 
-        if ($this->productTypeFormHandler->handle($form)) {
+        if ($this->creationProductTypeFormHandler->handle($form)) {
 
             return $responder->response(true, null);
         }
 
         return $responder->response(false, $form);
     }
-
-
 }

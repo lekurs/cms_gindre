@@ -32,6 +32,7 @@ class StatusShopCreationAction implements StatusShopCreationActionInterface
 
     /**
      * StatusShopCreationAction constructor.
+     *
      * @param FormFactoryInterface $formFactory
      * @param CreationStatusShopHandlerInterface $creationStatusShopHandler
      */
@@ -57,5 +58,4 @@ class StatusShopCreationAction implements StatusShopCreationActionInterface
 
         return $responder->response(false, $form);
     }
-
 }
