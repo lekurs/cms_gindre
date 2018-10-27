@@ -18,6 +18,7 @@ use App\Domain\Repository\Interfaces\CommandeRepositoryInterface;
 use App\Domain\Repository\Interfaces\ShopRepositoryInterface;
 use App\UI\Action\Interfaces\CommandeCreationActionInterface;
 use App\UI\Responder\Interfaces\CommandeCreationResponderInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -58,6 +59,7 @@ class CommandeCreationAction implements CommandeCreationActionInterface
 
     /**
      * @Route(name="commande", path="admin/shop/one/{slug}/commande")
+     * @Security("is_granted('ROLE_ADMIN')")
      * @param Request $request
      * @param CommandeCreationResponderInterface $responder
      * @return Response

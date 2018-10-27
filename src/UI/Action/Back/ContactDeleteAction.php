@@ -35,6 +35,7 @@ class ContactDeleteAction implements ContactDeleteActionInterface
 
     /**
      * @Route(name="deleteContact", path="/admin/shop/one/contact/delete", methods={"POST"})
+     *
      * @param Request $request
      * @param AllShopsResponderInterface $responder
      * @return Response

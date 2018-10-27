@@ -20,6 +20,7 @@ use App\Domain\Repository\Interfaces\RegionRepositoryInterface;
 use App\Domain\Repository\Interfaces\ShopRepositoryInterface;
 use App\UI\Action\Interfaces\AdminActionInterface;
 use App\UI\Responder\Interfaces\AdminResponderInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -52,14 +53,20 @@ class AdminAction implements AdminActionInterface
 
     /**
      * AdminAction constructor.
+     *
      * @param ShopRepositoryInterface $shopRepo
      * @param MessageRepositoryInterface $messageRepo
      * @param RegionRepositoryInterface $regionRepo
      * @param DepartementRepositoryInterface $departementRepo
      * @param CommandeRepositoryInterface $commandeRepo
      */
-    public function __construct(ShopRepositoryInterface $shopRepo, MessageRepositoryInterface $messageRepo, RegionRepositoryInterface $regionRepo, DepartementRepositoryInterface $departementRepo, CommandeRepositoryInterface $commandeRepo)
-    {
+    public function __construct(
+        ShopRepositoryInterface $shopRepo,
+        MessageRepositoryInterface $messageRepo,
+        RegionRepositoryInterface $regionRepo,
+        DepartementRepositoryInterface $departementRepo,
+        CommandeRepositoryInterface $commandeRepo
+    ) {
         $this->shopRepo = $shopRepo;
         $this->messageRepo = $messageRepo;
         $this->regionRepo = $regionRepo;
@@ -70,6 +77,8 @@ class AdminAction implements AdminActionInterface
 
     /**
      * @Route(name="admin", path="admin")
+     *
+     * @Security("is_granted('ROLE_ADMIN')")
      * @param AdminResponderInterface $responder
      * @return Response
      * @throws \Exception
