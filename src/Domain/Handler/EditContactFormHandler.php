@@ -34,17 +34,28 @@ class EditContactFormHandler implements EditContactFormHandlerInterface
 
     /**
      * EditContactFormHandler constructor.
+     *
      * @param ContactRepository $contactRepo
      * @param SessionInterface $session
      * @param ValidatorInterface $validator
      */
-    public function __construct(ContactRepository $contactRepo, SessionInterface $session, ValidatorInterface $validator)
-    {
+    public function __construct(
+        ContactRepository $contactRepo,
+        SessionInterface $session,
+        ValidatorInterface $validator
+    ) {
         $this->contactRepo = $contactRepo;
         $this->session = $session;
         $this->validator = $validator;
     }
 
+    /**
+     * @param FormInterface $form
+     * @param $contact
+     * @return bool
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
     public function handle(FormInterface $form, $contact): bool
     {
         if ($form->isSubmitted() && $form->isValid()) {

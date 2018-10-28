@@ -67,7 +67,8 @@ class CommandeCreationFormHandler implements CommandeCreationFormHandlerInterfac
                 $shop,
                 $form->getData()->productType,
                 $form->getData()->dateOrder,
-                $form->getData()->amount
+                $form->getData()->amount,
+                $form->getData()->number
             );
 
 //            $this->validator->validate($order, [], [
@@ -76,12 +77,11 @@ class CommandeCreationFormHandler implements CommandeCreationFormHandlerInterfac
 
             $this->orderRepo->save($order);
 
-//            $this->session->getFlashBag()->add('success', 'Commande ajoutée');
+            $this->session->getFlashBag()->add('success', 'Commande ajoutée');
 
             return true;
         }
 
         return false;
     }
-
 }

@@ -13,6 +13,7 @@ use App\Domain\Form\StatusShopCreationForm;
 use App\Domain\Handler\Interfaces\CreationStatusShopHandlerInterface;
 use App\UI\Action\Interfaces\StatusShopCreationActionInterface;
 use App\UI\Responder\Interfaces\StatutShopCreationResponderInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -44,6 +45,9 @@ class StatusShopCreationAction implements StatusShopCreationActionInterface
 
     /**
      * @Route(name="creationStatusShop", path="admin/shop/status/add")
+     *
+     * @Security("is_granted('ROLE_ADMIN')")
+     *
      * @param Request $request
      * @param StatutShopCreationResponderInterface $responder
      * @return Response

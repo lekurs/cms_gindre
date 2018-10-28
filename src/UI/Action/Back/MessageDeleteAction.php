@@ -26,6 +26,7 @@ class MessageDeleteAction implements MessageDeleteActionInterface
 
     /**
      * MessageDeleteAction constructor.
+     *
      * @param MessageRepositoryInterface $messageRepo
      */
     public function __construct(MessageRepositoryInterface $messageRepo)
@@ -35,7 +36,9 @@ class MessageDeleteAction implements MessageDeleteActionInterface
 
     /**
      * @Route(name="deleteMessage", path="admin/shop/one/message/del/{id}")
+     *
      * @Security("has_role('ROLE_ADMIN')")
+     *
      * @param Request $request
      * @param MessageDeleteResponderInterface $responder
      * @return JsonResponse

@@ -9,7 +9,17 @@
 namespace App\Domain\Repository\Interfaces;
 
 
+use App\Domain\Models\ContactType;
+
 interface ContactTypeRepositoryInterface
 {
+    /**
+     * @return array
+     */
+    public function getAll(): array;
 
+    /**
+     * @param ContactType $contactType
+     */
+    public function save(ContactType $contactType): void;
 }

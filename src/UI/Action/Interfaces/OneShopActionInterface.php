@@ -14,6 +14,7 @@ use App\Domain\Handler\Interfaces\CreationMessageFormHandlerInterface;
 use App\Domain\Repository\Interfaces\CommandeRepositoryInterface;
 use App\Domain\Repository\Interfaces\ContactRepositoryInterface;
 use App\Domain\Repository\Interfaces\ShopRepositoryInterface;
+use App\UI\Responder\Back\GetContactAjaxResponder;
 use App\UI\Responder\Interfaces\OneShopResponderInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -46,4 +47,11 @@ interface OneShopActionInterface
      * @return Response
      */
     public function show(Request $request, OneShopResponderInterface $responder): Response;
+
+    /**
+     * @param Request $request
+     * @param GetContactAjaxResponder $responder
+     * @return mixed
+     */
+    public function getContactForm(Request $request, GetContactAjaxResponder $responder);
 }

@@ -41,6 +41,7 @@ class CreationMessageFormHandler implements CreationMessageFormHandlerInterface
 
     /**
      * CreationMessageFormHandler constructor.
+     *
      * @param MessageFactoryInterface $messageFactory
      * @param MessageRepositoryInterface $messageRepo
      * @param SessionInterface $session
@@ -78,12 +79,11 @@ class CreationMessageFormHandler implements CreationMessageFormHandlerInterface
 
             $this->messageRepo->save($message);
 
-            $this->session->getFlashBag("success", "Message Ajouté");
+            $this->session->getFlashBag()->add("success", "Message Ajouté");
 
             return true;
         }
 
         return false;
     }
-
 }

@@ -9,7 +9,20 @@
 namespace App\Domain\DTO\Interfaces;
 
 
+use App\Domain\Models\ProductType;
+
 interface CommandeEditDTOInterface
 {
-
+    /**
+     * CommandeEditDTOInterface constructor.
+     *
+     * @param int $amount
+     * @param ProductType $productType
+     * @param int $number
+     */
+    public function __construct(
+        int $amount,
+        ProductType $productType,
+        int $number
+    );
 }

@@ -9,7 +9,17 @@
 namespace App\Domain\Repository\Interfaces;
 
 
+use App\Domain\Models\ProductType;
+
 interface ProductTypeRepositoryInterface
 {
+    /**
+     * @return array
+     */
+    public function getAll(): array;
 
+    /**
+     * @param ProductType $productType
+     */
+    public function save(ProductType $productType): void;
 }

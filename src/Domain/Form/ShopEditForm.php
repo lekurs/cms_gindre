@@ -46,10 +46,26 @@ class ShopEditForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class)
-            ->add('address', TextType::class)
-            ->add('zip', IntegerType::class)
-            ->add('city', TextType::class)
+            ->add('name', TextType::class, [
+                'required' => true,
+                'label_attr' => ['class' => 'float'],
+                'attr' => ['class' => 'floating-input', 'placeholder' => ' '],
+            ])
+            ->add('address', TextType::class, [
+                'required' => true,
+                'label_attr' => ['class' => 'float'],
+                'attr' => ['class' => 'floating-input', 'placeholder' => ' '],
+            ])
+            ->add('zip', IntegerType::class, [
+                'required' => true,
+                'label_attr' => ['class' => 'float'],
+                'attr' => ['class' => 'floating-input', 'placeholder' => ' '],
+            ])
+            ->add('city', TextType::class, [
+                'required' => true,
+                'label_attr' => ['class' => 'float'],
+                'attr' => ['class' => 'floating-input', 'placeholder' => ' '],
+            ])
             ->add('prospect', ChoiceType::class, [
                 'expanded' => true,
                 'multiple' => false,
@@ -60,7 +76,11 @@ class ShopEditForm extends AbstractType
                 'label_attr' => ['class' => 'radio-label'],
                 'label' => 'Type de client *'
             ])
-            ->add('number', TextType::class)
+            ->add('number', TextType::class, [
+                'required' => true,
+                'label_attr' => ['class' => 'float'],
+                'attr' => ['class' => 'floating-input', 'placeholder' => ' '],
+            ])
             ->add('status', EntityType::class, [
                 'class' => StatusShop::class,
                 'choice_label' => 'status',

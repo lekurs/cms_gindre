@@ -13,6 +13,7 @@ use App\Domain\Form\RegistrationForm;
 use App\Domain\Handler\Interfaces\RegisterFormHandlerInterface;
 use App\UI\Action\Interfaces\RegistrationActionInterface;
 use App\UI\Responder\Interfaces\RegistrationResponderInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -44,6 +45,9 @@ class RegistrationAction implements RegistrationActionInterface
 
     /**
      * @Route(name="registration", path="admin/registration")
+     *
+     * @Security("is_granted('ROLE_ADMIN')")
+     *
      * @param Request $request
      * @param RegistrationResponderInterface $responder
      * @return Response

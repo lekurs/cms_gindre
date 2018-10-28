@@ -112,7 +112,6 @@ class CreationShopFormHandler implements CreationShopFormHandlerInterface
                     );
                 }
 
-
             $shop = $this->shopFactory->create(
                 $form->getData()->name,
                 $form->getData()->address,

@@ -11,5 +11,10 @@ namespace App\Domain\DTO\Interfaces;
 
 interface ProductTypeFormCreationDTOInterface
 {
-
+    /**
+     * ProductTypeFormCreationDTOInterface constructor.
+     *
+     * @param string $type
+     */
+    public function __construct(string $type);
 }

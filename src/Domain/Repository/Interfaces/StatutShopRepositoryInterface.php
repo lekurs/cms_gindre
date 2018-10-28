@@ -9,7 +9,12 @@
 namespace App\Domain\Repository\Interfaces;
 
 
+use App\Domain\Models\StatusShop;
+
 interface StatutShopRepositoryInterface
 {
-
+    /**
+     * @param StatusShop $statutShop
+     */
+    public function save(StatusShop $statutShop): void;
 }

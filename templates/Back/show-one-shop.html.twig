@@ -94,6 +94,7 @@
                         <thead>
                         <tr>
                             <th>Date</th>
+                            <th>Numéro</th>
                             <th>Produits</th>
                             <th>Chiffre d'affaire</th>
                         </tr>
@@ -102,6 +103,7 @@
                         {% for commande in orders %}
                             <tr>
                                 <td><a href="{{ path('showOneShop', { 'slug': shop.slug }) }}">{{ commande.dateCommande | date('d-m-y') }}</a></td>
+                                <td>{{ commande.number }}</td>
                                 <td>{{ commande.productType.product }}</td>
                                 <td>{{ commande.amount }} €</td>
                             </tr>

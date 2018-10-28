@@ -34,7 +34,7 @@ class AdministratorAction implements AdministratorActionInterface
     }
 
     /**
-     * @Route(name="administrator", path="administrator")
+     * @Route(name="administrator", path="/")
      * @param Request $request
      * @param AdministratorResponderInterface $responder
      * @return Response

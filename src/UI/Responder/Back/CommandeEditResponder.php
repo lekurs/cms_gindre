@@ -54,7 +54,9 @@ class CommandeEditResponder implements CommandeEditResponderInterface
      */
     public function response($redirect = false, FormInterface $form = null, Shop $shop, Commande $commande): Response
     {
-        $redirect ? $response = new RedirectResponse($this->urlGenerator->generate('showOneShop',  ['slug' => $shop->getSlug()])) : $response = new Response($this->twig->render('Back/commande-edit-form.html.twig', [
+        $redirect ?
+            $response = new RedirectResponse($this->urlGenerator->generate('showOneShop',  ['slug' => $shop->getSlug()])) :
+            $response = new Response($this->twig->render('Back/commande-edit-form.html.twig', [
             'form' => $form->createView(),
             'shop' => $shop,
             'commande' => $commande

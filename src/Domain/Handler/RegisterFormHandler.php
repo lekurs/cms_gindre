@@ -84,10 +84,11 @@ class RegisterFormHandler implements RegisterFormHandlerInterface
 
             $this->userRepo->save($user);
 
+            $this->session->getFlashBag()->add('success', 'Utilisateur ajouté');
+
             return true;
         }
 
         return false;
     }
-
 }

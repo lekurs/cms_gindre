@@ -16,6 +16,7 @@ use App\Domain\Repository\Interfaces\ShopRepositoryInterface;
 use App\UI\Action\Interfaces\ShopEditActionInterface;
 use App\UI\Responder\Interfaces\ShopEditResponderInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -39,12 +40,16 @@ class ShopEditAction implements ShopEditActionInterface
 
     /**
      * ShopEditAction constructor.
+     *
      * @param FormFactoryInterface $formFactory
      * @param ShopRepositoryInterface $shopRepo
      * @param ShopEditFormHandlerInterface $shopEditFormHandler
      */
-    public function __construct(FormFactoryInterface $formFactory, ShopRepositoryInterface $shopRepo, ShopEditFormHandlerInterface $shopEditFormHandler)
-    {
+    public function __construct(
+        FormFactoryInterface $formFactory,
+        ShopRepositoryInterface $shopRepo,
+        ShopEditFormHandlerInterface $shopEditFormHandler
+    ) {
         $this->formFactory = $formFactory;
         $this->shopRepo = $shopRepo;
         $this->shopEditFormHandler = $shopEditFormHandler;
@@ -52,6 +57,9 @@ class ShopEditAction implements ShopEditActionInterface
 
     /**
      * @Route(name="editShop", path="admin/shop/edit/{slug}")
+     *
+     * @Security("is_granted('ROLE_ADMIN')")
+     *
      * @param Request $request
      * @param ShopEditResponderInterface $responder
      * @return Response

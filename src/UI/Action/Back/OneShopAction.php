@@ -21,6 +21,7 @@ use App\Domain\Repository\Interfaces\ShopRepositoryInterface;
 use App\UI\Action\Interfaces\OneShopActionInterface;
 use App\UI\Responder\Back\GetContactAjaxResponder;
 use App\UI\Responder\Interfaces\OneShopResponderInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -91,6 +92,9 @@ class OneShopAction implements OneShopActionInterface
 
     /**
      * @Route(name="showOneShop", path="admin/shop/one/{slug}")
+     *
+     * @Security("is_granted('ROLE_ADMIN')")
+     *
      * @param Request $request
      * @param OneShopResponderInterface $responder
      * @return Response
@@ -122,6 +126,9 @@ class OneShopAction implements OneShopActionInterface
 
     /**
      * @Route(name="getContactFormAjax", path="admin/shop/one/shop/getcontact")
+     *
+     * @Security("is_granted('ROLE_ADMIN')")
+     *
      * @param Request $request
      * @param GetContactAjaxResponder $responder
      * @return Response

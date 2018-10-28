@@ -35,6 +35,4 @@ class ShopByRegionResponder implements ShopByRegionResponderInterface
             'shops' => $shops
         ]));
     }
-
-
 }

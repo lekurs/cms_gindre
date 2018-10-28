@@ -25,14 +25,24 @@ class CommandeEditDTO implements CommandeEditDTOInterface
     public $productType;
 
     /**
+     * @var int
+     */
+    public $number;
+
+    /**
      * CommandeEditDTO constructor.
      *
      * @param int $amount
      * @param ProductType $productType
+     * @param int $number
      */
-    public function __construct(int $amount, ProductType $productType)
-    {
+    public function __construct(
+        int $amount,
+        ProductType $productType,
+        int $number
+    ) {
         $this->amount = $amount;
         $this->productType = $productType;
+        $this->number = $number;
     }
 }

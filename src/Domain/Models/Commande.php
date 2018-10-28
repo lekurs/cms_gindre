@@ -40,11 +40,17 @@ class Commande
     private $amount;
 
     /**
+     * @var int
+     */
+    private $number;
+
+    /**
      * Commande constructor.
      *
      * @param Shop $shop
      * @param ProductType $productType
      * @param int $amount
+     * @param int $number
      * @param \DateTime $dateOrder
      * @throws \Exception
      */
@@ -52,13 +58,15 @@ class Commande
         Shop $shop,
         ProductType $productType,
         \DateTime $dateOrder,
-        int $amount
+        int $amount,
+        int $number
     ) {
         $this->id = Uuid::uuid4();
         $this->shop = $shop;
         $this->productType = $productType;
         $this->dateCommande = $dateOrder;
         $this->amount = $amount;
+        $this->number = $number;
     }
 
     /**
@@ -101,9 +109,18 @@ class Commande
         return $this->amount;
     }
 
+    /**
+     * @return int
+     */
+    public function getNumber(): int
+    {
+        return $this->number;
+    }
+
     public function editCommande(CommandeEditDTOInterface $editDTO): void
     {
         $this->amount = $editDTO->amount;
         $this->productType = $editDTO->productType;
+        $this->number = $editDTO->number;
     }
 }

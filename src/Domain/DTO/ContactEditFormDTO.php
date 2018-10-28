@@ -73,8 +73,17 @@ class ContactEditFormDTO implements ContactEditFormDTOInterface
      * @param bool $main
      * @param string $slug
      */
-    public function __construct(Uuid $id, string $name, string $lastName, int $phoneOne = null, int $phoneMobile, string $email, Role $role, bool $main, string $slug)
-    {
+    public function __construct(
+        Uuid $id,
+        string $name,
+        string $lastName,
+        int $phoneOne = null,
+        int $phoneMobile,
+        string $email,
+        Role $role,
+        bool $main,
+        string $slug
+    ) {
         $this->id = $id;
         $this->name = $name;
         $this->lastName = $lastName;

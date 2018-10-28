@@ -22,6 +22,7 @@ class RegionResponder implements RegionResponderInterface
 
     /**
      * RegionResponder constructor.
+     *
      * @param Environment $twig
      */
     public function __construct(Environment $twig)
@@ -29,6 +30,13 @@ class RegionResponder implements RegionResponderInterface
         $this->twig = $twig;
     }
 
+    /**
+     * @param array $regions
+     * @return Response
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
+     */
     public function response(array $regions): Response
     {
         return new Response($this->twig->render('Back/show-map.html.twig', [

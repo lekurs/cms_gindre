@@ -133,6 +133,7 @@ label.float-administrator {
 .administrator-container {
     height: 100vh;
     background: url("../../../images/images/background_home.png") center center no-repeat;
+    background-size: cover;
 }
 
 .administrator-form-container {

@@ -12,6 +12,7 @@ namespace App\UI\Action\Back;
 use App\Domain\Repository\Interfaces\ShopRepositoryInterface;
 use App\UI\Action\Interfaces\AllShopsActionInterface;
 use App\UI\Responder\Interfaces\AllShopsResponderInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -34,6 +35,8 @@ class AllShopsAction implements AllShopsActionInterface
 
     /**
      * @Route(name="showAllShops", path="/admin/shop")
+     *
+     * @Security("is_granted('ROLE_ADMIN')")
      * @param AllShopsResponderInterface $responder
      * @return Response
      */

@@ -30,6 +30,7 @@ class RegistrationResponder implements RegistrationResponderInterface
 
     /**
      * RegistrationResponder constructor.
+     *
      * @param Environment $twig
      * @param UrlGeneratorInterface $urlGenerator
      */
@@ -55,5 +56,4 @@ class RegistrationResponder implements RegistrationResponderInterface
 
         return $response;
     }
-
 }

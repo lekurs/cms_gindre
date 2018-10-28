@@ -40,13 +40,18 @@ class CreationStatusShopHandler implements CreationStatusShopHandlerInterface
 
     /**
      * CreationStatusShopHandler constructor.
+     *
      * @param StatutShopRepositoryInterface $statusShopRepo
      * @param StatutShopFactory $statusFactory
      * @param SessionInterface $session
      * @param ValidatorInterface $validator
      */
-    public function __construct(StatutShopRepositoryInterface $statusShopRepo, StatutShopFactory $statusFactory, SessionInterface $session, ValidatorInterface $validator)
-    {
+    public function __construct(
+        StatutShopRepositoryInterface $statusShopRepo,
+        StatutShopFactory $statusFactory,
+        SessionInterface $session,
+        ValidatorInterface $validator
+    ) {
         $this->statusShopRepo = $statusShopRepo;
         $this->statusFactory = $statusFactory;
         $this->session = $session;
@@ -54,8 +59,9 @@ class CreationStatusShopHandler implements CreationStatusShopHandlerInterface
     }
 
     /**
-     * @param $form
+     * @param FormInterface $form
      * @return bool
+     * @throws \Exception
      */
     public function handle(FormInterface $form): bool
     {
@@ -65,6 +71,8 @@ class CreationStatusShopHandler implements CreationStatusShopHandlerInterface
 //            $this->validator->validate([], []);
 
             $this->statusShopRepo->save($statusShop);
+
+            $this->session->getFlashBag()->add('success', 'Statut magasin ajouté');
 
             return true;
         }

@@ -16,6 +16,11 @@ use Doctrine\Common\Persistence\ManagerRegistry;
 
 class RegionRepository extends ServiceEntityRepository implements RegionRepositoryInterface
 {
+    /**
+     * RegionRepository constructor.
+     *
+     * @param ManagerRegistry $registry
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Region::class);
@@ -35,6 +40,9 @@ class RegionRepository extends ServiceEntityRepository implements RegionReposito
                             ->getOneOrNullResult();
     }
 
+    /**
+     * @return array
+     */
     public function getAll(): array
     {
         return $this->createQueryBuilder('region')

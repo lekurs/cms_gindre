@@ -31,6 +31,8 @@ class ProductTypeRepository extends ServiceEntityRepository implements ProductTy
 
     /**
      * @param ProductType $productType
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function save(ProductType $productType): void
     {

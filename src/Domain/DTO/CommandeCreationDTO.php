@@ -36,22 +36,27 @@ class CommandeCreationDTO implements CommandeCreationDTOInterface
     public $amount;
 
     /**
+     * @var int
+     */
+    public $number;
+
+    /**
      * CommandeCreationDTO constructor.
      *
      * @param \DateTime $dateOrder
-     * @param Shop $shop
      * @param ProductType $productType
      * @param int $amount
+     * @param int $number
      */
     public function __construct(
         \DateTime $dateOrder,
-//        Shop $shop,
         ProductType $productType,
-        int $amount
+        int $amount,
+        int $number
     ) {
         $this->dateOrder = $dateOrder;
-//        $this->shop = $shop;
         $this->productType = $productType;
         $this->amount = $amount;
+        $this->number = $number;
     }
 }

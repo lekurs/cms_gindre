@@ -28,6 +28,9 @@ class MessageEditForm extends AbstractType
             ->add('message', TextareaType::class);
     }
 
+    /**
+     * @param OptionsResolver $resolver
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

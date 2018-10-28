@@ -8,6 +8,7 @@
         <id name="id" type="uuid" column="id" />
         <field name="dateCommande" type="date" />
         <field name="amount" type="integer" nullable="false" unique="false" />
+        <field name="number" type="integer" nullable="false" unique="false" />
 
         <many-to-one field="shop" target-entity="App\Domain\Models\Shop" inversed-by="commandes" />
 

@@ -15,6 +15,7 @@ use App\Domain\Models\Shop;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
@@ -40,6 +41,12 @@ class CommandeCreationForm extends AbstractType
                 'attr' => ['class' => 'floating-input', 'placeholder' => ' '],
                 'label' => 'Total € HT',
                 'required' => true,
+            ])
+            ->add('number', IntegerType::class, [
+                'label_attr' => ['class' => 'float'],
+                'attr' => ['class' => 'floating-input', 'placeholder' => ' '],
+                'label' => 'Numéro commande',
+                'required' => true,
             ]);
     }
 
@@ -51,7 +58,8 @@ class CommandeCreationForm extends AbstractType
                 return new CommandeCreationDTO(
                    $form->get('dateOrder')->getData(),
                    $form->get('productType')->getData(),
-                   $form->get('amount')->getData()
+                   $form->get('amount')->getData(),
+                   $form->get('number')->getData()
                 );
             }
         ]);

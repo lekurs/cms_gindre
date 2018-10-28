@@ -22,7 +22,6 @@ class MessageEditDTO implements MessageEditDTOInterface
      * MessageEditDTO constructor.
      *
      * @param string $message
-     * @param \DateTime $dateContact
      */
     public function __construct(string $message)
     {

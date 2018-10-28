@@ -13,6 +13,7 @@ use App\Domain\Form\RoleCreationForm;
 use App\Domain\Handler\Interfaces\CreationRoleFormHandlerInterface;
 use App\UI\Action\Interfaces\RoleCreationActionInterface;
 use App\UI\Responder\Interfaces\RoleCreationResponderInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,6 +33,7 @@ class RoleCreationAction implements RoleCreationActionInterface
 
     /**
      * RoleCreationAction constructor.
+     *
      * @param CreationRoleFormHandlerInterface $roleFormHandler
      * @param FormFactoryInterface $formFactory
      */
@@ -44,6 +46,9 @@ class RoleCreationAction implements RoleCreationActionInterface
 
     /**
      * @Route(name="creationRole", path="admin/contact/role/add")
+     *
+     * @Security("is_granted('ROLE_ADMIN')")
+     *
      * @param Request $request
      * @param RoleCreationResponderInterface $responder
      * @return Response

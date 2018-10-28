@@ -13,6 +13,7 @@ use App\Domain\Repository\RegionRepository;
 use App\UI\Action\Interfaces\ShowMapActionInterface;
 use App\UI\Responder\Back\RegionResponder;
 use App\UI\Responder\Interfaces\RegionResponderInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -35,6 +36,9 @@ class ShowMapAction implements ShowMapActionInterface
 
     /**
      * @Route(name="showMap", path="admin/map")
+     *
+     * @Security("is_granted('ROLE_ADMIN')")
+     *
      * @param RegionResponderInterface $responder
      * @return Response
      */

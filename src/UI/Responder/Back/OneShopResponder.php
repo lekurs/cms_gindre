@@ -30,6 +30,7 @@ class OneShopResponder implements OneShopResponderInterface
 
     /**
      * OneShopResponder constructor.
+     *
      * @param Environment $twig
      * @param UrlGeneratorInterface $urlGenerator
      */
@@ -64,5 +65,4 @@ class OneShopResponder implements OneShopResponderInterface
 
         return $response;
     }
-
 }

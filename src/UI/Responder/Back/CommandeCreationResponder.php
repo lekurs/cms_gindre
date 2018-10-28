@@ -31,6 +31,7 @@ class CommandeCreationResponder implements CommandeCreationResponderInterface
 
     /**
      * CommandeCreationResponder constructor.
+     *
      * @param Environment $twig
      * @param UrlGeneratorInterface $urlGenerator
      */
@@ -52,7 +53,9 @@ class CommandeCreationResponder implements CommandeCreationResponderInterface
      */
     public function response($redirect = false, FormInterface $form = null, array $commandes, Shop $shop): Response
     {
-        $redirect ? $response = new RedirectResponse($this->urlGenerator->generate('showOneShop', ['slug' => $shop->getSlug()])) : $response = new Response($this->twig->render('Back/commande-creation.html.twig', [
+        $redirect ?
+            $response = new RedirectResponse($this->urlGenerator->generate('showOneShop', ['slug' => $shop->getSlug()])) :
+            $response = new Response($this->twig->render('Back/commande-creation.html.twig', [
             'commandes' => $commandes,
             'form' => $form->createView(),
         ]));

@@ -9,7 +9,12 @@
 namespace App\Domain\Repository\Interfaces;
 
 
+use App\Domain\Models\User;
+
 interface UserRepositoryInterface
 {
-
+    /**
+     * @param User $user
+     */
+    public function save(User $user): void;
 }

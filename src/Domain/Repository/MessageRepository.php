@@ -10,6 +10,7 @@ namespace App\Domain\Repository;
 
 
 use App\Domain\Models\Message;
+use App\Domain\Models\Shop;
 use App\Domain\Repository\Interfaces\MessageRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
@@ -21,6 +22,10 @@ class MessageRepository extends ServiceEntityRepository implements MessageReposi
         parent::__construct($registry, Message::class);
     }
 
+    /**
+     * @param Shop $shop
+     * @return array
+     */
     public function getAll(Shop $shop): array
     {
         return $this->createQueryBuilder('message')

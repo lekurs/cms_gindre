@@ -24,8 +24,8 @@ class CommandeFactory implements CommandeFactoryInterface
      * @return Commande
      * @throws \Exception
      */
-    public function create(Shop $shop, ProductType $productType, \DateTime $dateOrder, int $amount): Commande
+    public function create(Shop $shop, ProductType $productType, \DateTime $dateOrder, int $amount, int $number): Commande
     {
-        return new Commande($shop, $productType, $dateOrder, $amount);
+        return new Commande($shop, $productType, $dateOrder, $amount, $number);
     }
 }

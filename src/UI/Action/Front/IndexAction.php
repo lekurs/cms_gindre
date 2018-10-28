@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class IndexAction implements IndexActionInterface
 {
     /**
-     * @Route(name="index", path="/")
+     * @Route(name="index", path="/index")
      * @param IndexResponderInterface $responder
      * @return Response
      */

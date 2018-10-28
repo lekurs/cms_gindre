@@ -71,12 +71,11 @@ class CreationRoleFormHandler implements CreationRoleFormHandlerInterface
 
             $this->roleRepo->save($role);
 
-            $this->session->getFlashBag("success", "La fonction du contact à été ajouté");
+            $this->session->getFlashBag()->add("success", "La fonction du contact à été ajouté");
 
             return true;
         }
 
         return false;
     }
-
 }

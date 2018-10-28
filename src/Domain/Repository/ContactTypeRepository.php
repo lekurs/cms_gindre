@@ -39,6 +39,8 @@ class ContactTypeRepository extends ServiceEntityRepository implements ContactTy
 
     /**
      * @param ContactType $contactType
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException`
      */
     public function save(ContactType $contactType): void
     {

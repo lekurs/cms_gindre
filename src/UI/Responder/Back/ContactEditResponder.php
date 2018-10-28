@@ -51,7 +51,9 @@ class ContactEditResponder implements EditContactResponderInterface
      */
     public function response($redirect = false, FormInterface $form = null, Shop $shop): Response
     {
-        $redirect ? $response = new RedirectResponse($this->urlGenerator->generate('showOneShop', ['slug' =>$shop->getSlug()])) : $response = new Response($this->twig->render('Back/show-all-shops.html.twig', [
+        $redirect ?
+            $response = new RedirectResponse($this->urlGenerator->generate('showOneShop', ['slug' =>$shop->getSlug()])) :
+            $response = new Response($this->twig->render('Back/show-all-shops.html.twig', [
             'form' => $form->createView()
         ]));
 

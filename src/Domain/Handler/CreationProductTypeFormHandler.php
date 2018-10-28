@@ -71,7 +71,7 @@ class CreationProductTypeFormHandler implements CreationProductTypeFormHandlerIn
 
 //            $this->validator->validate([]);
 
-            $this->session->getFlashBag("success", "Le produit à été ajouté");
+            $this->session->getFlashBag()->add("success", "Le produit à été ajouté");
 
             return true;
         }

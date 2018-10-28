@@ -26,6 +26,11 @@ class DepartementRepository extends ServiceEntityRepository implements Departeme
         parent::__construct($registry, Departement::class);
     }
 
+    /**
+     * @param $zip
+     * @return Departement
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function getOne($zip): Departement
     {
         return $this->createQueryBuilder('departement')
@@ -35,6 +40,9 @@ class DepartementRepository extends ServiceEntityRepository implements Departeme
                                 ->getOneOrNullResult();
     }
 
+    /**
+     * @return array
+     */
     public function getAllWithShop(): array
     {
         return $this->createQueryBuilder('departement')
@@ -45,5 +53,4 @@ class DepartementRepository extends ServiceEntityRepository implements Departeme
                                 ->getQuery()
                                 ->getResult();
     }
-
 }

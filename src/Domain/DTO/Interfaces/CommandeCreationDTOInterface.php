@@ -10,7 +10,6 @@ namespace App\Domain\DTO\Interfaces;
 
 
 use App\Domain\Models\ProductType;
-use App\Domain\Models\Shop;
 
 interface CommandeCreationDTOInterface
 {
@@ -18,14 +17,14 @@ interface CommandeCreationDTOInterface
      * CommandeCreationDTOInterface constructor.
      *
      * @param \DateTime $dateOrder
-     * @param Shop $shop
      * @param ProductType $productType
      * @param int $amount
+     * @param int $number
      */
-//    public function __construct(
-//        \DateTime $dateOrder,
-//        Shop $shop,
-//        ProductType $productType,
-//        int $amount
-//    ) ;
+    public function __construct(
+        \DateTime $dateOrder,
+        ProductType $productType,
+        int $amount,
+        int $number
+    );
 }

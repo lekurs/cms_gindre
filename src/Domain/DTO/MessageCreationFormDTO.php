@@ -9,10 +9,11 @@
 namespace App\Domain\DTO;
 
 
+use App\Domain\DTO\Interfaces\MessageCreationFormDTOInterface;
 use App\Domain\Models\ContactType;
 use App\Domain\Models\Shop;
 
-class MessageCreationFormDTO
+class MessageCreationFormDTO implements MessageCreationFormDTOInterface
 {
     /**
      * @var string
@@ -40,6 +41,5 @@ class MessageCreationFormDTO
     {
         $this->message = $message;
         $this->contactType = $contactType;
-//        $this->shop = $shop;
     }
 }

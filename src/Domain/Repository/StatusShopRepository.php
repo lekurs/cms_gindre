@@ -21,7 +21,11 @@ class StatusShopRepository extends ServiceEntityRepository implements StatutShop
         parent::__construct($registry, StatusShop::class);
     }
 
-
+    /**
+     * @param StatusShop $statutShop
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
     public function save(StatusShop $statutShop): void
     {
         $this->_em->persist($statutShop);

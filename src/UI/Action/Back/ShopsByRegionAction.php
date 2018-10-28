@@ -13,6 +13,7 @@ use App\Domain\Repository\Interfaces\RegionRepositoryInterface;
 use App\Domain\Repository\Interfaces\ShopRepositoryInterface;
 use App\UI\Action\Interfaces\ShopsByRegionActionInterface;
 use App\UI\Responder\Interfaces\ShopByRegionResponderInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -42,6 +43,9 @@ class ShopsByRegionAction implements ShopsByRegionActionInterface
 
     /**
      * @Route(name="showShopByRegion", path="/admin/shop/{region}")
+     *
+     * @Security("is_granted('ROLE_ADMIN')")
+     *
      * @param Request $request
      * @param ShopByRegionResponderInterface $responder
      * @return Response
@@ -52,5 +56,4 @@ class ShopsByRegionAction implements ShopsByRegionActionInterface
 
         return $responder->response($shops);
     }
-
 }

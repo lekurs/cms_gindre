@@ -89,6 +89,11 @@ class ContactRepository extends ServiceEntityRepository implements ContactReposi
         $this->_em->flush();
     }
 
+    /**
+     * @param Contact $contact
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
     public function delete(Contact $contact):void
     {
         $this->_em->remove($contact);

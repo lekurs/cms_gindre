@@ -27,6 +27,9 @@ class CommandeRepository extends ServiceEntityRepository implements CommandeRepo
         parent::__construct($registry, Commande::class);
     }
 
+    /**
+     * @return array
+     */
     public function getAll(): array
     {
         return $this->createQueryBuilder('commande')
@@ -35,6 +38,10 @@ class CommandeRepository extends ServiceEntityRepository implements CommandeRepo
                                 ->getResult();
     }
 
+    /**
+     * @param Shop $shop
+     * @return array
+     */
     public function getLimitByShop(Shop $shop): array
     {
         return $this->createQueryBuilder('commande')
@@ -47,6 +54,11 @@ class CommandeRepository extends ServiceEntityRepository implements CommandeRepo
             ->getResult();
     }
 
+    /**
+     * @param $id
+     * @return Commande
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function getOne($id): Commande
     {
         return $this->createQueryBuilder('commande')
@@ -66,6 +78,10 @@ class CommandeRepository extends ServiceEntityRepository implements CommandeRepo
                                 ->getResult();
     }
 
+    /**
+     * @param $slug
+     * @return array
+     */
     public function getAllBySlugShop($slug): array
     {
         return $this->createQueryBuilder('commande')
@@ -76,6 +92,11 @@ class CommandeRepository extends ServiceEntityRepository implements CommandeRepo
             ->getResult();
     }
 
+    /**
+     * @param Shop $shop
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function totalAmountByShop(Shop $shop)
     {
         return $this->createQueryBuilder('commande')
@@ -87,6 +108,9 @@ class CommandeRepository extends ServiceEntityRepository implements CommandeRepo
                                 ->getSingleScalarResult();
     }
 
+    /**
+     * @return array
+     */
     public function totalByDepartement(): array
     {
         return $this->createQueryBuilder('commande')
@@ -98,14 +122,34 @@ class CommandeRepository extends ServiceEntityRepository implements CommandeRepo
                                 ->getResult();
     }
 
+    /**
+     * @param Commande $order
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
     public function save(Commande $order): void
     {
         $this->_em->persist($order);
         $this->_em->flush();
     }
 
+    /**
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
     public function edit(): void
     {
+        $this->_em->flush();
+    }
+
+    /**
+     * @param Commande $commande
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function delete(Commande $commande): void
+    {
+        $this->_em->remove($commande);
         $this->_em->flush();
     }
 }

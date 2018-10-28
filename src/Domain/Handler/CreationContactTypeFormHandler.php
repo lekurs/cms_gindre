@@ -40,13 +40,18 @@ class CreationContactTypeFormHandler implements CreationContactTypeFormHandlerIn
 
     /**
      * CreationContactTypeFormHandler constructor.
+     *
      * @param ContactTypeFactoryInterface $contactTypeFactory
      * @param ContactTypeRepositoryInterface $contactTypeRepo
      * @param SessionInterface $session
      * @param ValidatorInterface $validator
      */
-    public function __construct(ContactTypeFactoryInterface $contactTypeFactory, ContactTypeRepositoryInterface $contactTypeRepo, SessionInterface $session, ValidatorInterface $validator)
-    {
+    public function __construct(
+        ContactTypeFactoryInterface $contactTypeFactory,
+        ContactTypeRepositoryInterface $contactTypeRepo,
+        SessionInterface $session,
+        ValidatorInterface $validator
+    ) {
         $this->contactTypeFactory = $contactTypeFactory;
         $this->contactTypeRepo = $contactTypeRepo;
         $this->session = $session;
@@ -58,10 +63,11 @@ class CreationContactTypeFormHandler implements CreationContactTypeFormHandlerIn
      * @return bool
      */
     public function handle(FormInterface $form): bool {
+
         if ($form->isSubmitted() && $form->isValid()) {
             $contactType = $this->contactTypeFactory->create($form->getData()->type);
 
-            $this->session->getFlashBag("success", "Type de contact client ajouté");
+            $this->session->getFlashBag()->add("success", "Type de contact client ajouté");
 
 //            $this->validator->validate([]);
 

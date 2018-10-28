@@ -39,6 +39,8 @@ class RoleRepository extends ServiceEntityRepository implements RoleRepositoryIn
 
     /**
      * @param Role $role
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function save(Role $role): void
     {

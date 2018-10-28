@@ -36,6 +36,7 @@ class UserAuthenticationGuard extends AbstractFormLoginAuthenticator
 
     /**
      * UserAuthenticationGuard constructor.
+     *
      * @param UserPasswordEncoderInterface $passwordEndoder
      * @param UrlGeneratorInterface $urlGenerator
      */
@@ -45,6 +46,10 @@ class UserAuthenticationGuard extends AbstractFormLoginAuthenticator
         $this->urlGenerator = $urlGenerator;
     }
 
+    /**
+     * @param Request $request
+     * @return bool
+     */
     public function supports(Request $request): bool
     {
         if (in_array($request->attributes->get('_route'), static::ALLOW_URL) && 'POST' === $request->getMethod()) {
@@ -54,6 +59,10 @@ class UserAuthenticationGuard extends AbstractFormLoginAuthenticator
         return false;
     }
 
+    /**
+     * @param Request $request
+     * @return array|mixed
+     */
     public function getCredentials(Request $request)
     {
         return [
@@ -62,6 +71,11 @@ class UserAuthenticationGuard extends AbstractFormLoginAuthenticator
         ];
     }
 
+    /**
+     * @param mixed $credentials
+     * @param UserProviderInterface $userProvider
+     * @return null|UserInterface|void
+     */
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
         if (!$credentials['username'] || !$credentials['password']) {
@@ -71,11 +85,21 @@ class UserAuthenticationGuard extends AbstractFormLoginAuthenticator
         return $userProvider->loadUserByUsername($credentials['username']);
     }
 
+    /**
+     * @param mixed $credentials
+     * @param UserInterface $user
+     * @return bool
+     */
     public function checkCredentials($credentials, UserInterface $user)
     {
         return $this->passwordEndoder->isPasswordValid($user, $credentials['password']);
     }
 
+    /**
+     * @param Request $request
+     * @param AuthenticationException $exception
+     * @return RedirectResponse|Response
+     */
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
     {
         $data = [
@@ -85,6 +109,12 @@ class UserAuthenticationGuard extends AbstractFormLoginAuthenticator
         return new Response($data['message'], Response::HTTP_FORBIDDEN);
     }
 
+    /**
+     * @param Request $request
+     * @param TokenInterface $token
+     * @param string $providerKey
+     * @return null|RedirectResponse|Response
+     */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
         if (in_array('ROLE_ADMIN', $token->getUser()->getRoles())) {
@@ -94,16 +124,27 @@ class UserAuthenticationGuard extends AbstractFormLoginAuthenticator
         $token->getUser();
     }
 
+    /**
+     * @return bool
+     */
     public function supportsRememberMe(): bool
     {
         return false;
     }
 
+    /**
+     * @return string
+     */
     public function getLoginUrl()
     {
         return $this->urlGenerator->generate('administrator');
     }
 
+    /**
+     * @param Request $request
+     * @param AuthenticationException|null $authException
+     * @return RedirectResponse
+     */
     public function start(Request $request, AuthenticationException $authException = null)
     {
         return parent::start($request, $authException);

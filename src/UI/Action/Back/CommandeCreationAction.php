@@ -45,6 +45,7 @@ class CommandeCreationAction implements CommandeCreationActionInterface
      * CommandeCreationAction constructor.
      *
      * @param FormFactoryInterface $formFactory
+     * @param ShopRepositoryInterface $shopRepo
      * @param CommandeCreationFormHandlerInterface $commandeCreationFormHandler
      */
     public function __construct(
@@ -59,6 +60,7 @@ class CommandeCreationAction implements CommandeCreationActionInterface
 
     /**
      * @Route(name="commande", path="admin/shop/one/{slug}/commande")
+     *
      * @Security("is_granted('ROLE_ADMIN')")
      * @param Request $request
      * @param CommandeCreationResponderInterface $responder

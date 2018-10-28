@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: bidule
- * Date: 23/10/2018
- * Time: 15:00
+ * Date: 28/10/2018
+ * Time: 13:42
  */
 
 namespace App\UI\Responder\Interfaces;
@@ -13,18 +13,18 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 
-interface AdministratorResponderInterface
+interface GetContactAjaxResponderInterface
 {
     /**
-     * AdministratorResponderInterface constructor.
+     * GetContactAjaxResponderInterface constructor.
      *
      * @param Environment $twig
      */
     public function __construct(Environment $twig);
 
     /**
-     * @param FormInterface $form
+     * @param FormInterface|null $form
      * @return Response
      */
-    public function response(FormInterface $form): Response;
+    public function response(FormInterface $form = null): Response;
 }

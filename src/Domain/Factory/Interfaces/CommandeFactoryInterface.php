@@ -20,7 +20,8 @@ interface CommandeFactoryInterface
      * @param ProductType $productType
      * @param \DateTime $dateOrder
      * @param int $amount
+     * @param int $number
      * @return Commande
      */
-    public function create(Shop $shop, ProductType $productType, \DateTime $dateOrder, int $amount): Commande;
+    public function create(Shop $shop, ProductType $productType, \DateTime $dateOrder, int $amount, int $number): Commande;
 }
