@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: bidule
  * Date: 28/10/2018
- * Time: 14:25
+ * Time: 15:09
  */
 
 namespace App\UI\Responder\Interfaces;
@@ -14,10 +14,10 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Environment;
 
-interface CommandeDeleteResponderInterface
+interface ContactDeleteResponderInterface
 {
     /**
-     * CommandeDeleteResponderInterface constructor.
+     * ContactDeleteResponderInterface constructor.
      *
      * @param Environment $twig
      * @param UrlGeneratorInterface $urlGenerator
@@ -26,7 +26,7 @@ interface CommandeDeleteResponderInterface
 
     /**
      * @param Shop $shop
-     * @return Response
+     * @return RedirectResponse
      */
-    public function response(Shop $shop):RedirectResponse;
+    public function response(Shop $shop): RedirectResponse;
 }

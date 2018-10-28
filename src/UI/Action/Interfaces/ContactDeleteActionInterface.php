@@ -10,9 +10,10 @@ namespace App\UI\Action\Interfaces;
 
 
 use App\Domain\Repository\Interfaces\ContactRepositoryInterface;
-use App\UI\Responder\Interfaces\AllShopsResponderInterface;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use App\UI\Responder\Interfaces\ContactDeleteResponderInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 interface ContactDeleteActionInterface
 {
@@ -20,13 +21,14 @@ interface ContactDeleteActionInterface
      * ContactDeleteActionInterface constructor.
      *
      * @param ContactRepositoryInterface $contactRepo
+     * @param SessionInterface $session
      */
-    public function __construct(ContactRepositoryInterface $contactRepo);
+    public function __construct(ContactRepositoryInterface $contactRepo, SessionInterface $session);
 
     /**
      * @param Request $request
-     * @param AllShopsResponderInterface $responder
-     * @return Response
+     * @param ContactDeleteResponderInterface $responder
+     * @return RedirectResponse
      */
-    public function deleteContact(Request $request, AllShopsResponderInterface $responder): Response;
+    public function deleteContact(Request $request, ContactDeleteResponderInterface $responder): RedirectResponse;
 }

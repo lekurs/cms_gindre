@@ -39,7 +39,7 @@
                     <div class="row no-gutters">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 icon-contact-edit-container">
                             <p><i class="fa fa-edit contact-edit-icon" data-slug="{{ contact.id }}" data-shop="{{ shop.slug }}" data-toggle="modal" data-target="#editContact"></i></p>
-                            <p><i class="fa fa-trash delete-contact" data-slug="{{ contact.slug }}"></i></p>
+                            <p><a href="{{ path('deleteContact', { 'slug': shop.slug, 'slugContact': contact.slug}) }}"><i class="fa fa-trash delete-contact"></i></a></p>
                         </div>
                     </div>
                 </div>
