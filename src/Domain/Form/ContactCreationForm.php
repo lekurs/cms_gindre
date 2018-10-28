@@ -30,30 +30,30 @@ class ContactCreationForm extends AbstractType
             ->add('name', TextType::class, [
                 'label' => 'Nom *',
                 'required' => true,
-                'label_attr' => ['class' => 'float'],
+//                'label_attr' => ['class' => 'float'],
                 'attr' => ['class' => 'floating-input', 'placeholder' => ' '],
             ])
             ->add('lastName', TextType::class, [
                 'label' => 'Prénom *',
                 'required' => true,
-                'label_attr' => ['class' => 'float'],
+//                'label_attr' => ['class' => 'float'],
                 'attr' => ['class' => 'floating-input', 'placeholder' => ' ']
             ])
             ->add('phoneOne', TelType::class, [
                 'label' => 'Teléphone Fixe',
-                'label_attr' => ['class' => 'float'],
+//                'label_attr' => ['class' => 'float'],
                 'attr' => ['class' => 'floating-input', 'placeholder' => ' '],
                 'required' => false,
             ])
             ->add('phoneMobile', TelType::class, [
                 'label' => 'Téléphone mobile *',
                 'required' => true,
-                'label_attr' => ['class' => 'float'],
+//                'label_attr' => ['class' => 'float'],
                 'attr' => ['class' => 'floating-input', 'placeholder' => ' ']
             ])
             ->add('email', EmailType::class, [
                 'required' => true,
-                'label_attr' => ['class' => 'float'],
+//                'label_attr' => ['class' => 'float'],
                 'attr' => ['class' => 'floating-input', 'placeholder' => ' '],
                 'label' => 'email@email.com'
             ])
