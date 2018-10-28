@@ -9,6 +9,7 @@
 namespace App\Domain\Models;
 
 
+use App\Domain\DTO\Interfaces\ShopEditFormDTOInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Ramsey\Uuid\Uuid;
 
@@ -100,8 +101,18 @@ class Shop
      * @param string $slug
      * @throws \Exception
      */
-    public function __construct(string $name, string $address, int $zip, string $city, array $contacts, Region $region, Departement $departement, StatusShop $status, bool $prospect = true, string $number = null, string $slug)
-    {
+    public function __construct(
+        string $name,
+        string $address,
+        int $zip, string $city,
+        array $contacts,
+        Region $region,
+        Departement $departement,
+        StatusShop $status,
+        bool $prospect = true,
+        string $number = null,
+        string $slug
+    ) {
         $this->id = Uuid::uuid4();
         $this->name = $name;
         $this->address = $address;
@@ -183,7 +194,7 @@ class Shop
     /**
      * @return string
      */
-    public function getNumber(): string
+    public function getNumber(): ?string
     {
         return $this->number;
     }
@@ -226,5 +237,16 @@ class Shop
     public function getSlug(): string
     {
         return $this->slug;
+    }
+
+    public function editShop(ShopEditFormDTOInterface $formDTO): void
+    {
+        $this->name = $formDTO->name;
+        $this->address = $formDTO->address;
+        $this->zip = $formDTO->zip;
+        $this->city = $formDTO->city;
+        $this->prospect = $formDTO->prospect;
+        $this->number = $formDTO->number;
+        $this->slug =$formDTO->slug;
     }
 }

@@ -13,15 +13,19 @@ $(document).ready(function () {
         });
     });
 
-    // //Suppression d'un clientType
-    // $('.delete-clientType-icon').on('click', function () {
-    //     let slug = $(this).attr('data-id');
-    //     let elt = $(this);
-    //
-    //     $.post('parameters/client/type/delete/' + slug, function (data) {
-    //
-    //     }).done(function () {
-    //         $(elt).parent().parent().before().remove();
-    //     });
-    // });
+    //Suppression d'un clientType
+    $('.delete-message').on('click', function () {
+        let slug = $(this).attr('data-id');
+        let elt = $(this);
+
+        $.post('message/del/' + slug, function (data) {
+
+        }).done(function () {
+            if ($(elt).closest('.row.message-container')) {
+                $(elt).closest('.row.message-container').remove();
+            } else {
+                $(elt).closest('.row.message-container-second').remove();
+            }
+        });
+    });
 });

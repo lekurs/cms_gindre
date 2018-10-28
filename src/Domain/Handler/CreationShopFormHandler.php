@@ -58,6 +58,7 @@ class CreationShopFormHandler implements CreationShopFormHandlerInterface
 
     /**
      * CreationShopFormHandler constructor.
+     *
      * @param DepartementRepository $departementRepo
      * @param ShopFactoryInterface $shopFactory
      * @param ContactFactoryInterface $contactFactory
@@ -66,8 +67,15 @@ class CreationShopFormHandler implements CreationShopFormHandlerInterface
      * @param SessionInterface $session
      * @param ValidatorInterface $validator
      */
-    public function __construct(DepartementRepository $departementRepo, ShopFactoryInterface $shopFactory, ContactFactoryInterface $contactFactory, ShopRepositoryInterface $shopRepo, SlugHelperInterface $slugHelper, SessionInterface $session, ValidatorInterface $validator)
-    {
+    public function __construct(
+        DepartementRepository $departementRepo,
+        ShopFactoryInterface $shopFactory,
+        ContactFactoryInterface $contactFactory,
+        ShopRepositoryInterface $shopRepo,
+        SlugHelperInterface $slugHelper,
+        SessionInterface $session,
+        ValidatorInterface $validator
+    ) {
         $this->departementRepo = $departementRepo;
         $this->shopFactory = $shopFactory;
         $this->contactFactory = $contactFactory;

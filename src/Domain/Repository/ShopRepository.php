@@ -116,6 +116,10 @@ class ShopRepository extends ServiceEntityRepository implements ShopRepositoryIn
             ->getResult();
     }
 
+    /**
+     * @param $date
+     * @return mixed
+     */
     public function getAllNotRecontacted($date)
     {
         return $this->createQueryBuilder('shop')
@@ -127,6 +131,9 @@ class ShopRepository extends ServiceEntityRepository implements ShopRepositoryIn
             ->getResult();
     }
 
+    /**
+     * @return array
+     */
     public function getAllByDepartement(): array
     {
         return $this->createQueryBuilder('shop')
@@ -138,6 +145,12 @@ class ShopRepository extends ServiceEntityRepository implements ShopRepositoryIn
             ->getResult();
     }
 
+    /**
+     * @param Shop $shop
+     * @param array $contacts
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
     public function save(Shop $shop, array $contacts):void
     {
         foreach ($contacts as $contact) {
@@ -148,9 +161,23 @@ class ShopRepository extends ServiceEntityRepository implements ShopRepositoryIn
         $this->_em->flush();
     }
 
+    /**
+     * @param Shop $shop
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
     public function delete(Shop $shop): void
     {
         $this->_em->remove($shop);
+        $this->_em->flush();
+    }
+
+    /**
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function edit(): void
+    {
         $this->_em->flush();
     }
 }

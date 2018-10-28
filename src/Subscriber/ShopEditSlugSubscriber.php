@@ -1,21 +1,21 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Maxime GINDRE
- * Date: 27/09/2018
- * Time: 17:13
+ * User: bidule
+ * Date: 28/10/2018
+ * Time: 10:38
  */
 
 namespace App\Subscriber;
 
 
 use App\Services\Interfaces\SlugHelperInterface;
-use App\Subscriber\Interfaces\ContactEditSlugSubscriberInterface;
+use App\Subscriber\Interfaces\ShopEditSlugSubscriberInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 
-class ContactEditSlugSubscriber implements EventSubscriberInterface, ContactEditSlugSubscriberInterface
+class ShopEditSlugSubscriber implements EventSubscriberInterface, ShopEditSlugSubscriberInterface
 {
     /**
      * @var SlugHelperInterface
@@ -23,7 +23,7 @@ class ContactEditSlugSubscriber implements EventSubscriberInterface, ContactEdit
     private $slugHelper;
 
     /**
-     * ContactEditSlugSubscriber constructor.
+     * ShopEditSlugSubscriber constructor.
      *
      * @param SlugHelperInterface $slugHelper
      */
@@ -38,7 +38,7 @@ class ContactEditSlugSubscriber implements EventSubscriberInterface, ContactEdit
     public static function getSubscribedEvents(): array
     {
         return [
-            FormEvents::SUBMIT => 'onSubmit'
+            FormEvents::SUBMIT => 'onSubmit',
         ];
     }
 
@@ -47,6 +47,6 @@ class ContactEditSlugSubscriber implements EventSubscriberInterface, ContactEdit
      */
     public function onSubmit(FormEvent $event): void
     {
-        $event->getData()->slug = $this->slugHelper->replace($event->getData()->name . '-' . $event->getData()->lastName);
+        $event->getData()->slug = $this->slugHelper->replace($event->getData()->name);
     }
 }

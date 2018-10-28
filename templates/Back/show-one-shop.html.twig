@@ -9,10 +9,13 @@
             <i class="fas fa-grin fa-3x"></i>
             <h2>Clients</h2>
         </div>
-        <div class="container-fluid content">
+{% block FlashMessage %}
+{{ parent() }}
+{% endblock %}
+    <div class="container-fluid content">
             <div class="row ">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 title-page-container">
-                    <h2 class="title-shop-name">Société {{ shop.name }}</h2>
+                    <h2 class="title-shop-name">Société {{ shop.name }} <a href="{{ path('editShop', { 'slug': shop.slug }) }}"><i class="fa fa-edit"></i></a></h2>
                     <span class="button-title-container"><button type="button" class="button-title" data-toggle="modal" data-target="#newContact"><i class="fas fa-grin"></i> Ajouter un contact</button> </span>
                 </div>
             </div>
@@ -58,10 +61,10 @@
                             <p class="text-capitalize font-weight-bold">{{ message.contactType.type }}</p>
                         <div class="row">
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
-                                <p><i class="fa fa-edit"></i></p>
+                                <p><i class="fa fa-edit edit-message" data-toggle="modal" data-target="#editMessage" data-id="{{ message.id }}"></i></p>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
-                                <p><i class="fa fa-edit edit-message" data-id="{{ message.message }}"></i></p>
+                                <p><i class="fa fa-trash delete-message" data-id="{{ message.id }}"></i></p>
                             </div>
                         </div>
                     </div>

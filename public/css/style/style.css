@@ -4,6 +4,10 @@ body, H1, H2, H3, H4, H5, H6 {
     color: #4E4E4E;
 }
 
+.mce-notification.mce-in {
+    display: none; !important;
+}
+
 button:focus {
     outline: none !important;
 }
@@ -15,6 +19,14 @@ button:focus {
 
 .container-fluid.content {
     margin-bottom: 5em;
+}
+
+.flash-message {
+    width: 98%;
+    margin-left: 2%;
+    padding-left: 5%;
+    font-weight: bold;
+    text-align: center;
 }
 
 /** BUTTON FOR MODAL **/
@@ -129,6 +141,13 @@ H2.title-shop-name {
     font-weight: 600;
     width: 90%;
     margin-left: -12px;
+}
+
+h2.title-shop-name > a, h2.title-shop-name > a:hover {
+    color: #4E4E4E;
+    font-size: .8em;
+    text-decoration: none;
+    padding-left: 2em;
 }
 
 .title-page-container {

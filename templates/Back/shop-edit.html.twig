@@ -1,0 +1,80 @@
+{% extends "Back/admin.html.twig" %}
+
+{% block title %}
+    Edition du client : {{ shop.name }}
+{% endblock %}
+
+{% block container %}
+    <div class=" page-title-info-client content">
+        <i class="fas fa-grin fa-3x"></i>
+        <h2>Clients</h2>
+    </div>
+    <div class="container-fluid content">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 all-shops-container">
+                <h2 class="title-shop-name">Clients</h2>
+                <span class="button-title-container"><a href="{{ path('admin') }}"><button type="button" class="button-title"><i class="fas fa-arrow-alt-circle-right"></i> Retour</button> </a></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                {{ form_start(form) }}
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="floating-label">
+                            {{ form_widget(form.name) }}
+                            <span class="highlight"></span>
+                            {{ form_label(form.name) }}
+                        </div>
+                        <div class="floating-label">
+                            {{ form_widget(form.address) }}
+                            <span class="highlight"></span>
+                            {{ form_label(form.address) }}
+                        </div>
+                        <div class="floating-label">
+                            {{ form_widget(form.zip) }}
+                            <span class="highlight"></span>
+                            {{ form_label(form.zip) }}
+                        </div>
+                        <div class="floating-label">
+                            {{ form_widget(form.city) }}
+                            <span class="highlight"></span>
+                            {{ form_label(form.city) }}
+                        </div>
+                        <div class="floating-label">
+                            {{ form_widget(form.number) }}
+                            <span class="highlight"></span>
+                            {{ form_label(form.number) }}
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                {{ form_label(form.status) }}
+                                {{ form_widget(form.status) }}
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                {{ form_label(form.prospect) }}
+                                {{ form_widget(form.prospect) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 add-shop-button-container">
+                <button type="submit" class="add-shop"><i class="fas fa-arrow-alt-circle-right"></i> Mettre à jour</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {#<script src="{{ asset('js/add-collectiontype-widget.js') }}"></script>#}
+{% endblock %}
+
+{% block charts %}
+
+{% endblock %}

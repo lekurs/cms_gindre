@@ -51,6 +51,7 @@
 
 <body>
 {% block body %}
+
     <div class="menu-container">
         <div class="burger">
             <span class="line-1"></span>
@@ -70,10 +71,23 @@
             </ul>
         </div>
     </div>
+
     {% block container %}
         <div class=" page-title-info-admin content">
             <i class="fa fa-home fa-3x"></i> <h1>Admin</h1>
         </div>
+        {% block FlashMessage %}
+            {% for flash_message in app.flashes('success') %}
+                <div class="alert alert-success flash-message content">
+                    {{ flash_message }}
+                </div>
+            {% endfor %}
+            {% for flash_message in app.flashes('error') %}
+                <div class="alert alert-danger">
+                    {{ flash_message }}
+                </div>
+            {% endfor %}
+        {% endblock %}
         <div class="container-fluid content">
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 infos-admin-title-container">

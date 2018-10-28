@@ -32,6 +32,10 @@ class MessageRepository extends ServiceEntityRepository implements MessageReposi
                                 ->getResult();
     }
 
+    /**
+     * @param $date
+     * @return mixed
+     */
     public function getAllRetarded($date)
     {
         return $this->createQueryBuilder('message')
@@ -42,6 +46,11 @@ class MessageRepository extends ServiceEntityRepository implements MessageReposi
                                 ->getResult();
     }
 
+    /**
+     * @param $id
+     * @return Message
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function getOne($id): Message
     {
         return $this->createQueryBuilder('message')
@@ -51,14 +60,34 @@ class MessageRepository extends ServiceEntityRepository implements MessageReposi
                                     ->getOneOrNullResult();
     }
 
+    /**
+     * @param Message $message
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
     public function save(Message $message): void
     {
         $this->_em->persist($message);
         $this->_em->flush();
     }
 
+    /**
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
     public function edit(): void
     {
+        $this->_em->flush();
+    }
+
+    /**
+     * @param Message $message
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function delete(Message $message): void
+    {
+        $this->_em->remove($message);
         $this->_em->flush();
     }
 }
