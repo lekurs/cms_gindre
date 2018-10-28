@@ -37,6 +37,11 @@ class CommandeCreationAction implements CommandeCreationActionInterface
     private $shopRepo;
 
     /**
+     * @var CommandeRepositoryInterface
+     */
+    private $commandeRepo;
+
+    /**
      * @var CommandeCreationFormHandlerInterface
      */
     private $commandeCreationFormHandler;
@@ -46,17 +51,21 @@ class CommandeCreationAction implements CommandeCreationActionInterface
      *
      * @param FormFactoryInterface $formFactory
      * @param ShopRepositoryInterface $shopRepo
+     * @param CommandeRepositoryInterface $commandeRepo
      * @param CommandeCreationFormHandlerInterface $commandeCreationFormHandler
      */
     public function __construct(
         FormFactoryInterface $formFactory,
         ShopRepositoryInterface $shopRepo,
+        CommandeRepositoryInterface $commandeRepo,
         CommandeCreationFormHandlerInterface $commandeCreationFormHandler
     ) {
         $this->formFactory = $formFactory;
         $this->shopRepo = $shopRepo;
+        $this->commandeRepo = $commandeRepo;
         $this->commandeCreationFormHandler = $commandeCreationFormHandler;
     }
+
 
     /**
      * @Route(name="commande", path="admin/shop/one/{slug}/commande")
@@ -69,6 +78,8 @@ class CommandeCreationAction implements CommandeCreationActionInterface
     public function show(Request $request, CommandeCreationResponderInterface $responder): Response
     {
         $shop = $this->shopRepo->getWithCommandes($request->attributes->get('slug'));
+
+        $total = $this->commandeRepo->getAllByShop($shop);
 
         $form = $this->formFactory->create(CommandeCreationForm::class)->handleRequest($request);
 

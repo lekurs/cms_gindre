@@ -10,6 +10,7 @@ namespace App\UI\Action\Interfaces;
 
 
 use App\Domain\Handler\Interfaces\CommandeCreationFormHandlerInterface;
+use App\Domain\Repository\Interfaces\CommandeRepositoryInterface;
 use App\Domain\Repository\Interfaces\ShopRepositoryInterface;
 use App\UI\Responder\Interfaces\CommandeCreationResponderInterface;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -23,11 +24,13 @@ interface CommandeCreationActionInterface
      *
      * @param FormFactoryInterface $formFactory
      * @param ShopRepositoryInterface $shopRepo
+     * @param CommandeRepositoryInterface $commandeRepository
      * @param CommandeCreationFormHandlerInterface $commandeCreationFormHandler
      */
     public function __construct(
         FormFactoryInterface $formFactory,
         ShopRepositoryInterface $shopRepo,
+        CommandeRepositoryInterface $commandeRepository,
         CommandeCreationFormHandlerInterface $commandeCreationFormHandler
     );
 

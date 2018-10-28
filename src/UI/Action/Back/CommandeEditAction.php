@@ -66,7 +66,6 @@ class CommandeEditAction implements CommandeEditActionInterface
      */
     public function edit(Request $request, CommandeEditResponderInterface $responder): Response
     {
-        dump($request->attributes->get('id'));
         $commande = $this->commandeRepo->getOne($request->attributes->get('id'));
 
         $commandeEdit = new CommandeEditDTO(

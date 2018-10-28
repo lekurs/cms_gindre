@@ -21,11 +21,7 @@ $(document).ready(function () {
         $.post('message/del/' + slug, function (data) {
 
         }).done(function () {
-            if ($(elt).closest('.row.message-container')) {
-                $(elt).closest('.row.message-container').remove();
-            } else {
-                $(elt).closest('.row.message-container-second').remove();
-            }
+            $(elt).closest('.row.message-row-container').remove();
         });
     });
 });

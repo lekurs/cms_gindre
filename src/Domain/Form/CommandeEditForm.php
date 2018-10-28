@@ -29,7 +29,6 @@ class CommandeEditForm extends AbstractType
     {
         $builder
             ->add('amount', TextType::class, [
-                'label' => 'Montant total € HT',
                 'required' => true,
                 'label_attr' => ['class' => 'float'],
                 'attr' => ['class' => 'floating-input', 'placeholder' => ' '],
@@ -40,7 +39,6 @@ class CommandeEditForm extends AbstractType
                 'label' => 'Type de produit'
             ])
             ->add('number', IntegerType::class, [
-                'label' => 'Numéro commande',
                 'required' => true,
                 'label_attr' => ['class' => 'float'],
                 'attr' => ['class' => 'floating-input', 'placeholder' => ' '],
