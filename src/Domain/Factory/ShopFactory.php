@@ -39,6 +39,7 @@ class ShopFactory implements ShopFactoryInterface
         int $zip,
         string $city,
         array $contact,
+        array $shopTypes,
         Region $region,
         Departement $departement,
         StatusShop $statutShop,
@@ -47,6 +48,6 @@ class ShopFactory implements ShopFactoryInterface
         string $slug
     ): Shop
     {
-        return new Shop($name, $address, $zip, $city, $contact, $region, $departement, $statutShop, $prospect, $number, $slug);
+        return new Shop($name, $address, $zip, $city, $contact, $shopTypes, $region, $departement, $statutShop, $prospect, $number, $slug);
     }
 }

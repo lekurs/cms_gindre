@@ -11,6 +11,7 @@ namespace App\Domain\Handler;
 
 use App\Domain\Factory\Interfaces\ContactFactoryInterface;
 use App\Domain\Factory\Interfaces\ShopFactoryInterface;
+use App\Domain\Factory\Interfaces\ShopTypeFactoryInterface;
 use App\Domain\Handler\Interfaces\CreationShopFormHandlerInterface;
 use App\Domain\Repository\DepartementRepository;
 use App\Domain\Repository\Interfaces\ShopRepositoryInterface;
@@ -35,6 +36,11 @@ class CreationShopFormHandler implements CreationShopFormHandlerInterface
      * @var ContactFactoryInterface
      */
     private $contactFactory;
+
+    /**
+     * @var ShopTypeFactoryInterface
+     */
+    private $shopTypeFactory;
 
     /**
      * @var ShopRepositoryInterface
@@ -71,6 +77,7 @@ class CreationShopFormHandler implements CreationShopFormHandlerInterface
         DepartementRepository $departementRepo,
         ShopFactoryInterface $shopFactory,
         ContactFactoryInterface $contactFactory,
+        ShopTypeFactoryInterface $shopTypeFactory,
         ShopRepositoryInterface $shopRepo,
         SlugHelperInterface $slugHelper,
         SessionInterface $session,
@@ -79,6 +86,7 @@ class CreationShopFormHandler implements CreationShopFormHandlerInterface
         $this->departementRepo = $departementRepo;
         $this->shopFactory = $shopFactory;
         $this->contactFactory = $contactFactory;
+        $this->shopTypeFactory = $shopTypeFactory;
         $this->shopRepo = $shopRepo;
         $this->slugHelper = $slugHelper;
         $this->session = $session;
@@ -113,12 +121,20 @@ class CreationShopFormHandler implements CreationShopFormHandlerInterface
                     );
                 }
 
+                $shopTypes = [];
+                foreach ($form->getData()->shopType as $shopType) {
+                    $shopTypes[] = $this->shopTypeFactory->create(
+                        $shopType->getShopType()
+                    );
+                }
+
             $shop = $this->shopFactory->create(
                 $form->getData()->name,
                 $form->getData()->address,
                 $form->getData()->zip,
                 $form->getData()->city,
                 $contacts ?? [],
+                $shopTypes ?? [],
                 $dpt->getRegion(),
                 $dpt,
                 $form->getData()->status,
@@ -128,6 +144,8 @@ class CreationShopFormHandler implements CreationShopFormHandlerInterface
             );
 
 //            $this->validator->validate([]);
+
+            dump($shop);
 
             $this->shopRepo->save($shop, $contacts);
 

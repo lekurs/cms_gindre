@@ -25,14 +25,14 @@ interface ShopFormCreationDTOInterface
      * @param bool $prospect
      * @param string|null $number
      */
-    public function __construct(
-        string $name,
-        string $address,
-        int $zip,
-        string $city,
-        array $contact,
-        StatusShop $status,
-        bool $prospect,
-        string $number = null
-    );
+//    public function __construct(
+//        string $name,
+//        string $address,
+//        int $zip,
+//        string $city,
+//        array $contact,
+//        StatusShop $status,
+//        bool $prospect,
+//        string $number = null
+//    );
 }

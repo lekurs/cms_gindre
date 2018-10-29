@@ -31,15 +31,15 @@ interface CreationShopFormHandlerInterface
      * @param SessionInterface $session
      * @param ValidatorInterface $validator
      */
-    public function __construct(
-        DepartementRepository $departementRepo,
-        ShopFactoryInterface $shopFactory,
-        ContactFactoryInterface $contactFactory,
-        ShopRepositoryInterface $shopRepo,
-        SlugHelperInterface $slugHelper,
-        SessionInterface $session,
-        ValidatorInterface $validator
-    );
+//    public function __construct(
+//        DepartementRepository $departementRepo,
+//        ShopFactoryInterface $shopFactory,
+//        ContactFactoryInterface $contactFactory,
+//        ShopRepositoryInterface $shopRepo,
+//        SlugHelperInterface $slugHelper,
+//        SessionInterface $session,
+//        ValidatorInterface $validator
+//    );
 
     /**
      * @param FormInterface $form

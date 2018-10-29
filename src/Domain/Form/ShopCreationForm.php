@@ -11,6 +11,7 @@ namespace App\Domain\Form;
 
 use App\Domain\DTO\ShopFormCreationDTO;
 use App\Domain\Models\Region;
+use App\Domain\Models\ShopType;
 use App\Domain\Models\StatusShop;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -66,6 +67,13 @@ class ShopCreationForm extends AbstractType
                 'label_attr' => ['class' => 'radio-label'],
                 'label' => 'Type de client *'
             ])
+            ->add('shopType', EntityType::class, [
+                'expanded' => true,
+                'multiple' => true,
+                'label' => 'Type de magasin',
+                'class' => ShopType::class,
+                'choice_label' => 'shopType'
+            ])
             ->add('contact', CollectionType::class, [
                 'entry_type' => ContactCreationForm::class,
                 'entry_options' => [
@@ -98,6 +106,7 @@ class ShopCreationForm extends AbstractType
                    $form->get('contact')->getData(),
                    $form->get('status')->getData(),
                     $form->get('prospect')->getData(),
+                   $form->get('shopType')->getData(),
                    $form->get('number')->getData()
                 );
             }

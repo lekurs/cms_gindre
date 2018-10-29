@@ -11,6 +11,7 @@ namespace App\Domain\DTO;
 
 use App\Domain\DTO\Interfaces\ShopFormCreationDTOInterface;
 use App\Domain\Models\Region;
+use App\Domain\Models\ShopType;
 use App\Domain\Models\StatusShop;
 
 class ShopFormCreationDTO implements ShopFormCreationDTOInterface
@@ -61,6 +62,11 @@ class ShopFormCreationDTO implements ShopFormCreationDTOInterface
     public $number;
 
     /**
+     * @var
+     */
+    public $shopType;
+
+    /**
      * ShopFormCreationDTO constructor.
      *
      * @param string $name
@@ -80,6 +86,7 @@ class ShopFormCreationDTO implements ShopFormCreationDTOInterface
         array $contact,
         StatusShop $status,
         bool $prospect,
+         $shopType,
         string $number = null
     ) {
         $this->name = $name;
@@ -89,6 +96,7 @@ class ShopFormCreationDTO implements ShopFormCreationDTOInterface
         $this->contact = [];
         $this->status = $status;
         $this->prospect = $prospect;
+        $this->shopType = [];
         $this->number = $number;
     }
 }
