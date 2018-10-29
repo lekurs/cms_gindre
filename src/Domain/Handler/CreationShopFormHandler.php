@@ -97,8 +97,6 @@ class CreationShopFormHandler implements CreationShopFormHandlerInterface
 
             $zip = substr($form->getData()->zip, 0, 2);
 
-//            dd($zip);
-
             $dpt = $this->departementRepo->getOne($zip);
 
                 $contacts = [];
