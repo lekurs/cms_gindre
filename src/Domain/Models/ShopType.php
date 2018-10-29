@@ -23,6 +23,7 @@ class ShopType
      */
     private $shopType;
 
+
     /**
      * ShopType constructor.
      *

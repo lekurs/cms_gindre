@@ -77,7 +77,7 @@ interface ShopRepositoryInterface
      * @param Shop $shop
      * @param array $contacts
      */
-    public function save(Shop $shop, array $contacts):void;
+//    public function save(Shop $shop, array $contacts):void;
 
     /**
      * @param Shop $shop
