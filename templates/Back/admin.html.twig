@@ -210,7 +210,7 @@
                     name: 'Population',
                     data: [
                         {% for caByDepartement in caByDepartements %}
-                        ['{{ caByDepartement.id }}', {{ caByDepartement.total }}],
+                        ['{{ caByDepartement.zip }}', {{ caByDepartement.total }}],
                         {% endfor %}
                     ],
                     dataLabels: {
@@ -267,7 +267,7 @@
                     name: 'Population',
                     data: [
                         {% for shopsByDepartement in shopsByDepartements %}
-                        ['{{ shopsByDepartement.id }}', {{ shopsByDepartement.total_shop }}],
+                        ['{{ shopsByDepartement.zip }}', {{ shopsByDepartement.total_shop }}],
                         {% endfor %}
                     ],
                     dataLabels: {

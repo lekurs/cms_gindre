@@ -116,8 +116,8 @@ class CommandeRepository extends ServiceEntityRepository implements CommandeRepo
         return $this->createQueryBuilder('commande')
                                 ->innerJoin('commande.shop', 'shop')
                                 ->innerJoin('shop.departement', 'departement')
-                                ->select('departement.id, SUM(commande.amount) as total')
-                                ->groupBy('departement.id')
+                                ->select('departement.zip, SUM(commande.amount) as total')
+                                ->groupBy('departement.zip')
                                 ->getQuery()
                                 ->getResult();
     }

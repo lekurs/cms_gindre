@@ -94,11 +94,11 @@ class AdminAction implements AdminActionInterface
         $messages = $this->shopRepo->getAllNotRecontacted($dateRelance);
         $commandes = $this->shopRepo->getNoCommande($dateNotCommande);
 
-        $shops = array_map(function (array $shop) { return $shop;}, $this->shopRepo->getAllByDepartement());
+        $shopsByDepartements = array_map(function (array $shop) { return $shop;}, $this->shopRepo->getAllByDepartement());
         $shopNoMessages = array_map(function (Shop $shop) { return $shop;}, $messages);
         $shopNoCommandes = array_map(function (Shop $shop) { return $shop;}, $commandes);
         $caByDepartement = array_map(function (array $commande) { return $commande; },$this->commandeRepo->totalByDepartement());
-
-        return $responder->response($caByDepartement, $shops, $shopNoMessages, $shopNoCommandes);
+        
+        return $responder->response($caByDepartement, $shopsByDepartements, $shopNoMessages, $shopNoCommandes);
     }
 }

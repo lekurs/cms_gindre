@@ -139,8 +139,8 @@ class ShopRepository extends ServiceEntityRepository implements ShopRepositoryIn
         return $this->createQueryBuilder('shop')
             ->innerJoin('shop.departement', 'departement')
             ->where('shop.prospect = 0')
-            ->select('departement.id, COUNT(shop.id) as total_shop')
-            ->groupBy('departement.id')
+            ->select('departement.zip, COUNT(shop.id) as total_shop')
+            ->groupBy('departement.zip')
             ->getQuery()
             ->getResult();
     }
