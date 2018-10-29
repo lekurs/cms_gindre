@@ -23,7 +23,10 @@ class ShopType
      */
     private $shopType;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev(shopType): add mapping & factory
     /**
      * ShopType constructor.
      *

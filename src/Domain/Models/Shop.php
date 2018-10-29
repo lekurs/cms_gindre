@@ -132,6 +132,7 @@ class Shop
         $this->prospect = $prospect;
         $this->number = $number;
         $this->slug = $slug;
+//        $this->shopTypes = new ArrayCollection();
     }
 
     /**
