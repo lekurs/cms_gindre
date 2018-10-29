@@ -89,12 +89,15 @@ class CreationShopFormHandler implements CreationShopFormHandlerInterface
     /**
      * @param FormInterface $form
      * @return bool
+     * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function handle(FormInterface $form): bool
     {
         if ($form->isSubmitted() && $form->isValid()) {
 
             $zip = substr($form->getData()->zip, 0, 2);
+
+//            dd($zip);
 
             $dpt = $this->departementRepo->getOne($zip);
 
