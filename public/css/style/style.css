@@ -415,3 +415,16 @@ button.add-commande {
     padding-left: 2rem;
     cursor: pointer;
 }
+
+@media all and (min-width: 481px) and (max-width: 1400px) {
+
+    .page-title-info-admin {
+        width: 90%;
+        margin-left: 10%;
+    }
+
+    .container-fluid {
+        padding-left: 16%;
+    }
+
+}

@@ -135,3 +135,19 @@ ul.sub-nav-content a:hover {
 .content.push {
     transform: translateX(18.4%);
 }
+
+@media all and (min-width: 481px) and (max-width: 1400px) {
+
+    .menu-container {
+        width: 10%;
+    }
+
+    .menu-container.active {
+        width: 20%;
+    }
+
+    .content.push {
+        transform: translate(11%);
+    }
+
+}
