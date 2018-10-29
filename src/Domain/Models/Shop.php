@@ -78,6 +78,11 @@ class Shop
     /**
      * @var \ArrayAccess
      */
+    private $shopTypes;
+
+    /**
+     * @var \ArrayAccess
+     */
     private $messages;
 
     /**
@@ -125,6 +130,7 @@ class Shop
         $this->prospect = $prospect;
         $this->number = $number;
         $this->slug = $slug;
+//        $this->shopTypes = new ArrayCollection();
     }
 
     /**
