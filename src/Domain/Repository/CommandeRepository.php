@@ -48,7 +48,7 @@ class CommandeRepository extends ServiceEntityRepository implements CommandeRepo
             ->leftJoin('commande.shop', 'shop')
             ->where('commande.shop = :shop')
             ->setParameter('shop', $shop->getId())
-            ->setMaxResults(3)
+//            ->setMaxResults(3)
             ->orderBy('commande.dateCommande', 'ASC')
             ->getQuery()
             ->getResult();
