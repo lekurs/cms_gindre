@@ -29,6 +29,11 @@ button:focus {
     text-align: center;
 }
 
+.client-no-news {
+    height: 300px;
+    overflow: auto;
+}
+
 /** BUTTON FOR MODAL **/
 
 button.modal-button {

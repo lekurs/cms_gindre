@@ -101,7 +101,7 @@
                     <h2 class="sub-title-admin">SPA non recontactés depuis 2 mois</h2>
                 </div>
             </div>
-            <div class="row">
+            <div class="row client-no-news">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     {% for shopNoMessage in shopNoMessages  if shopNoMessage is not null%}
                         <p><a href="{{ path('showOneShop', { 'slug': shopNoMessage.slug }) }}">{{ shopNoMessage.name}}</a></p>
@@ -117,7 +117,7 @@
                     <h2 class="sub-title-admin">Clients sans commandes depuis 3 Mois</h2>
                 </div>
             </div>
-            <div class="row">
+            <div class="row client-no-news">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     {% for shopNoCommande in shopNoCommandes if shopNoCommande is not null%}
                             <p><a href="{{ path('showOneShop', { 'slug': shopNoCommande.slug }) }}">{{ shopNoCommande.name }}</a></p>
