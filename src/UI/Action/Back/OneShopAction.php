@@ -118,7 +118,7 @@ class OneShopAction implements OneShopActionInterface
 
         elseif ($this->creationMessageFormHandler->handle($form, $shop)) {
 
-            return $responder->response(true, null, null, $shop, $orders, $shop->getSlug());
+            return $responder->response(true, null, null, $shop, $orders, null, $shop->getSlug());
         }
 
         return $responder->response(false, $form, $formContact, $shop, $orders, $total);
