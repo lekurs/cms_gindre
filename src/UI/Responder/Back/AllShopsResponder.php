@@ -11,7 +11,10 @@ namespace App\UI\Responder\Back;
 
 use App\Domain\Models\Shop;
 use App\UI\Responder\Interfaces\AllShopsResponderInterface;
+use Symfony\Component\Form\FormInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Environment;
 
 class AllShopsResponder implements AllShopsResponderInterface
@@ -39,7 +42,7 @@ class AllShopsResponder implements AllShopsResponderInterface
      */
     public function response(array $shops): Response
     {
-        return new Response($this->twig->render('Back/show-all-shops.html.twig', [
+            return new Response($this->twig->render('Back/show-all-shops.html.twig', [
             'shops' => $shops,
         ]));
     }

@@ -26,6 +26,7 @@
                             <th>Region</th>
                             <th>Status</th>
                             <th>Prospect / Client</th>
+                            <th style="display: none;">Contact</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -35,6 +36,7 @@
                                 <td>{{ shop.region.region }}</td>
                                 <td>{{ shop.status.status }}</td>
                                 <td>{% if shop.prospect %} Prospect {% else %} Client {% endif %}</td>
+                                <td style="display: none">{% for contact in shop.contacts %} {{ contact.name }} {% endfor %}</td>
                             </tr>
                         {% endfor %}
                     </tbody>
