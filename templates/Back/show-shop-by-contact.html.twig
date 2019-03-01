@@ -1,0 +1,24 @@
+{% extends "Back/admin.html.twig" %}
+
+{% block title %}
+    Voir tous les clients
+{% endblock %}
+
+{% block container %}
+    <div class=" page-title-info-client content">
+        <i class="fas fa-grin fa-3x"></i>
+        <h2>Magasin</h2>
+    </div>
+    <div class="container-fluid content">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 all-shops-container">
+                {{ shop.name }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block charts %}
+
+{% endblock %}

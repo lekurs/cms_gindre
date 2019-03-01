@@ -20,11 +20,11 @@ interface AllShopsActionInterface
      *
      * @param ShopRepositoryInterface $shopRepo
      */
-    public function __construct(ShopRepositoryInterface $shopRepo);
+//    public function __construct(ShopRepositoryInterface $shopRepo);
 
     /**
      * @param AllShopsResponderInterface $responder
      * @return Response
      */
-    public function show(AllShopsResponderInterface $responder): Response;
+//    public function show(AllShopsResponderInterface $responder): Response;
 }

@@ -145,6 +145,18 @@ class ShopRepository extends ServiceEntityRepository implements ShopRepositoryIn
             ->getResult();
     }
 
+    public function searchBy(string $name, string $lastname = null)
+    {
+        return $this->createQueryBuilder('shop')
+            ->leftJoin('shop.contacts', 'contacts')
+            ->where('contacts.name LIKE :name')
+            ->orWhere('contacts.lastName LIKE :lastname')
+            ->setParameter('name', '%' . $name . '%')
+            ->setParameter('lastname', '%' . $lastname . '%')
+            ->getQuery()
+            ->getResult();
+    }
+
     /**
      * @param Shop $shop
      * @param array $contacts
