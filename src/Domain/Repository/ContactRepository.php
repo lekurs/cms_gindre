@@ -69,6 +69,15 @@ class ContactRepository extends ServiceEntityRepository implements ContactReposi
             ->getOneOrNullResult();
     }
 
+    public function getAllContactsClients(): array
+    {
+        return $this->createQueryBuilder('contact')
+                                ->leftJoin('contact.shop', 'shop')
+                                ->where('shop.prospect = 0')
+                                ->getQuery()
+                                ->getResult();
+    }
+
     /**
      * @param Contact $contact
      * @throws \Doctrine\ORM\ORMException
