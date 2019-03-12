@@ -1,0 +1,78 @@
+{% extends 'Back/admin.html.twig' %}
+
+{% block title %}
+Administration - Envoi d'emails
+{% endblock %}
+
+{% block container %}
+<div class=" page-title-info-client content">
+    <i class="fas fa-grin fa-3x"></i>
+    <h2>Emailing</h2>
+</div>
+<div class="container-fluid content">
+    <div class="row ">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 title-commande-page-container">
+            <h2 class="title-add-commande">Envoyer un email</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12" id="edit-contact-form">
+            <div class="row">
+                <div class="col-6">
+                    <input type="radio" name="select-bcc" value="all" class="radio-email"> Ecrire à tous les clients
+                </div>
+                <div class="col-6">
+                    <input type="radio" name="select-bcc" value="one" class="radio-email"> Ecrire à un seul contact
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    {{ form_start(form) }}
+
+                    <div class="col-12">
+                        <div class="floating-label" style="margin-bottom: 2em; margin-top: 3em">
+                            {{ form_widget(form.to) }}
+                            {{ form_label(form.to) }}
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="floating-label" style="margin-bottom: 2em; margin-top: 3em">
+                            {{ form_widget(form.title) }}
+                            {{ form_label(form.title) }}
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="floating-label" style="margin-bottom: 3em;">
+                            {{ form_widget(form.message) }}
+                            <span class="highlight"></span>
+                            {{ form_label(form.message) }}
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="floating-label" style="margin-bottom: 2em;">
+                            {{ form_widget(form.file) }}
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-dark">Envoyer</button>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+    <script src="{{ asset('/js/send-email.js') }}"></script>
+{% endblock %}
+
+{% block charts %}
+
+{% endblock %}

@@ -113,3 +113,8 @@ label.float {
     from { background:#5264AE; }
     to 	{ width:0; background:transparent; }
 }
+
+.textarea-mout {
+    border: 1px solid #757575;
+    height: 150px;
+}
