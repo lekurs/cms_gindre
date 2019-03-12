@@ -38,9 +38,9 @@ class MoveFileHelper implements MoveFileHelperInterface
 
     public function move(UploadedFile $file): void
     {
-//        if ($this->fileSystem->exists($this->dirDocs)) {
-//            $this->fileSystem->mkdir($this->dirDocs, 0777);
-//        }
+        if ($this->fileSystem->exists($this->dirDocs)) {
+            $this->fileSystem->mkdir($this->dirDocs, 0777);
+        }
 
         $file->move($this->dirDocs, $file->getClientOriginalName());
     }
