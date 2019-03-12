@@ -78,4 +78,23 @@ class MailerHelper implements MailerHelperInterface
 
         $this->swiftMailer->send($mail);
     }
+
+    public function sendEmailOneContact(string $subject, $to, string $message, $file)
+    {
+        $mail = (new \Swift_Message());
+
+        $attachement = \Swift_Attachment::fromPath($this->dirDocs . $file);
+
+        $mail
+            ->setSubject($subject)
+            ->setFrom($this->mailerAdminEmail)
+            ->setTo($to)
+            ->attach($attachement)
+            ->setBody($this->twig->render('Emailing/message.html.twig', [
+                'message' => $message
+            ]), 'text/html')
+        ;
+
+        $this->swiftMailer->send($mail);
+    }
 }
