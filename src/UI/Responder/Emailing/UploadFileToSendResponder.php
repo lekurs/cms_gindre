@@ -1,19 +1,18 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Maxime GINDRE
- * Date: 21/09/2018
- * Time: 11:35
+ * User: bidule
+ * Date: 2019-03-12
+ * Time: 12:09
  */
 
-namespace App\UI\Responder\Front;
+namespace App\UI\Responder\Emailing;
 
 
-use App\UI\Responder\Interfaces\IndexResponderInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 
-class IndexResponder implements IndexResponderInterface
+class UploadFileToSendResponder
 {
     /**
      * @var Environment
@@ -21,7 +20,7 @@ class IndexResponder implements IndexResponderInterface
     private $twig;
 
     /**
-     * IndexResponder constructor.
+     * UploadFileToSendResponder constructor.
      * @param Environment $twig
      */
     public function __construct(Environment $twig)
@@ -29,10 +28,9 @@ class IndexResponder implements IndexResponderInterface
         $this->twig = $twig;
     }
 
+
     public function response(): Response
     {
-        return new Response($this->twig->render('layout.html.twig', [
-
-        ]));
+        return new Response();
     }
 }
