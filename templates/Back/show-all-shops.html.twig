@@ -27,6 +27,7 @@
                             <th>Status</th>
                             <th>Prospect / Client</th>
                             <th style="display: none;">Contact</th>
+                            <th style="display: none;">Departement</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -37,6 +38,7 @@
                                 <td>{{ shop.status.status }}</td>
                                 <td>{% if shop.prospect %} Prospect {% else %} Client {% endif %}</td>
                                 <td style="display: none">{% for contact in shop.contacts %} {{ contact.name }} {% endfor %}</td>
+                                <td style="display: none;">{{ shop.zip | slice(0,2) }}</td>
                             </tr>
                         {% endfor %}
                     </tbody>
