@@ -41,7 +41,7 @@ class SendEmailFormCreation extends AbstractType
                 'label_attr' => ['class' => 'float']
             ])
         ->add('file', FileType::class, [
-
+            'required' => false,
         ]);
     }
 
