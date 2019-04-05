@@ -48,6 +48,4 @@ class SendEmailCreationFormDTO implements SendEmailCreationFormDTOInterface
         $this->file = $file;
         $this->to = $to;
     }
-
-
 }
