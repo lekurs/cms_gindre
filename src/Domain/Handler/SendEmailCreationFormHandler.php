@@ -71,11 +71,14 @@ class SendEmailCreationFormHandler implements SendEmailCreationFormHandlerInterf
                     $contactEmail[] = $email->getEmail();
                 }
 
-                if (!null($form->getData()->file)) {
-                    $this->moveFileHelper->move($form->getData()->file);
-                }
+//                dd($form->getData()->file);
 
-                $this->mailerHelper->sendEmailAllContacts($form->getData()->title, $contactEmail, $form->getData()->message, $form->getData()->file->getClientOriginalName());
+                if (!is_null($form->getData()->file)) {
+                    $this->moveFileHelper->move($form->getData()->file);
+
+                    $this->mailerHelper->sendEmailAllContacts($form->getData()->title, $contactEmail, $form->getData()->message, $form->getData()->file->getClientOriginalName());
+                }
+                $this->mailerHelper->sendEmailAllContacts($form->getData()->title, $contactEmail, $form->getData()->message);
 
             } else {
                 $this->mailerHelper->sendEmailOneContact($form->getData()->title, $form->getData()->to, $form->getData()->message, $form->getData()->file->getClientOriginalName());
