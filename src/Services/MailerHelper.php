@@ -54,11 +54,15 @@ class MailerHelper implements MailerHelperInterface
     }
 
 
-    public function sendEmailAllContacts(string $subject,  $to, string $message, $file)
+    public function sendEmailAllContacts(string $subject,  $to, string $message, $file = null)
     {
         $mail = (new \Swift_Message());
 
-        $attachement = \Swift_Attachment::fromPath($this->dirDocs . $file);
+        if(!is_null($file)) {
+            $attachement = \Swift_Attachment::fromPath($this->dirDocs . $file);
+        } else {
+            $attachement = null;
+        }
 
         $mail
             ->setSubject($subject)
@@ -70,11 +74,19 @@ class MailerHelper implements MailerHelperInterface
         } else {
             $mail->setBcc($to);
         }
-            $mail->attach($attachement)
-            ->setBody($this->twig->render('Emailing/message.html.twig', [
-                'message' => $message
-            ]), 'text/html')
-            ;
+        if (!is_null($attachement)) {
+            $mail->attach($attachement);
+        } else {
+
+            $mail->
+            setBody(
+                $this->twig->render(
+                    'Emailing/message.html.twig', [
+                    'message' => $message
+                ]
+                ), 'text/html'
+            );
+        }
 
         $this->swiftMailer->send($mail);
     }
