@@ -41,7 +41,7 @@ class SendEmailCreationFormDTO implements SendEmailCreationFormDTOInterface
      * @param string $message
      * @param string $file
      */
-    public function __construct(string $title, string $message, string $file, string $to = null)
+    public function __construct(string $title, string $message, string $file = null, string $to = null)
     {
         $this->title = $title;
         $this->message = $message;
