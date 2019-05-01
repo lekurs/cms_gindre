@@ -40,6 +40,9 @@
         </one-to-many>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> be8c29691595077cfdb595f061ffd2bedc0802c1
         <many-to-many field="shopTypes" target-entity="App\Domain\Models\ShopType">
             <join-table name="shops_shop_types">
                 <join-columns>
@@ -50,6 +53,7 @@
                 </inverse-join-columns>
             </join-table>
         </many-to-many>
+<<<<<<< HEAD
 =======
         <!--<many-to-many field="shopTypes" target-entity="App\Domain\Models\ShopType">-->
             <!--&lt;!&ndash;<cascade>&ndash;&gt;-->
@@ -65,6 +69,8 @@
             <!--</join-table>-->
         <!--</many-to-many>-->
 >>>>>>> shopType
+=======
+>>>>>>> be8c29691595077cfdb595f061ffd2bedc0802c1
 
     </entity>
 </doctrine-mapping>

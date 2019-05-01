@@ -24,9 +24,12 @@ class ShopType
     private $shopType;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> shopType
+=======
+>>>>>>> be8c29691595077cfdb595f061ffd2bedc0802c1
     /**
      * ShopType constructor.
      *

@@ -29,6 +29,7 @@ class ShopTypeRepository extends ServiceEntityRepository implements ShopTypeRepo
                                 ->getResult();
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
     public function save(ShopType $shopType): void
@@ -37,4 +38,6 @@ class ShopTypeRepository extends ServiceEntityRepository implements ShopTypeRepo
         $this->_em->flush();
     }
 >>>>>>> shopType
+=======
+>>>>>>> be8c29691595077cfdb595f061ffd2bedc0802c1
 }
