@@ -30,17 +30,17 @@ interface ShopFactoryInterface
      * @param string $slug
      * @return Shop
      */
-    public function create(
-        string $name,
-        string $address,
-        int $zip,
-        string $city,
-        array $contact,
-        Region $region,
-        Departement $departement,
-        StatusShop $statutShop,
-        bool $prospect = true,
-        string $number = null,
-        string $slug
-    ): Shop;
+//    public function create(
+//        string $name,
+//        string $address,
+//        int $zip,
+//        string $city,
+//        array $contact,
+//        Region $region,
+//        Departement $departement,
+//        StatusShop $statutShop,
+//        bool $prospect = true,
+//        string $number = null,
+//        string $slug
+//    ): Shop;
 }

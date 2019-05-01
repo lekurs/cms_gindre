@@ -111,6 +111,7 @@ class Shop
         string $address,
         int $zip, string $city,
         array $contacts,
+        array $shopTypes,
         Region $region,
         Departement $departement,
         StatusShop $status,
@@ -124,6 +125,7 @@ class Shop
         $this->zip = $zip;
         $this->city = $city;
         $this->contacts = new ArrayCollection($contacts ?? []);
+        $this->shopTypes = new ArrayCollection($shopTypes);
         $this->region = $region;
         $this->departement = $departement;
         $this->status = $status;
@@ -243,6 +245,11 @@ class Shop
     public function getSlug(): string
     {
         return $this->slug;
+    }
+
+    public function addShopTypes(ShopType $shopType)
+    {
+        $this->shopTypes[] = $shopType;
     }
 
     public function editShop(ShopEditFormDTOInterface $formDTO): void

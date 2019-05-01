@@ -1,0 +1,39 @@
+{% extends 'Back/admin.html.twig' %}
+
+{% block title %}
+Création d'un type de magasin
+{% endblock %}
+
+{% block container %}
+    <div class=" page-title-info-client content">
+        <i class="fas fa-grin fa-3x"></i>
+        <h2>Type de magasin</h2>
+    </div>
+    <div class="container-fluid content">
+        <div class="row ">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 title-commande-page-container">
+                <h2 class="title-add-commande">Nouvelle Commande</h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12" id="edit-contact-form">
+                {{ form_start(form) }}
+                <div class="floating-label" style="margin: 2em 0;">
+                    {{ form_widget(form.shopType) }}
+                    <span class="highlight"></span>
+                    {{ form_label(form.shopType) }}
+                </div>
+                <div class="add-commande-button-container">
+                    <span class="button-title-container"><button type="submit" class="add-commande"><i class="fas fa-grin"></i> Ajouter un type de magasin</button> </span>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block charts %}
+
+{% endblock %}

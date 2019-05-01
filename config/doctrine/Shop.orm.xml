@@ -11,6 +11,7 @@
         <field name="city" type="string" unique="false" nullable="false" length="100" />
         <field name="number" type="string" unique="true" nullable="true" length="50" />
         <field name="slug" type="string" unique="true" nullable="false" length="255" />
+        <field name="shopTypes" type="array" />
         <field name="prospect" type="boolean" nullable="true" />
 
         <many-to-one field="region" target-entity="App\Domain\Models\Region" inversed-by="shops" />
@@ -38,6 +39,7 @@
             </cascade>
         </one-to-many>
 
+<<<<<<< HEAD
         <many-to-many field="shopTypes" target-entity="App\Domain\Models\ShopType">
             <join-table name="shops_shop_types">
                 <join-columns>
@@ -48,6 +50,21 @@
                 </inverse-join-columns>
             </join-table>
         </many-to-many>
+=======
+        <!--<many-to-many field="shopTypes" target-entity="App\Domain\Models\ShopType">-->
+            <!--&lt;!&ndash;<cascade>&ndash;&gt;-->
+                <!--&lt;!&ndash;<cascade-all/>&ndash;&gt;-->
+            <!--&lt;!&ndash;</cascade>&ndash;&gt;-->
+            <!--<join-table name="shops_shop_types">-->
+                <!--<join-columns>-->
+                        <!--<join-column name="shop_id" referenced-column-name="id" />-->
+                <!--</join-columns>-->
+                <!--<inverse-join-columns>-->
+                    <!--<join-column name="shop_type_id" referenced-column-name="id" />-->
+                <!--</inverse-join-columns>-->
+            <!--</join-table>-->
+        <!--</many-to-many>-->
+>>>>>>> shopType
 
     </entity>
 </doctrine-mapping>
