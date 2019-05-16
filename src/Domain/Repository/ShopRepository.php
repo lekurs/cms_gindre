@@ -168,7 +168,7 @@ class ShopRepository extends ServiceEntityRepository implements ShopRepositoryIn
         foreach ($contacts as $contact) {
             $contact->manageShop($shop);
         }
-//    dd($shop);
+
         $this->_em->persist($shop);
         $this->_em->flush();
     }

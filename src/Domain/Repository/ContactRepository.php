@@ -73,7 +73,9 @@ class ContactRepository extends ServiceEntityRepository implements ContactReposi
     {
         return $this->createQueryBuilder('contact')
                                 ->leftJoin('contact.shop', 'shop')
+                                ->leftJoin('shop.status', 'status')
                                 ->where('shop.prospect = 0')
+                                ->andWhere('status.status = Ouvert')
                                 ->getQuery()
                                 ->getResult();
     }

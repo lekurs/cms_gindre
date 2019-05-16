@@ -28,24 +28,11 @@ class ShopTypeRepository extends ServiceEntityRepository implements ShopTypeRepo
                                 ->getQuery()
                                 ->getResult();
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
->>>>>>> e6858e0693be3c654611e26af382b13dbf7d9b09
 
     public function save(ShopType $shopType): void
     {
         $this->_em->persist($shopType);
         $this->_em->flush();
     }
-<<<<<<< HEAD
-=======
->>>>>>> dev(shopType): add mapping & factory
-=======
->>>>>>> shopType
-=======
->>>>>>> be8c29691595077cfdb595f061ffd2bedc0802c1
->>>>>>> e6858e0693be3c654611e26af382b13dbf7d9b09
+
 }
