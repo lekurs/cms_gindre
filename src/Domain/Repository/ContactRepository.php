@@ -75,7 +75,8 @@ class ContactRepository extends ServiceEntityRepository implements ContactReposi
                                 ->leftJoin('contact.shop', 'shop')
                                 ->leftJoin('shop.status', 'status')
                                 ->where('shop.prospect = 0')
-                                ->andWhere('status.status = Ouvert')
+                                ->setParameter('statusKey', 'Ouvert')
+                                ->andWhere('status.status = :statusKey')
                                 ->getQuery()
                                 ->getResult();
     }
