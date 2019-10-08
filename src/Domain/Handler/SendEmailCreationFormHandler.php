@@ -71,16 +71,32 @@ class SendEmailCreationFormHandler implements SendEmailCreationFormHandlerInterf
                     $contactEmail[] = $email->getEmail();
                 }
 
-//                dd($form->getData()->file);
-
                 if (!is_null($form->getData()->file)) {
                     $this->moveFileHelper->move($form->getData()->file);
+                    $file = $form->getData()->file;
+                    //SI le fichier est sur le serveur alors on envoie le mail
 
+                    if (file_exists($this->dirDocs . $file->getClientOriginalName())) {
+                        $this->mailerHelper->sendEmailAllContacts($form->getData()->title, $contactEmail, $form->getData()->message, $form->getData()->file->getClientOriginalName());
+                    }
+                    sleep(30);
                     $this->mailerHelper->sendEmailAllContacts($form->getData()->title, $contactEmail, $form->getData()->message, $form->getData()->file->getClientOriginalName());
                 }
                 $this->mailerHelper->sendEmailAllContacts($form->getData()->title, $contactEmail, $form->getData()->message);
 
             } else {
+                if (!is_null($form->getData()->file)) {
+                    $this->moveFileHelper->move($form->getData()->file);
+                    $file = $form->getData()->file;
+                    //SI le fichier est sur le serveur alors on envoie le mail
+
+                    if (file_exists($this->dirDocs . $file->getClientOriginalName())) {
+
+                        $this->mailerHelper->sendEmailOneContact($form->getData()->title, $form->getData()->to, $form->getData()->message, $form->getData()->file->getClientOriginalName());
+                    }
+                    sleep(30);
+                    $this->mailerHelper->sendEmailOneContact($form->getData()->title, $form->getData()->to, $form->getData()->message, $form->getData()->file->getClientOriginalName());
+                }
                 $this->mailerHelper->sendEmailOneContact($form->getData()->title, $form->getData()->to, $form->getData()->message, $form->getData()->file->getClientOriginalName());
             }
 
