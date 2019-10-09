@@ -64,9 +64,12 @@ class MailerHelper implements MailerHelperInterface
             $attachement = null;
         }
 
+        $signature = $mail->attach(\Swift_Attachment::fromPath($this->dirDocs . 'signature_patrick_gindre.gif'));
+
         $mail
             ->setSubject($subject)
-            ->setFrom($this->mailerAdminEmail);
+            ->setFrom($this->mailerAdminEmail)
+            ;
         if (count($to) > 0) {
             foreach ($to as $bbc) {
                 $mail->addBcc($bbc);
@@ -82,7 +85,8 @@ class MailerHelper implements MailerHelperInterface
             setBody(
                 $this->twig->render(
                     'Emailing/message.html.twig', [
-                    'message' => $message
+                    'message' => $message,
+                    'signature' => $signature
                 ]
                 ), 'text/html'
             );
@@ -91,21 +95,30 @@ class MailerHelper implements MailerHelperInterface
         $this->swiftMailer->send($mail);
     }
 
-    public function sendEmailOneContact(string $subject, $to, string $message, $file)
+    public function sendEmailOneContact(string $subject, $to, string $message, $file = null)
     {
         $mail = (new \Swift_Message());
+        $signature = $mail->attach(\Swift_Attachment::fromPath($this->dirDocs . 'signature_patrick_gindre.gif'));
 
-        $attachement = \Swift_Attachment::fromPath($this->dirDocs . $file);
+        if(!is_null($file)) {
+            $attachement = \Swift_Attachment::fromPath($this->dirDocs . $file);
+        } else {
+            $attachement = null;
+        }
 
         $mail
             ->setSubject($subject)
             ->setFrom($this->mailerAdminEmail)
-            ->setTo($to)
-            ->attach($attachement)
-            ->setBody($this->twig->render('Emailing/message.html.twig', [
-                'message' => $message
-            ]), 'text/html')
-        ;
+            ->setTo($to);
+            if (!is_null($attachement)) {
+                $mail->attach($attachement);
+            } else {
+                $mail->
+                setBody($this->twig->render('Emailing/message.html.twig', [
+                    'message' => $message,
+                    'signature' => $signature,
+                ]), 'text/html');
+            }
 
         $this->swiftMailer->send($mail);
     }

@@ -97,7 +97,7 @@ class SendEmailCreationFormHandler implements SendEmailCreationFormHandlerInterf
                     sleep(30);
                     $this->mailerHelper->sendEmailOneContact($form->getData()->title, $form->getData()->to, $form->getData()->message, $form->getData()->file->getClientOriginalName());
                 }
-                $this->mailerHelper->sendEmailOneContact($form->getData()->title, $form->getData()->to, $form->getData()->message, $form->getData()->file->getClientOriginalName());
+                $this->mailerHelper->sendEmailOneContact($form->getData()->title, $form->getData()->to, $form->getData()->message);
             }
 
             return true;
