@@ -76,6 +76,7 @@ class SendEmailCreationFormHandler implements SendEmailCreationFormHandlerInterf
                     $file = $form->getData()->file;
                     //SI le fichier est sur le serveur alors on envoie le mail
 
+                    //On delete
                     if (file_exists($this->dirDocs . $file->getClientOriginalName())) {
                         $this->mailerHelper->sendEmailAllContacts($form->getData()->title, $contactEmail, $form->getData()->message, $form->getData()->file->getClientOriginalName());
                     }
@@ -83,6 +84,8 @@ class SendEmailCreationFormHandler implements SendEmailCreationFormHandlerInterf
                     $this->mailerHelper->sendEmailAllContacts($form->getData()->title, $contactEmail, $form->getData()->message, $form->getData()->file->getClientOriginalName());
                 }
                 $this->mailerHelper->sendEmailAllContacts($form->getData()->title, $contactEmail, $form->getData()->message);
+                // /delete
+                //On envoie plus l'email mais on créé le tableau qui contient les informations de l'email a envoyer
 
             } else {
                 if (!is_null($form->getData()->file)) {
@@ -90,6 +93,7 @@ class SendEmailCreationFormHandler implements SendEmailCreationFormHandlerInterf
                     $file = $form->getData()->file;
                     //SI le fichier est sur le serveur alors on envoie le mail
 
+                    //Idem plus haut
                     if (file_exists($this->dirDocs . $file->getClientOriginalName())) {
 
                         $this->mailerHelper->sendEmailOneContact($form->getData()->title, $form->getData()->to, $form->getData()->message, $form->getData()->file->getClientOriginalName());
