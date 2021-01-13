@@ -13,7 +13,7 @@ use App\Domain\Models\Message;
 use App\Domain\Models\Shop;
 use App\Domain\Repository\Interfaces\MessageRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 
 class MessageRepository extends ServiceEntityRepository implements MessageRepositoryInterface
 {

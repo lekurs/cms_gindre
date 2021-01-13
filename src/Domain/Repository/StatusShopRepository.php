@@ -12,7 +12,7 @@ namespace App\Domain\Repository;
 use App\Domain\Models\StatusShop;
 use App\Domain\Repository\Interfaces\StatutShopRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 
 class StatusShopRepository extends ServiceEntityRepository implements StatutShopRepositoryInterface
 {

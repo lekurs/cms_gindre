@@ -13,7 +13,8 @@ use App\Domain\Form\SearchByContactForm;
 use App\Domain\Handler\Interfaces\SearchByContactHandlerInterface;
 use App\UI\Action\Interfaces\SearchByContactActionInterface;
 use App\UI\Responder\Interfaces\SearchByContactResponderInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -51,7 +52,7 @@ class SearchByContactAction implements SearchByContactActionInterface
      * @param Request $request
      * @param SearchByContactResponderInterface $responder
      * @return Response
-     * @Security("is_granted('ROLE_ADMIN')")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function __invoke(Request $request, SearchByContactResponderInterface $responder): Response
     {

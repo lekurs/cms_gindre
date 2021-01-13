@@ -13,7 +13,7 @@ use App\Domain\Form\SendEmailFormCreation;
 use App\Domain\Handler\Interfaces\SendEmailCreationFormHandlerInterface;
 use App\UI\Action\Interfaces\SendEmailActionInterface;
 use App\UI\Responder\Interfaces\SendEmailResponderInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

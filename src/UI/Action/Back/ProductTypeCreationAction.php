@@ -14,6 +14,7 @@ use App\Domain\Handler\Interfaces\CreationContactTypeFormHandlerInterface;
 use App\Domain\Handler\Interfaces\CreationProductTypeFormHandlerInterface;
 use App\UI\Action\Interfaces\ProductTypeCreationActionInterface;
 use App\UI\Responder\Interfaces\ProductTypeCreationResponderInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -47,7 +48,7 @@ class ProductTypeCreationAction implements ProductTypeCreationActionInterface
     /**
      * @Route(name="creationProductType", path="admin/product/type/add")
      *
-     * @Security("is_granted('ROLE_ADMIN')")
+     * @IsGranted("ROLE_ADMIN")
      *
      * @param Request $request
      * @param ProductTypeCreationResponderInterface $responder

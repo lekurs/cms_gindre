@@ -15,6 +15,7 @@ use App\Domain\Handler\Interfaces\CommandeEditFormHandlerInterface;
 use App\Domain\Repository\Interfaces\CommandeRepositoryInterface;
 use App\UI\Action\Interfaces\CommandeEditActionInterface;
 use App\UI\Responder\Interfaces\CommandeEditResponderInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -58,7 +59,7 @@ class CommandeEditAction implements CommandeEditActionInterface
     /**
      * @Route(name="editCommande", path="admin/shop/one/{slug}/commande/edit/{id}")
      *
-     * @Security("is_granted('ROLE_ADMIN')")
+     * @IsGranted("ROLE_ADMIN")
      *
      * @param Request $request
      * @param CommandeEditResponderInterface $responder

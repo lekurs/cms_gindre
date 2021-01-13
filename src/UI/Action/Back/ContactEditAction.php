@@ -15,6 +15,7 @@ use App\Domain\Handler\Interfaces\EditContactFormHandlerInterface;
 use App\Domain\Repository\Interfaces\ContactRepositoryInterface;
 use App\UI\Action\Interfaces\ContactEditActionInterface;
 use App\UI\Responder\Interfaces\EditContactResponderInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -58,7 +59,7 @@ class ContactEditAction implements ContactEditActionInterface
     /**
      * @Route(name="editContact", path="admin/shop/contact/edit")
      *
-     * @Security("is_granted('ROLE_ADMIN')")
+     * @IsGranted("ROLE_ADMIN")
      *
      * @param Request $request
      * @param EditContactResponderInterface $responder

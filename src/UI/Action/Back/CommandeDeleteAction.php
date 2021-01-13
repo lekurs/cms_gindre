@@ -12,7 +12,8 @@ namespace App\UI\Action\Back;
 use App\Domain\Repository\Interfaces\CommandeRepositoryInterface;
 use App\UI\Action\Interfaces\CommandeDeleteActionInterface;
 use App\UI\Responder\Interfaces\CommandeDeleteResponderInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -46,7 +47,7 @@ class CommandeDeleteAction implements CommandeDeleteActionInterface
     /**
      * @Route(name="deleteCommande", path="admin/shop/one/{slug}/commande/del/{id}")
      *
-     * @Security("is_granted('ROLE_ADMIN')")
+     * @IsGranted("ROLE_ADMIN")
      *
      * @param Request $request
      * @param CommandeDeleteResponderInterface $responder

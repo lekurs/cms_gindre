@@ -13,7 +13,7 @@ use App\Domain\Models\Commande;
 use App\Domain\Models\Shop;
 use App\Domain\Repository\Interfaces\CommandeRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 
 class CommandeRepository extends ServiceEntityRepository implements CommandeRepositoryInterface
 {

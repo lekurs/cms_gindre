@@ -15,7 +15,8 @@ use App\Domain\Handler\Interfaces\ShopEditFormHandlerInterface;
 use App\Domain\Repository\Interfaces\ShopRepositoryInterface;
 use App\UI\Action\Interfaces\ShopEditActionInterface;
 use App\UI\Responder\Interfaces\ShopEditResponderInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -58,7 +59,7 @@ class ShopEditAction implements ShopEditActionInterface
     /**
      * @Route(name="editShop", path="admin/shop/edit/{slug}")
      *
-     * @Security("is_granted('ROLE_ADMIN')")
+     * @IsGranted("ROLE_ADMIN")
      *
      * @param Request $request
      * @param ShopEditResponderInterface $responder

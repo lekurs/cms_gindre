@@ -13,6 +13,7 @@ use App\Domain\Repository\Interfaces\ContactRepositoryInterface;
 use App\UI\Action\Interfaces\ContactDeleteActionInterface;
 use App\UI\Responder\Interfaces\AllShopsResponderInterface;
 use App\UI\Responder\Interfaces\ContactDeleteResponderInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -48,7 +49,7 @@ class ContactDeleteAction implements ContactDeleteActionInterface
     /**
      * @Route(name="deleteContact", path="/admin/shop/one/{slug}/contact/delete/{slugContact}")
      *
-     * @Security("is_granted('ROLE_ADMIN')")
+     * @IsGranted("ROLE_ADMIN")
      *
      * @param Request $request
      * @param ContactDeleteResponderInterface $responder

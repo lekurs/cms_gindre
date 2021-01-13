@@ -12,7 +12,8 @@ namespace App\UI\Action\Back;
 use App\Domain\Repository\Interfaces\MessageRepositoryInterface;
 use App\UI\Action\Interfaces\MessageDeleteActionInterface;
 use App\UI\Responder\Interfaces\MessageDeleteResponderInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,7 +38,7 @@ class MessageDeleteAction implements MessageDeleteActionInterface
     /**
      * @Route(name="deleteMessage", path="admin/shop/one/message/del/{id}")
      *
-     * @Security("has_role('ROLE_ADMIN')")
+     * @IsGranted("ROLE_ADMIN")
      *
      * @param Request $request
      * @param MessageDeleteResponderInterface $responder

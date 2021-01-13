@@ -13,6 +13,7 @@ use App\Domain\Form\ContactTypeCreationForm;
 use App\Domain\Handler\Interfaces\CreationContactTypeFormHandlerInterface;
 use App\UI\Action\Interfaces\ContactTypeCreationActionInterface;
 use App\UI\Responder\Interfaces\ContactTypeCreationResponderInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -45,7 +46,7 @@ class ContactTypeCreationAction implements ContactTypeCreationActionInterface
     /**
      * @Route(name="CreationContactType", path="/admin/contact/type/add")
      *
-     * @Security("is_granted('ROLE_ADMIN')")
+     * @IsGranted("ROLE_ADMIN")
      *
      * @param ContactTypeCreationResponderInterface $responder
      * @param Request $request

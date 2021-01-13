@@ -13,7 +13,7 @@ use App\Domain\Models\Contact;
 use App\Domain\Models\Shop;
 use App\Domain\Repository\Interfaces\ContactRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 
 class ContactRepository extends ServiceEntityRepository implements ContactRepositoryInterface
 {

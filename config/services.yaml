@@ -12,18 +12,20 @@ services:
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
-        public: false       # Allows optimizing the container by removing unused services; this also means
-                            # fetching services directly from the container via $container->get() won't work.
-                            # The best practice is to be explicit about your dependencies anyway.
         bind:
             $mailerAdminEmail: '%mailer_admin_email%'
             $dirDocs: '%kernel.project_dir%/public/documents/uploaded/'
 
+
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
     App\:
-        resource: '../src/*'
-        exclude: '../src/{Models,Migrations,Tests, Models}'
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+            - '../src/Tests/'
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
@@ -32,16 +34,16 @@ services:
         tags: ['controller.service_arguments']
 
     App\Services\SlugHelper:
-            autowire: true
-            public: false
+        autowire: true
+        public: false
 
     App\Services\MoveFileHelper:
         autowire: true
         public: false
 
     App\Services\MailerHelper:
-         autowire: true
-         public: false
+        autowire: true
+        public: false
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

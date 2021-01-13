@@ -13,6 +13,7 @@ use App\Domain\Form\ShopCreationForm;
 use App\Domain\Handler\Interfaces\CreationShopFormHandlerInterface;
 use App\UI\Action\Interfaces\ShopCreationActionInterface;
 use App\UI\Responder\Interfaces\ShopCreationResponderInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -46,7 +47,7 @@ class ShopActionCreation implements ShopCreationActionInterface
     /**
      * @Route(name="creationShop", path="admin/shop/add")
      *
-     * @Security("is_granted('ROLE_ADMIN')")
+     * @IsGranted("ROLE_ADMIN")
      *
      * @param Request $request
      * @param ShopCreationResponderInterface $responder

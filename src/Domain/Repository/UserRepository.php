@@ -13,7 +13,7 @@ use App\Domain\Models\User;
 use App\Domain\Repository\Interfaces\UserRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 
 class UserRepository extends ServiceEntityRepository implements UserRepositoryInterface
 {

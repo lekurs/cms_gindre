@@ -12,7 +12,7 @@ namespace App\Domain\Repository;
 use App\Domain\Models\ShopType;
 use App\Domain\Repository\Interfaces\ShopTypeRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 
 class ShopTypeRepository extends ServiceEntityRepository implements ShopTypeRepositoryInterface
 {

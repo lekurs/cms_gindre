@@ -12,7 +12,7 @@ namespace App\Domain\Repository;
 use App\Domain\Models\ProductType;
 use App\Domain\Repository\Interfaces\ProductTypeRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 
 class ProductTypeRepository extends ServiceEntityRepository implements ProductTypeRepositoryInterface
 {

@@ -12,7 +12,7 @@ namespace App\Domain\Repository;
 use App\Domain\Models\Departement;
 use App\Domain\Repository\Interfaces\DepartementRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 
 class DepartementRepository extends ServiceEntityRepository implements DepartementRepositoryInterface
 {

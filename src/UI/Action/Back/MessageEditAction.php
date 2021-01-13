@@ -15,6 +15,7 @@ use App\Domain\Handler\Interfaces\MessageEditHandlerInterface;
 use App\Domain\Repository\Interfaces\MessageRepositoryInterface;
 use App\UI\Action\Interfaces\MessageEditActionInterface;
 use App\UI\Responder\Interfaces\MessageEditResponderInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -58,7 +59,7 @@ class MessageEditAction implements MessageEditActionInterface
     /**
      * @Route(name="editMessage", path="admin/shop/one/edit/message/{id}")
      *
-     * @Security("is_granted('ROLE_ADMIN')")
+     * @IsGranted("ROLE_ADMIN")
      *
      * @param Request $request
      * @param MessageEditResponderInterface $responder
