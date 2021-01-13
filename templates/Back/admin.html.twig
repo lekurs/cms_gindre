@@ -123,10 +123,12 @@
             </div>
             <div class="row client-no-news">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    {% for shopNoCommande in shopNoCommandes if shopNoCommande is not null%}
+                    {% for shopNoCommande in shopNoCommandes %}
+                        {% if shopNoCommande is not null%}
                             <p><a href="{{ path('showOneShop', { 'slug': shopNoCommande.slug }) }}">{{ shopNoCommande.name }}</a></p>
                         {% else %}
                         <p>Pas de magasin n'ayant pas passé de commande depuis moins de 3 mois.</p>
+                            {% endif %}
                     {% endfor %}
                 </div>
             </div>
@@ -146,8 +148,6 @@
                 </div>
                 </div>
             </div>
-
-    </div>
     {% endblock %}
 
 {% endblock %}
