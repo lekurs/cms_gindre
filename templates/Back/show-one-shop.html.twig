@@ -54,7 +54,8 @@
         </div>
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-            {% for message in shop.messages if message is not empty%}
+            {% for message in shop.messages %}
+                {% if message is not empty%}
                 <div class="row {% if loop.index is divisible by (2) %} message-container-second {% else %} message-container {% endif %} message-row-container">
                     <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-12">
                             <p class="text-capitalize">{{ message.dateContact | date('d.m.Y') }}</p>
@@ -78,6 +79,7 @@
                         <p>aucune note</p>
                     </div>
                 </div>
+                {% endif %}
             {% endfor %}
                 </div>
             </div>
