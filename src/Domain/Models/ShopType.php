@@ -38,7 +38,7 @@ class ShopType
     /**
      * @return Uuid
      */
-    public function getId(): Uuid
+    public function getId()
     {
         return $this->id;
     }
