@@ -51,18 +51,20 @@
         </div>
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="row">
-                {% for  commande in commandes if commandes is not empty%}
+                {% if commandes is not empty %}
+                {% for  commande in commandes %}
                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
                         <p>{{ commande.productType.product }}</p>
                         <p>{{ commande.dateCommande | date('d-M-Y')}}</p>
                         <p>{{ commande.amount }}</p>
                         <p><a href="{{ path('editCommande', { 'slug': commande.shop.slug, 'id': commande.id}) }}"><i class="fa fa-edit commande-edit-icon" data-slug="{{ commande.shop.slug }}" data-id="{{ commande.id }}"></i> </a><i class="fa fa-trash"></i> </p>
                     </div>
-                    {% else %}
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <p class="font-weight-bold">Pas de commande</p>
-                    </div>
                 {% endfor %}
+                {% else %}
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <p class="font-weight-bold">Pas de commande</p>
+                </div>
+                {% endif %}
             </div>
     </div>
 </div>
